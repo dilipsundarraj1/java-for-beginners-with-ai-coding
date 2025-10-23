@@ -1,4 +1,4 @@
-rootProject.name = "modern-java-for-beginners"
+rootProject.name = "java-for-beginners-with-ai-coding"
 
 // Include child projects and their submodules
 include("basics-final")
