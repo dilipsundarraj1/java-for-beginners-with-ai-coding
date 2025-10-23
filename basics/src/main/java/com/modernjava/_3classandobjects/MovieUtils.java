@@ -6,10 +6,5 @@ package com.modernjava._3classandobjects;
  */
 public  class MovieUtils {
 
-    // Static variable
-    static String streamingPlatform_netflix = "Netflix";
-    // Static variable
-    static String streamingPlatform_amazonprime = "Amazon_Prime";
-
 
 }
