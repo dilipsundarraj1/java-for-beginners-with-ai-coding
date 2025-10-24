@@ -7,4 +7,10 @@ package com.modernjava._3classandobjects;
 public  class MovieUtils {
 
 
+
+//    public static void addIntermission(Movie m, int extraMinutes) {
+//        if (m == null) return;
+//        if (extraMinutes < 0) extraMinutes = 0;
+//        m.duration += extraMinutes; // <— mutation
+//    }
 }
