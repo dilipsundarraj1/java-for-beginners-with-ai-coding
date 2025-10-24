@@ -31,13 +31,6 @@ public class Movie extends Object {
 
         return title.trim();
     }
-    public static String trimTitle(String title, String title2) {
-        if (title == null) {
-            return "Unknown";
-        }
-
-        return title.trim();
-    }
 
     public void printMovie(Movie movie){
 //        System.out.println("Movie: " + movie.title + ", Duration: " + movie.formattedDuration() + ", Genre: " + movie.genre + ", Rating: " + movie.rating + "/10.0");
