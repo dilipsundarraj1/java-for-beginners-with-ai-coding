@@ -15,10 +15,11 @@ public  class MovieUtils {
      * Maps minimum age to MPAA rating category.
      */
     public static String minimumAgeToRating(int minimumAge) {
-        if (minimumAge >= 17) return "R";
-        if (minimumAge >= 13) return "PG-13";
-        if (minimumAge >= 6) return "PG";
-        return "G";
+        var movieRating = "G";
+        if (minimumAge >= 17)  movieRating = "R";
+        if (minimumAge >= 13) movieRating= "PG-13";
+        if (minimumAge >= 6) movieRating = "PG";
+        return movieRating;
     }
 
     public static void addIntermission(Movie m, int extraMinutes) {

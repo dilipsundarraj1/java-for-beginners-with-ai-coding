@@ -36,14 +36,12 @@ public class MovieDemoObjectEquality {
         System.out.println("Same Reference Test:");
         System.out.println("movie1 == movie3: " + (movie1 == movie3));
         System.out.println("movie1.equals(movie3): " + movie1.equals(movie3));
-        System.out.println("Result: true (both point to same object in memory)");
         System.out.println();
 
         // Same content, different objects test
         System.out.println("Same Content, Different Objects Test:");
         System.out.println("movie1 == movie2: " + (movie1 == movie2));
         System.out.println("movie1.equals(movie2): " + movie1.equals(movie2));
-        System.out.println("Result: false (different objects in memory)");
         System.out.println();
 
         // ============= Manual Content Comparison =============

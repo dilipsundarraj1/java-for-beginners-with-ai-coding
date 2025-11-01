@@ -2,7 +2,7 @@ package com.modernjava._3classandobjects;
 
 public class MovieDemoVariables {
 
-    public static void main(String[] args) {
+     static void main(String[] args) {
         // Demonstrating variable scope and usage
         Movie movie = new Movie(" Avengers: Endgame ", 181, "Action/Adventure", 8.4, 13, MovieUtils.streamingPlatform_netflix);
 
