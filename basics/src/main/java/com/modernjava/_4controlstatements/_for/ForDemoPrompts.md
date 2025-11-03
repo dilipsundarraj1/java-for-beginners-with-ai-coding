@@ -1,5 +1,3 @@
-````markdown
-// filepath: /Users/Z001QGD/Dilip/code-with-dilip/java-for-beginners-with-ai-coding/basics-final/src/main/java/com/modernjava/_4controlstatements/_for/ForDemoPrompts.md
 
 # For Loop Examples
 
