@@ -25,14 +25,15 @@ public class ForDemo {
         // for loop
         basicForLoop();
         sumForLoop();
+        // odd and even numbers
+        printOddAndEvenNumbers();
 
         // enhanced-for loop
         showSeats();
         showPrices();
         showSeatAvailability();
 
-        // odd and even numbers
-        printOddAndEvenNumbers();
+
     }
 
     private static void showSeats() {
