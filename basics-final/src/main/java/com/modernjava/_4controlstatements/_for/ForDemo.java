@@ -30,6 +30,9 @@ public class ForDemo {
         showSeats();
         showPrices();
         showSeatAvailability();
+
+        // odd and even numbers
+        printOddAndEvenNumbers();
     }
 
     private static void showSeats() {
@@ -82,5 +85,36 @@ public class ForDemo {
             System.out.print(" " + (i + 1) + "  ");
         }
         System.out.println();
+    }
+
+    /**
+     * Prints odd and even numbers from 1 to 100 using a single for loop
+     * Also counts the total number of odd and even numbers
+     */
+    private static void printOddAndEvenNumbers() {
+        System.out.println("\n=== ODD AND EVEN NUMBERS FROM 1 TO 100 ===");
+
+        int oddCount = 0;
+        int evenCount = 0;
+
+        System.out.print("Odd Numbers  : ");
+        System.out.print("Even Numbers : ");
+
+        // Single for loop to process all numbers
+        for (int i = 1; i <= 100; i++) {
+            if (i % 2 != 0) {
+                // odd numbers
+                System.out.print(i + " ");
+                oddCount++;
+            } else {
+                // even numbers
+                System.out.print(i + " ");
+                evenCount++;
+            }
+        }
+
+        System.out.println("\n\nOdd Count  : " + oddCount);
+        System.out.println("Even Count : " + evenCount);
+        System.out.println("Total      : " + (oddCount + evenCount));
     }
 }

@@ -1,4 +1,3 @@
-
 # For Loop Examples
 
 <!-- TOC -->
@@ -7,10 +6,11 @@
   * [Prompts for Replication](#prompts-for-replication)
     * [Prompt 1: Basic For Loop](#prompt-1-basic-for-loop)
     * [Prompt 2: Sum For Loop with Accumulator](#prompt-2-sum-for-loop-with-accumulator)
-    * [Prompt 3: Enhanced For Loop with Integer Array](#prompt-3-enhanced-for-loop-with-integer-array)
-    * [Prompt 4: Enhanced For Loop with Double Array](#prompt-4-enhanced-for-loop-with-double-array)
-    * [Prompt 5: Enhanced For Loop with Char Array and Counting](#prompt-5-enhanced-for-loop-with-char-array-and-counting)
-    * [Prompt 6: Main Method Integration](#prompt-6-main-method-integration)
+    * [Prompt 3: Single For Loop with Odd and Even Numbers](#prompt-3-single-for-loop-with-odd-and-even-numbers)
+    * [Prompt 4: Enhanced For Loop with Integer Array](#prompt-4-enhanced-for-loop-with-integer-array)
+    * [Prompt 5: Enhanced For Loop with Double Array](#prompt-5-enhanced-for-loop-with-double-array)
+    * [Prompt 6: Enhanced For Loop with Char Array and Counting](#prompt-6-enhanced-for-loop-with-char-array-and-counting)
+    * [Prompt 7: Main Method Integration](#prompt-7-main-method-integration)
 <!-- /TOC -->
 
 # For Loop Examples
@@ -98,7 +98,71 @@ Sum from 1 to 5: 15
 
 ---
 
-### Prompt 3: Enhanced For Loop with Integer Array
+### Prompt 3: Single For Loop with Odd and Even Numbers
+**Concept**: Using a single for loop to identify, print, and count both odd and even numbers in a range
+
+**Task**: Create a function that prints odd and even numbers from 1 to 100, counts them, and displays totals using a single for loop iteration.
+
+**Expected Function Signature**: `public static void printOddAndEvenNumbers()`
+
+**Context**: This demonstrates efficiency and how to process multiple conditions in a single loop pass, a common optimization technique for data processing and analysis.
+
+**Requirements**:
+1. Declare counters: `int oddCount = 0`, `int evenCount = 0`
+2. Print section header: `"=== ODD AND EVEN NUMBERS FROM 1 TO 100 ==="`
+3. Print labels: `"Odd Numbers  : "` and `"Even Numbers : "` on the same output line
+4. Use a **single for loop** from 1 to 100:
+   - Initialization: `int i = 1`
+   - Condition: `i <= 100`
+   - Increment: `i++`
+5. Inside the loop, use if-else to check each number:
+   - If `i % 2 != 0` (odd): print the number and increment `oddCount`
+   - Else `i % 2 == 0` (even): print the number and increment `evenCount`
+6. After loop ends, print counts:
+   - `"Odd Count  : " + oddCount`
+   - `"Even Count : " + evenCount`
+   - `"Total      : " + (oddCount + evenCount)`
+
+**Why This Matters**:
+- ✅ Demonstrates **single loop efficiency** vs multiple separate loops
+- ✅ Shows **conditional logic within loops** to handle multiple data categories
+- ✅ Practical real-world pattern: data classification and counting in one pass
+- ✅ Introduces **loop optimization** concept (processing all conditions in one iteration)
+- ✅ Shows how **counter/accumulator pattern** works with conditional branches
+- ✅ Foundation for more complex data processing: filtering, grouping, and statistics
+
+**Single Loop vs Multiple Loops Comparison**:
+- ❌ Multiple loops approach: 200 iterations (100 for odd check + 100 for even check)
+- ✅ Single loop approach: 100 iterations (all conditions checked in one pass)
+
+**Key Learning Points**:
+1. **Loop Efficiency**: Process multiple conditions in a single loop rather than multiple loops
+2. **Modulo Operator**: Use `% 2` to determine if a number is odd or even
+3. **Conditional Branches**: Different actions based on different conditions within the loop
+4. **Counter Pattern**: Increment specific counters based on which condition is met
+5. **Data Organization**: Numbers and counts displayed in organized format
+
+**Expected Output**:
+```
+=== ODD AND EVEN NUMBERS FROM 1 TO 100 ===
+Odd Numbers  : Even Numbers : 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ... 97 98 99 100
+
+Odd Count  : 50
+Even Count : 50
+Total      : 100
+```
+
+**Test Cases**:
+- How many odd numbers between 1-100? (Answer: 50)
+- How many even numbers between 1-100? (Answer: 50)
+- What is the first odd number printed? (Answer: 1)
+- What is the last even number printed? (Answer: 100)
+- Could this loop be modified for a different range (e.g., 1-50)? Yes, just change the condition to `i <= 50`
+- Could this loop handle other divisibility patterns? Yes, change `i % 2` to check for other divisors
+
+---
+
+### Prompt 4: Enhanced For Loop with Integer Array
 **Concept**: Enhanced for loop (for-each) to iterate over integer array
 
 **Task**: Create a function that displays seat numbers using an enhanced for loop with an integer array.
@@ -128,7 +192,7 @@ Seat: 3
 
 ---
 
-### Prompt 4: Enhanced For Loop with Double Array
+### Prompt 5: Enhanced For Loop with Double Array
 **Concept**: Enhanced for loop with double array for decimal values
 
 **Task**: Create a function that displays prices using an enhanced for loop with a double array.
@@ -158,7 +222,7 @@ Price: $8.99
 
 ---
 
-### Prompt 5: Enhanced For Loop with Char Array and Counting
+### Prompt 6: Enhanced For Loop with Char Array and Counting
 **Concept**: Enhanced for loop with char array and conditional counting logic
 
 **Task**: Create a function that displays seat availability status using enhanced for loop and counts available/booked seats.
@@ -196,7 +260,7 @@ Position :  1   2   3   4   5   6   7   8
 
 ---
 
-### Prompt 6: Main Method Integration
+### Prompt 7: Main Method Integration
 **Concept**: Orchestrating all for loop examples in a coordinated main method
 
 **Task**: Create a main method that demonstrates all the for loop examples with proper organization.
@@ -210,12 +274,15 @@ Position :  1   2   3   4   5   6   7   8
    - First section: Traditional for loops
      - `basicForLoop()`
      - `sumForLoop()`
-   - Second section: Enhanced for loops
+   - Second section: Single loop with analysis
+     - `printOddAndEvenNumbers()`
+   - Third section: Enhanced for loops
      - `showSeats()`
      - `showPrices()`
      - `showSeatAvailability()`
 2. Use clear section comments:
    - `// for loop` before traditional for loop calls
+   - `// odd and even numbers` before the analysis function call
    - `// enhanced-for loop` before enhanced for loop calls
 3. Results should flow naturally from one function to the next
 
@@ -233,6 +300,13 @@ Iteration: 2
 Iteration: 3
 Iteration: 4
 Sum from 1 to 5: 15
+
+=== ODD AND EVEN NUMBERS FROM 1 TO 100 ===
+Odd Numbers  : Even Numbers : 1 2 3 4 5 6 7 8 9 10 ... 97 98 99 100
+Odd Count  : 50
+Even Count : 50
+Total      : 100
+
 Seat: 1
 Seat: 2
 Seat: 3
@@ -321,6 +395,3 @@ for (int i = 0; ; i++) {
 - Add print statements to track accumulator values
 - Combine different loop types for different purposes
 - Experiment with different data types in enhanced for loops
-
-````
-
