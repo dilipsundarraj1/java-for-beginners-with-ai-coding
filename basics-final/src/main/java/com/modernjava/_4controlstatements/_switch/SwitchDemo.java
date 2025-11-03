@@ -55,4 +55,41 @@ public class SwitchDemo {
         };
     }
 
+    static void main(String[] args) {
+        System.out.println("=== Switch Demo - Function Invocations ===\n");
+
+        // Test seatSurchargeDollarV1 (switch expression)
+        System.out.println("1. seatSurchargeDollarV1() - Modern Switch Expression:");
+        System.out.println("   REGULAR seat: $" + seatSurchargeDollarV1(SeatType.REGULAR));
+        System.out.println("   PREMIUM seat: $" + seatSurchargeDollarV1(SeatType.PREMIUM));
+        System.out.println("   RECLINER seat: $" + seatSurchargeDollarV1(SeatType.RECLINER));
+        System.out.println();
+
+        // Test seatSurchargeDollar (traditional switch statement)
+        System.out.println("2. seatSurchargeDollar() - Traditional Switch Statement:");
+        System.out.println("   REGULAR seat: $" + seatSurchargeDollar(SeatType.REGULAR));
+        System.out.println("   PREMIUM seat: $" + seatSurchargeDollar(SeatType.PREMIUM));
+        System.out.println("   RECLINER seat: $" + seatSurchargeDollar(SeatType.RECLINER));
+        System.out.println();
+
+        // Test seatSurchargeCentsUsingIfElse (if-else alternative)
+        System.out.println("3. seatSurchargeCentsUsingIfElse() - If-Else Alternative:");
+        System.out.println("   REGULAR seat: $" + seatSurchargeCentsUsingIfElse(SeatType.REGULAR));
+        System.out.println("   PREMIUM seat: $" + seatSurchargeCentsUsingIfElse(SeatType.PREMIUM));
+        System.out.println("   RECLINER seat: $" + seatSurchargeCentsUsingIfElse(SeatType.RECLINER));
+        System.out.println();
+
+        // Test basePriceByDay (switch with multiple case values)
+        System.out.println("4. basePriceByDay() - Switch with Multiple Case Values:");
+        System.out.println("   MONDAY: $" + basePriceByDay(Day.MONDAY));
+        System.out.println("   TUESDAY: $" + basePriceByDay(Day.TUESDAY));
+        System.out.println("   WEDNESDAY: $" + basePriceByDay(Day.WEDNESDAY));
+        System.out.println("   THURSDAY: $" + basePriceByDay(Day.THURSDAY));
+        System.out.println("   FRIDAY: $" + basePriceByDay(Day.FRIDAY));
+        System.out.println("   SATURDAY: $" + basePriceByDay(Day.SATURDAY));
+        System.out.println("   SUNDAY: $" + basePriceByDay(Day.SUNDAY));
+    }
+
+
+
 }
