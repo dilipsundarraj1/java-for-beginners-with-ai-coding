@@ -1,16 +1,13 @@
-
 <!-- TOC -->
 * [While and Do-While Loop Examples](#while-and-do-while-loop-examples)
   * [Overview](#overview)
   * [Prompts for Replication](#prompts-for-replication)
-    * [Prompt 1: Basic For Loop](#prompt-1-basic-for-loop)
-    * [Prompt 2: Basic While Loop](#prompt-2-basic-while-loop)
-    * [Prompt 3: Basic Do-While Loop](#prompt-3-basic-do-while-loop)
-    * [Prompt 4: While Loop Seat Booking System](#prompt-4-while-loop-seat-booking-system)
-    * [Prompt 5: Do-While Loop Seat Booking System](#prompt-5-do-while-loop-seat-booking-system)
-    * [Prompt 6: Main Method Integration](#prompt-6-main-method-integration)
+    * [Prompt 1: Basic While Loop](#prompt-1-basic-while-loop)
+    * [Prompt 2: Basic Do-While Loop](#prompt-2-basic-do-while-loop)
+    * [Prompt 3: While Loop Seat Booking System](#prompt-3-while-loop-seat-booking-system)
+    * [Prompt 4: Do-While Loop Seat Booking System](#prompt-4-do-while-loop-seat-booking-system)
+    * [Prompt 5: Main Method Integration](#prompt-5-main-method-integration)
   * [Basic Loop Examples](#basic-loop-examples)
-    * [For Loop](#for-loop)
     * [While Loop](#while-loop)
     * [Do-While Loop](#do-while-loop)
   * [Real-World Applications: Seat Booking Systems](#real-world-applications-seat-booking-systems)
@@ -25,7 +22,7 @@
     * [Seat Booking Systems:](#seat-booking-systems)
   * [Running the Code](#running-the-code)
   * [Practical Applications](#practical-applications)
-<!-- TOC -->
+<!-- /TOC -->
 # While and Do-While Loop Examples
 
 This document provides examples of different loop types in Java: for loop, while loop, and do-while loop, including practical real-world applications with seat booking systems.
@@ -39,21 +36,8 @@ Loops are used to execute a block of code repeatedly. Java provides three main t
 
 ## Prompts for Replication
 
-### Prompt 1: Basic For Loop
-**Task**: Create a function that demonstrates a basic for loop that iterates 5 times and prints the iteration number.
-
-**Expected Function Signature**: `public static void basicForLoop()`
-
-**Requirements**:
-- Use a for loop with initialization `int i = 0`
-- Loop condition should be `i < 5`
-- Increment `i` after each iteration
-- Print "For Iteration: " followed by the current value of i
-
----
-
-### Prompt 2: Basic While Loop
-**Task**: Create a function that demonstrates a basic while loop equivalent to the for loop above.
+### Prompt 1: Basic While Loop
+**Task**: Create a function that demonstrates a basic while loop that iterates 5 times and prints the iteration number.
 
 **Expected Function Signature**: `public static void basicWhileLoop()`
 
@@ -65,8 +49,8 @@ Loops are used to execute a block of code repeatedly. Java provides three main t
 
 ---
 
-### Prompt 3: Basic Do-While Loop
-**Task**: Create a function that demonstrates a basic do-while loop equivalent to the loops above.
+### Prompt 2: Basic Do-While Loop
+**Task**: Create a function that demonstrates a basic do-while loop equivalent to the while loop above.
 
 **Expected Function Signature**: `public static void basicDoWhileLoop()`
 
@@ -79,7 +63,7 @@ Loops are used to execute a block of code repeatedly. Java provides three main t
 
 ---
 
-### Prompt 4: While Loop Seat Booking System
+### Prompt 3: While Loop Seat Booking System
 **Task**: Create a cinema seat booking system using a while loop that continues until all seats are sold.
 
 **Expected Function Signature**: `public static void checkAvailableSeatsLogic()`
@@ -99,7 +83,7 @@ Loops are used to execute a block of code repeatedly. Java provides three main t
 
 ---
 
-### Prompt 5: Do-While Loop Seat Booking System
+### Prompt 4: Do-While Loop Seat Booking System
 **Task**: Create a user-controlled cinema seat booking system using a do-while loop where users decide when to stop.
 
 **Expected Function Signature**: `public static void doWhileSeatBooking()`
@@ -122,7 +106,7 @@ Loops are used to execute a block of code repeatedly. Java provides three main t
 
 ---
 
-### Prompt 6: Main Method Integration
+### Prompt 5: Main Method Integration
 **Task**: Create a main method that demonstrates all the loop examples with clear section headers.
 
 **Expected Function Signature**: `public static void main(String[] args)`
@@ -136,16 +120,6 @@ Loops are used to execute a block of code repeatedly. Java provides three main t
 - Add appropriate spacing between sections
 
 ## Basic Loop Examples
-
-### For Loop
-```java
-public static void basicForLoop() {
-    // Basic for loop
-    for (int i = 0; i < 5; i++) {
-        System.out.println("For Iteration: " + i);
-    }
-}
-```
 
 ### While Loop
 ```java

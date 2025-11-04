@@ -55,12 +55,17 @@ public class TicketCalculator {
      * Demonstrates switch expression with enum (replaced applyPremiumSurcharge)
      * Seat-based surcharge using modern switch expression from SwitchDemo
      */
-    public static int applySeatSurcharge(int currentPrice, SeatType seatType) {
-        int surcharge = switch (seatType) {
-            case REGULAR -> 0;
-            case PREMIUM -> 3; // $3.00
-            case RECLINER -> 5; // $5.00
-        };
+public static int applySeatSurcharge(int currentPrice, SeatType seatType) {
+        int surcharge;
+        if (seatType == SeatType.REGULAR) {
+            surcharge = 0;
+        } else if (seatType == SeatType.PREMIUM) {
+            surcharge = 3; // $3.00
+        } else if (seatType == SeatType.RECLINER) {
+            surcharge = 5; // $5.00
+        } else {
+            surcharge = 0; // default case, should not occur
+        }
         return currentPrice + surcharge;
     }
 

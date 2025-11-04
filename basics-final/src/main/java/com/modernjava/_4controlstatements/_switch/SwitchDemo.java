@@ -15,6 +15,18 @@ public class SwitchDemo {
         };
     }
 
+    public static int seatSurchargeUsingIfElse(SeatType seat) {
+        if (seat == SeatType.REGULAR) {
+            return 0;
+        } else if (seat == SeatType.PREMIUM) {
+            return 2; // $2.00
+        } else if (seat == SeatType.RECLINER) {
+            return 5; // $5.00
+        } else {
+            throw new IllegalArgumentException("Unknown seat type: " + seat);
+        }
+    }
+
     public static int seatSurchargeDollar(SeatType seat) {
         int surcharge;
         switch (seat) {
@@ -23,25 +35,17 @@ public class SwitchDemo {
                 break;
             case PREMIUM:
                 surcharge =  2; // $2.50
+                break;
             case RECLINER:
                 surcharge =  5; // $5.00
+                break;
             default:
-                throw new IllegalArgumentException("Unknown seat type: " + seat);
+                surcharge =  0;
         }
         return surcharge;
     }
 
-    public static int seatSurchargeCentsUsingIfElse(SeatType seat) {
-        if (seat == SeatType.REGULAR) {
-            return 0;
-        } else if (seat == SeatType.PREMIUM) {
-            return 2; // $2.50
-        } else if (seat == SeatType.RECLINER) {
-            return 5; // $5.00
-        } else {
-            throw new IllegalArgumentException("Unknown seat type: " + seat);
-        }
-    }
+
 
     /**
      * Demonstrates switch expressions with multiple case values
@@ -58,25 +62,28 @@ public class SwitchDemo {
     static void main(String[] args) {
         System.out.println("=== Switch Demo - Function Invocations ===\n");
 
+        // Test seatSurchargeCentsUsingIfElse (if-else alternative)
+        System.out.println("1. seatSurchargeCentsUsingIfElse() - If-Else Alternative:");
+        System.out.println("   REGULAR seat: $" + seatSurchargeUsingIfElse(SeatType.REGULAR));
+        System.out.println("   PREMIUM seat: $" + seatSurchargeUsingIfElse(SeatType.PREMIUM));
+        System.out.println("   RECLINER seat: $" + seatSurchargeUsingIfElse(SeatType.RECLINER));
+
+
         // Test seatSurchargeDollarV1 (switch expression)
-        System.out.println("1. seatSurchargeDollarV1() - Modern Switch Expression:");
+        System.out.println("2. seatSurchargeDollarV1() - Modern Switch Expression:");
         System.out.println("   REGULAR seat: $" + seatSurchargeDollarV1(SeatType.REGULAR));
         System.out.println("   PREMIUM seat: $" + seatSurchargeDollarV1(SeatType.PREMIUM));
         System.out.println("   RECLINER seat: $" + seatSurchargeDollarV1(SeatType.RECLINER));
         System.out.println();
 
         // Test seatSurchargeDollar (traditional switch statement)
-        System.out.println("2. seatSurchargeDollar() - Traditional Switch Statement:");
+        System.out.println("3. seatSurchargeDollar() - Traditional Switch Statement:");
         System.out.println("   REGULAR seat: $" + seatSurchargeDollar(SeatType.REGULAR));
         System.out.println("   PREMIUM seat: $" + seatSurchargeDollar(SeatType.PREMIUM));
         System.out.println("   RECLINER seat: $" + seatSurchargeDollar(SeatType.RECLINER));
         System.out.println();
 
-        // Test seatSurchargeCentsUsingIfElse (if-else alternative)
-        System.out.println("3. seatSurchargeCentsUsingIfElse() - If-Else Alternative:");
-        System.out.println("   REGULAR seat: $" + seatSurchargeCentsUsingIfElse(SeatType.REGULAR));
-        System.out.println("   PREMIUM seat: $" + seatSurchargeCentsUsingIfElse(SeatType.PREMIUM));
-        System.out.println("   RECLINER seat: $" + seatSurchargeCentsUsingIfElse(SeatType.RECLINER));
+
         System.out.println();
 
         // Test basePriceByDay (switch with multiple case values)
