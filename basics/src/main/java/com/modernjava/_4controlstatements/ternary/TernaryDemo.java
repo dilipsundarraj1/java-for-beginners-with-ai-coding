@@ -2,10 +2,8 @@ package com.modernjava._4controlstatements.ternary;
 
 public class TernaryDemo {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         int age = 65;
-        var label = ticketLabel(65);
-
         ticketlabelUsingIfElse(age);
 
     }
@@ -19,9 +17,4 @@ public class TernaryDemo {
         }
     }
 
-    private static String ticketLabel(int age) {
-        String discountLabel = (age >= 60) ? "Senior Discount" : "Regular Price";
-        System.out.println(discountLabel);
-        return discountLabel;
-    }
 }
