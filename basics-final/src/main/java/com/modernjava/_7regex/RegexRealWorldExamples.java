@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
  */
 public class RegexRealWorldExamples {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Real-World Regex Examples ===\n");
 
         // 1. Phone Number Masking with Regex

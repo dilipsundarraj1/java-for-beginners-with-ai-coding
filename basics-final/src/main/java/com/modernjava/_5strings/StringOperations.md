@@ -1,5 +1,35 @@
 # StringOperations.java - Essential String Methods
 
+<!-- TOC -->
+* [StringOperations.java - Essential String Methods](#stringoperationsjava---essential-string-methods)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Basic String Operations Demonstration](#prompt-1-basic-string-operations-demonstration)
+    * [Prompt 2: String Concatenation Demonstration](#prompt-2-string-concatenation-demonstration)
+    * [Prompt 3: Case Conversion Demonstration](#prompt-3-case-conversion-demonstration)
+    * [Prompt 4: Substring Operations Demonstration](#prompt-4-substring-operations-demonstration)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. Basic String Information Methods](#1-basic-string-information-methods)
+    * [2. String Concatenation](#2-string-concatenation)
+    * [3. Case Conversion](#3-case-conversion)
+    * [4. Substring Operations](#4-substring-operations)
+  * [Running the Code](#running-the-code)
+  * [Expected Output](#expected-output)
+  * [Practical Applications](#practical-applications)
+    * [1. Input Validation](#1-input-validation)
+    * [2. Text Processing](#2-text-processing)
+    * [3. Formatting Names](#3-formatting-names)
+  * [Performance Considerations](#performance-considerations)
+    * [Efficient vs Inefficient Concatenation](#efficient-vs-inefficient-concatenation)
+  * [Common Patterns](#common-patterns)
+    * [1. Safe Character Access](#1-safe-character-access)
+    * [2. Extracting File Extensions](#2-extracting-file-extensions)
+    * [3. Building Display Text](#3-building-display-text)
+  * [Things to Remember](#things-to-remember)
+  * [Practice Exercises](#practice-exercises)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
+
 ## Overview
 This file demonstrates the most commonly used string operations that every Java developer needs to know for day-to-day programming tasks.
 

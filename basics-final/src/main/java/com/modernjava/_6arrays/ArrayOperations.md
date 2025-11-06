@@ -1,5 +1,31 @@
 # ArrayOperations.java - Advanced Array Operations and Manipulations
 
+<!-- TOC -->
+* [ArrayOperations.java - Advanced Array Operations and Manipulations](#arrayoperationsjava---advanced-array-operations-and-manipulations)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Array Element Updates](#prompt-1-array-element-updates)
+    * [Prompt 2: Adding Elements to Arrays](#prompt-2-adding-elements-to-arrays)
+    * [Prompt 3: Removing Elements from Arrays](#prompt-3-removing-elements-from-arrays)
+    * [Prompt 4: Array Searching Operations](#prompt-4-array-searching-operations)
+    * [Prompt 5: Array Copying Techniques](#prompt-5-array-copying-techniques)
+    * [Prompt 6: Array Sorting Operations](#prompt-6-array-sorting-operations)
+    * [Helper Methods Required](#helper-methods-required)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. Array Mutability vs Immutability](#1-array-mutability-vs-immutability)
+    * [2. Array Expansion and Contraction](#2-array-expansion-and-contraction)
+    * [3. Search Algorithms](#3-search-algorithms)
+    * [4. Array Copying Best Practices](#4-array-copying-best-practices)
+    * [5. Built-in Sorting](#5-built-in-sorting)
+  * [Performance Considerations](#performance-considerations)
+    * [Time Complexity](#time-complexity)
+    * [Space Complexity](#space-complexity)
+  * [Common Pitfalls](#common-pitfalls)
+  * [Best Practices](#best-practices)
+  * [Real-world Applications](#real-world-applications)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
+
 ## Overview
 This class demonstrates comprehensive array operations including updating elements, simulating adding/removing elements, searching, copying, and sorting. Since arrays have fixed size in Java, "adding" and "removing" operations actually create new arrays with different sizes.
 

@@ -13,7 +13,7 @@ public class RegexBasics {
 
 
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Regex Basics in Java ===\n");
 
         // 1. Basic Pattern Matching

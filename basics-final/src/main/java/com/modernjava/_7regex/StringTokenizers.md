@@ -1,5 +1,33 @@
 # StringTokenizers.java - Understanding String Tokenization Methods
 
+<!-- TOC -->
+* [StringTokenizers.java - Understanding String Tokenization Methods](#stringtokenizersjava---understanding-string-tokenization-methods)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: StringTokenizer Basics](#prompt-1-stringtokenizer-basics)
+    * [Prompt 2: Custom Delimiters and Delimiter Inclusion](#prompt-2-custom-delimiters-and-delimiter-inclusion)
+    * [Prompt 3: StringTokenizer vs String.split() Comparison](#prompt-3-stringtokenizer-vs-stringsplit-comparison)
+    * [Prompt 4: Handling Empty Tokens](#prompt-4-handling-empty-tokens)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. StringTokenizer Fundamentals](#1-stringtokenizer-fundamentals)
+    * [2. Custom Delimiters and Options](#2-custom-delimiters-and-options)
+    * [3. StringTokenizer vs String.split()](#3-stringtokenizer-vs-stringsplit)
+    * [4. Empty Token Handling Strategies](#4-empty-token-handling-strategies)
+  * [When to Use Each Method](#when-to-use-each-method)
+    * [Use StringTokenizer when:](#use-stringtokenizer-when)
+    * [Use String.split() when:](#use-stringsplit-when)
+  * [Performance Guidelines](#performance-guidelines)
+  * [Common Tokenization Patterns](#common-tokenization-patterns)
+  * [Best Practices](#best-practices)
+  * [Real-World Applications](#real-world-applications)
+    * [CSV Processing](#csv-processing)
+    * [Configuration File Processing](#configuration-file-processing)
+    * [Log File Analysis](#log-file-analysis)
+  * [Common Pitfalls and Solutions](#common-pitfalls-and-solutions)
+  * [Memory and Performance Considerations](#memory-and-performance-considerations)
+    * [StringTokenizer Advantages](#stringtokenizer-advantages)
+    * [String.split() Advantages](#stringsplit-advantages)
+<!-- TOC -->
 ## Overview
 This file covers various string tokenization approaches in Java, including the StringTokenizer class, String.split() method comparison, and handling empty tokens. It demonstrates when to use each approach, handling different delimiters, and managing empty tokens in different scenarios.
 

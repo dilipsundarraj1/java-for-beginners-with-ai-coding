@@ -1,5 +1,43 @@
 # ArrayMultiDimensional.java - Understanding Multidimensional Arrays
 
+<!-- TOC -->
+* [ArrayMultiDimensional.java - Understanding Multidimensional Arrays](#arraymultidimensionaljava---understanding-multidimensional-arrays)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: 2D Array Creation and Structure](#prompt-1-2d-array-creation-and-structure)
+    * [Prompt 2: Jagged Arrays - Different Row Lengths](#prompt-2-jagged-arrays---different-row-lengths)
+    * [Prompt 3: 2D Array Application - Theater Seating Chart](#prompt-3-2d-array-application---theater-seating-chart)
+    * [Prompt 4: 2D Array Initialization Techniques](#prompt-4-2d-array-initialization-techniques)
+    * [Prompt 5: 3D Arrays and Practical Applications](#prompt-5-3d-arrays-and-practical-applications)
+    * [Prompt 6: 3D Arrays for Game Applications - Tic-Tac-Toe Games](#prompt-6-3d-arrays-for-game-applications---tic-tac-toe-games)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. 2D Array Fundamentals](#1-2d-array-fundamentals)
+    * [2. Initialization Strategies](#2-initialization-strategies)
+    * [3. Traversal Patterns](#3-traversal-patterns)
+    * [4. 3D Arrays and Beyond](#4-3d-arrays-and-beyond)
+  * [Memory Layout and Structure](#memory-layout-and-structure)
+    * [2D Array Memory Representation](#2d-array-memory-representation)
+    * [Jagged Array Structure](#jagged-array-structure)
+  * [Common Applications](#common-applications)
+    * [1. Mathematical Matrices](#1-mathematical-matrices)
+    * [2. Data Tables](#2-data-tables)
+    * [3. Scientific Computing](#3-scientific-computing)
+  * [Performance Considerations](#performance-considerations)
+    * [Memory Usage](#memory-usage)
+    * [Access Patterns](#access-patterns)
+  * [Common Mistakes to Avoid](#common-mistakes-to-avoid)
+  * [Helper Methods Explained](#helper-methods-explained)
+    * [`print2DArray(int[][] array)`](#print2darrayint-array)
+    * [`print3DArray(int[][][] array)`](#print3darrayint-array)
+    * [`printStringMatrix(String[][] array)`](#printstringmatrixstring-array)
+  * [Running the Code](#running-the-code)
+  * [Expected Output](#expected-output)
+  * [Real-World Use Cases](#real-world-use-cases)
+    * [Game Development](#game-development)
+    * [Data Analysis](#data-analysis)
+    * [Mathematical Applications](#mathematical-applications)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
 ## Overview
 This file introduces the concepts of multidimensional arrays in Java, focusing on 2D arrays (matrices) and 3D arrays. It covers creation, initialization, traversal, and practical applications of multidimensional arrays. This builds upon the foundation from `ArrayBasics.java` and explores how arrays can contain other arrays as elements.
 

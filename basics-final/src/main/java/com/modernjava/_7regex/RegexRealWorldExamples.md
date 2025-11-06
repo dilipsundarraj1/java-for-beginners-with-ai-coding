@@ -1,5 +1,41 @@
 # RegexRealWorldExamples.java - Real-World Regular Expression Applications
 
+<!-- TOC -->
+* [RegexRealWorldExamples.java - Real-World Regular Expression Applications](#regexrealworldexamplesjava---real-world-regular-expression-applications)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Phone Number Masking with Regex](#prompt-1-phone-number-masking-with-regex)
+    * [Prompt 2: Credit Card Validation and Masking](#prompt-2-credit-card-validation-and-masking)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. Phone Number Privacy and Security](#1-phone-number-privacy-and-security)
+    * [2. Credit Card Security and Validation](#2-credit-card-security-and-validation)
+  * [Real-World Security Applications](#real-world-security-applications)
+    * [Data Masking for Privacy Compliance](#data-masking-for-privacy-compliance)
+    * [Payment Processing Security](#payment-processing-security)
+    * [Customer Service Applications](#customer-service-applications)
+  * [Industry Standards and Compliance](#industry-standards-and-compliance)
+    * [Credit Card Industry Standards](#credit-card-industry-standards)
+    * [PCI DSS Compliance Requirements](#pci-dss-compliance-requirements)
+    * [Privacy Regulation Compliance (GDPR, CCPA)](#privacy-regulation-compliance-gdpr-ccpa)
+  * [Performance Optimization for Production](#performance-optimization-for-production)
+    * [Pre-compiled Patterns](#pre-compiled-patterns)
+    * [Batch Processing for Large Datasets](#batch-processing-for-large-datasets)
+  * [Testing and Validation Strategies](#testing-and-validation-strategies)
+    * [Comprehensive Test Cases](#comprehensive-test-cases)
+    * [Security Validation](#security-validation)
+  * [Real-World Integration Examples](#real-world-integration-examples)
+    * [Web Application Security](#web-application-security)
+    * [Database Logging](#database-logging)
+    * [Data Export Sanitization](#data-export-sanitization)
+  * [Common Security Pitfalls and Solutions](#common-security-pitfalls-and-solutions)
+    * [1. Incomplete Masking](#1-incomplete-masking)
+    * [2. Format Variations](#2-format-variations)
+    * [3. Test Data Security](#3-test-data-security)
+  * [Best Practices Summary](#best-practices-summary)
+    * [Security Guidelines](#security-guidelines)
+    * [Performance Guidelines](#performance-guidelines)
+    * [Development Guidelines](#development-guidelines)
+<!-- TOC -->
 ## Overview
 This file demonstrates practical regex applications focusing on phone number masking and formatting, and credit card validation and masking. These examples show real-world data protection scenarios that developers encounter in production applications for securing sensitive personal and financial information.
 

@@ -1,5 +1,31 @@
 # StringPool.java - Java String Pool Deep Dive
 
+<!-- TOC -->
+* [StringPool.java - Java String Pool Deep Dive](#stringpooljava---java-string-pool-deep-dive)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Basic String Pool Behavior](#prompt-1-basic-string-pool-behavior)
+    * [Prompt 2: String Pool vs Heap Memory Comparison](#prompt-2-string-pool-vs-heap-memory-comparison)
+    * [Prompt 3: The intern() Method Functionality](#prompt-3-the-intern-method-functionality)
+    * [Prompt 4: Advanced String Pool Scenarios](#prompt-4-advanced-string-pool-scenarios)
+    * [Prompt 5: Best Practices for String Pool](#prompt-5-best-practices-for-string-pool)
+    * [Prompt 6: String Constants Best Practice](#prompt-6-string-constants-best-practice)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. String Pool Fundamentals](#1-string-pool-fundamentals)
+    * [2. Memory Optimization Benefits](#2-memory-optimization-benefits)
+    * [3. The intern() Method](#3-the-intern-method)
+    * [4. Compile-time vs Runtime String Behavior](#4-compile-time-vs-runtime-string-behavior)
+  * [Best Practices Summary](#best-practices-summary)
+    * [✅ DO:](#-do)
+    * [❌ DON'T:](#-dont)
+  * [Common Scenarios](#common-scenarios)
+    * [String Constants Declaration](#string-constants-declaration)
+    * [External Data Processing](#external-data-processing)
+  * [Running the Code](#running-the-code)
+  * [Expected Output](#expected-output)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
+
 ## Overview
 This file provides a comprehensive exploration of Java's String Pool mechanism, covering how string literals are stored, managed, and optimized in memory. It demonstrates the differences between string pool and heap allocation, the intern() method, and best practices for string creation.
 

@@ -1,5 +1,18 @@
 # StringComparison.java - Mastering String Comparison
 
+<!-- TOC -->
+* [StringComparison.java - Mastering String Comparison](#stringcomparisonjava---mastering-string-comparison)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Equality Comparison Demonstration](#prompt-1-equality-comparison-demonstration)
+    * [Prompt 2: Case-Insensitive Comparison Demonstration](#prompt-2-case-insensitive-comparison-demonstration)
+    * [Prompt 3: Null-Safe Comparison Demonstration](#prompt-3-null-safe-comparison-demonstration)
+    * [Prompt 4: Lexicographic Comparison Demonstration](#prompt-4-lexicographic-comparison-demonstration)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. Equality Comparison: `equals()` vs `==`](#1-equality-comparison-equals-vs-)
+    * [2. Case-Insensitive Comparison](#2-case-insensitive-comparison)
+    * [3. Null-Safe Comparison](#3-null-safe-comparison)
+<!-- TOC -->
 ## Overview
 This file teaches you the critical differences between various string comparison methods and how to avoid common bugs related to string equality checking.
 

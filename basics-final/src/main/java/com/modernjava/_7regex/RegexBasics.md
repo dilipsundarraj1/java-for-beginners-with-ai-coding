@@ -1,5 +1,24 @@
 # RegexBasics.java - Understanding Regular Expression Fundamentals
 
+<!-- TOC -->
+* [RegexBasics.java - Understanding Regular Expression Fundamentals](#regexbasicsjava---understanding-regular-expression-fundamentals)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Basic Pattern Matching with String.matches()](#prompt-1-basic-pattern-matching-with-stringmatches)
+    * [Prompt 2: Common Regex Patterns for Validation](#prompt-2-common-regex-patterns-for-validation)
+    * [Prompt 3: Pattern and Matcher Classes Usage](#prompt-3-pattern-and-matcher-classes-usage)
+    * [Prompt 4: Case Sensitivity Handling](#prompt-4-case-sensitivity-handling)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. Basic Pattern Matching](#1-basic-pattern-matching)
+    * [2. Common Validation Patterns](#2-common-validation-patterns)
+    * [3. Pattern and Matcher Classes](#3-pattern-and-matcher-classes)
+    * [4. Case Sensitivity Control](#4-case-sensitivity-control)
+  * [Character Classes Reference](#character-classes-reference)
+  * [Quantifier Reference](#quantifier-reference)
+  * [Common Pitfalls](#common-pitfalls)
+  * [Best Practices](#best-practices)
+<!-- TOC -->
+
 ## Overview
 This file introduces the core concepts of Regular Expressions (Regex) in Java, focusing on basic pattern matching, the Pattern and Matcher classes, and common regex patterns for data validation. This covers fundamental regex operations using the `java.util.regex` package.
 

@@ -1,5 +1,28 @@
 # ArrayBasics.java - Understanding Array Fundamentals
 
+<!-- TOC -->
+* [ArrayBasics.java - Understanding Array Fundamentals](#arraybasicsjava---understanding-array-fundamentals)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Array Creation and Default Values](#prompt-1-array-creation-and-default-values)
+    * [Prompt 2: Array Initialization Techniques](#prompt-2-array-initialization-techniques)
+    * [Prompt 3: Array Properties and Element Access](#prompt-3-array-properties-and-element-access)
+    * [Prompt 4: Memory and Reference Concepts](#prompt-4-memory-and-reference-concepts)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. Array Declaration and Creation](#1-array-declaration-and-creation)
+    * [2. Array Initialization](#2-array-initialization)
+    * [3. Array Properties and Access](#3-array-properties-and-access)
+    * [4. Memory and Reference Behavior](#4-memory-and-reference-behavior)
+  * [Default Values by Type](#default-values-by-type)
+  * [Common Mistakes to Avoid](#common-mistakes-to-avoid)
+  * [Helper Methods Explained](#helper-methods-explained)
+    * [`printArray(int[] array)`](#printarrayint-array)
+    * [`printDoubleArray(double[] array)`](#printdoublearraydouble-array)
+    * [`printCharArray(char[] array)`](#printchararraychar-array)
+  * [Running the Code](#running-the-code)
+  * [Expected Output](#expected-output)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
 ## Overview
 This file introduces the core concepts of arrays in Java, focusing on how arrays are created, initialized, and their reference behavior. This covers primitive type arrays - for reference type arrays like String[], see the `StringArrays.java` class.
 

@@ -1,5 +1,21 @@
 # StringBasics.java - Understanding String Fundamentals
 
+<!-- TOC -->
+* [StringBasics.java - Understanding String Fundamentals](#stringbasicsjava---understanding-string-fundamentals)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: String Creation and Initialization](#prompt-1-string-creation-and-initialization)
+    * [Prompt 2: String Immutability Demonstration](#prompt-2-string-immutability-demonstration)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. String Declaration and Initialization](#1-string-declaration-and-initialization)
+    * [2. String Immutability](#2-string-immutability)
+  * [Memory Behavior](#memory-behavior)
+  * [Why Immutability Matters](#why-immutability-matters)
+  * [Common Mistakes to Avoid](#common-mistakes-to-avoid)
+  * [Running the Code](#running-the-code)
+  * [Expected Output](#expected-output)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
 ## Overview
 This file introduces the core concepts of Strings in Java, focusing on how strings are created and their immutable nature. For advanced topics like String Pool, see the dedicated `StringPool.java` class.
 

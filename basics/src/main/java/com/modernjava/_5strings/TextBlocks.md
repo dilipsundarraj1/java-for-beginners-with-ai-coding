@@ -1,5 +1,47 @@
 # TextBlocks.java - Modern Multi-line String Handling
 
+<!-- TOC -->
+* [TextBlocks.java - Modern Multi-line String Handling](#textblocksjava---modern-multi-line-string-handling)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Traditional Multi-line String Demonstration](#prompt-1-traditional-multi-line-string-demonstration)
+    * [Prompt 2: Text Blocks Demonstration](#prompt-2-text-blocks-demonstration)
+    * [Prompt 3: Main Method Integration](#prompt-3-main-method-integration)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. Traditional Multi-line Strings](#1-traditional-multi-line-strings)
+    * [2. Text Blocks (Java 13+)](#2-text-blocks-java-13)
+    * [3. Text Block Features](#3-text-block-features)
+  * [Running the Code](#running-the-code)
+  * [Expected Output](#expected-output)
+  * [Practical Applications](#practical-applications)
+    * [1. JSON Creation](#1-json-creation)
+    * [2. HTML Templates](#2-html-templates)
+    * [3. SQL Queries](#3-sql-queries)
+    * [4. Configuration Files](#4-configuration-files)
+  * [Advantages of Text Blocks](#advantages-of-text-blocks)
+    * [**Readability**](#readability)
+    * [**Maintainability**](#maintainability)
+    * [**Developer Experience**](#developer-experience)
+  * [Migration Strategies](#migration-strategies)
+    * [**When to Use Text Blocks**](#when-to-use-text-blocks)
+    * [**When to Stick with Traditional Strings**](#when-to-stick-with-traditional-strings)
+  * [Version Compatibility](#version-compatibility)
+    * [**Java Version Support**](#java-version-support)
+    * [**Compiler Flags for Preview Versions**](#compiler-flags-for-preview-versions)
+  * [Best Practices](#best-practices)
+    * [**1. Proper Indentation**](#1-proper-indentation)
+    * [**2. Trailing Whitespace**](#2-trailing-whitespace)
+    * [**3. String Interpolation**](#3-string-interpolation)
+  * [Common Patterns](#common-patterns)
+    * [**1. Template with Placeholders**](#1-template-with-placeholders)
+    * [**2. Multi-line Error Messages**](#2-multi-line-error-messages)
+    * [**3. API Documentation**](#3-api-documentation)
+  * [Migration Example](#migration-example)
+    * [**Before (Traditional)**](#before-traditional)
+    * [**After (Text Blocks)**](#after-text-blocks)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
+
 ## Overview
 This file demonstrates the evolution of multi-line string handling in Java, comparing traditional string concatenation with the modern Text Blocks feature introduced in Java 13. It showcases how Text Blocks simplify the creation of multi-line strings, especially for JSON, HTML, SQL, and other formatted text.
 
