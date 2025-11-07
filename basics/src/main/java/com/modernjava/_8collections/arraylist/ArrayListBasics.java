@@ -15,28 +15,20 @@ public class ArrayListBasics {
 
 
         // 1. Creating ArrayList - Different ways
-        demonstrateArrayListCreation();
 
         // 2. Adding elements
-        demonstrateAddingElements();
 
         // 3. Accessing elements
-        demonstrateAccessingElements();
 
         // 4. Modifying elements
-        demonstrateModifyingElements();
 
         // 5. Removing elements
-        demonstrateRemovingElements();
 
         // 6. ArrayList properties and methods
-        demonstrateArrayListProperties();
 
         // 7. Common operations with Strings
-        demonstrateStringOperations();
 
         // 8. Combined filtering and transforming operations
-        demonstrateFilteringAndTransforming();
 
     }
 

@@ -1,5 +1,31 @@
 # ArrayListStringBasics.java - Understanding ArrayList Fundamentals with Strings
 
+<!-- TOC -->
+* [ArrayListStringBasics.java - Understanding ArrayList Fundamentals with Strings](#arrayliststringbasicsjava---understanding-arraylist-fundamentals-with-strings)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: ArrayList Creation Methods with Different Approaches](#prompt-1-arraylist-creation-methods-with-different-approaches)
+    * [Prompt 2: Adding Elements with Different Methods](#prompt-2-adding-elements-with-different-methods)
+    * [Prompt 3: Accessing Elements Using Different Methods](#prompt-3-accessing-elements-using-different-methods)
+    * [Prompt 4: Modifying Elements in ArrayList](#prompt-4-modifying-elements-in-arraylist)
+    * [Prompt 5: Removing Elements Using Different Approaches](#prompt-5-removing-elements-using-different-approaches)
+    * [Prompt 6: ArrayList Properties and Utility Methods](#prompt-6-arraylist-properties-and-utility-methods)
+    * [Prompt 7: String-Specific Operations and Helper Methods](#prompt-7-string-specific-operations-and-helper-methods)
+    * [Prompt 8: Combined Filtering and Transforming Operations](#prompt-8-combined-filtering-and-transforming-operations)
+  * [Key Concepts Covered](#key-concepts-covered)
+    * [1. ArrayList Creation and Initialization](#1-arraylist-creation-and-initialization)
+    * [2. Adding Elements to ArrayList](#2-adding-elements-to-arraylist)
+    * [3. Accessing ArrayList Elements](#3-accessing-arraylist-elements)
+    * [4. Modifying ArrayList Elements](#4-modifying-arraylist-elements)
+    * [5. Removing ArrayList Elements](#5-removing-arraylist-elements)
+    * [6. ArrayList Properties and Search Operations](#6-arraylist-properties-and-search-operations)
+    * [7. Common Operations with String ArrayList](#7-common-operations-with-string-arraylist)
+    * [8. Combined Filtering and Transforming Operations](#8-combined-filtering-and-transforming-operations)
+  * [Performance Characteristics](#performance-characteristics)
+  * [Best Practices with String ArrayList](#best-practices-with-string-arraylist)
+  * [Common Use Cases](#common-use-cases)
+  * [Real-World Applications](#real-world-applications)
+<!-- TOC -->
 ## Overview
 This file introduces the fundamental concepts of ArrayList in Java using simple String objects as examples. It demonstrates basic ArrayList operations including creation, adding, accessing, modifying, and removing elements. This serves as a foundation before progressing to more complex object types like Movie objects, providing clear examples with familiar String data.
 
