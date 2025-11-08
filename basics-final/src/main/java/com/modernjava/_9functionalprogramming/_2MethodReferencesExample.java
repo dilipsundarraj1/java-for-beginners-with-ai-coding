@@ -16,7 +16,7 @@ import java.util.function.*;
  */
 public class _2MethodReferencesExample {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Exploring Method References ===\n");
 
         referenceToStaticMethod();

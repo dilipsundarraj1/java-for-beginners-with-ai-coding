@@ -7,7 +7,7 @@ import java.util.List;
 
 public class _0ImperativeVsFunctionalProgramming {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
 
         List<String> words = Arrays.asList("java", "python", "javascript");
 

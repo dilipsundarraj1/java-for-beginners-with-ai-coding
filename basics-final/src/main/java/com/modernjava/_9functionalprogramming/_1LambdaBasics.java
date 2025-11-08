@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  */
 public class _1LambdaBasics {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Lambda Expressions Basics ===\n");
 
         // 1. Introduction to lambda expressions

@@ -13,7 +13,7 @@ import java.util.function.*;
  */
 public class _3ExploreFunctionalInterfaces {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Exploring Functional Interfaces ===\n");
 
         explorePredicateInterface();
