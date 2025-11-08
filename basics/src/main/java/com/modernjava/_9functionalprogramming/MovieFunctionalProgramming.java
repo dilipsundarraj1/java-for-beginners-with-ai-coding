@@ -31,12 +31,6 @@ public class MovieFunctionalProgramming {
 
         // 3. Advanced functional operations
         demonstrateAdvancedFunctionalOperations(movies);
-
-        // 4. Practical examples - movie analytics
-        demonstrateMovieAnalytics(movies);
-
-        // 5. Complex stream pipelines
-        demonstrateComplexStreamPipelines(movies);
     }
 
     /**
@@ -65,6 +59,13 @@ public class MovieFunctionalProgramming {
 
     /**
      * Compares traditional filtering approaches with functional programming
+     *
+     * Covers:
+     * - Traditional for-loop filtering vs Stream API filtering
+     * - Single filter conditions (rating > 8.5)
+     * - Multiple chained filters (genre AND availability)
+     * - Date range filtering (movies from specific decade)
+     * - Method references (Movie::isAvailable)
      */
     private static void demonstrateTraditionalVsFunctionalFiltering(List<Movie> movies) {
         System.out.println("1. Filtering: Traditional vs Functional Approach");
@@ -85,7 +86,7 @@ public class MovieFunctionalProgramming {
         System.out.println("\nFunctional Approach - High-rated movies (>8.5):");
         List<Movie> highRatedFunctional = movies.stream()
                 .filter(movie -> movie.rating() > 8.5)
-                .collect(Collectors.toList());
+                .toList();
         System.out.println("Found " + highRatedFunctional.size() + " high-rated movies");
         highRatedFunctional.forEach(movie -> System.out.println("  " + movie.title() + " - " + movie.rating()));
 
@@ -106,6 +107,13 @@ public class MovieFunctionalProgramming {
 
     /**
      * Compares traditional transformation approaches with functional programming
+     *
+     * Covers:
+     * - Traditional for-loop extraction vs Stream API map()
+     * - Extracting single properties (titles)
+     * - Transforming with calculations (duration conversion to hours)
+     * - Formatting transformations (rating to letter grades)
+     * - Method references for property extraction (Movie::title)
      */
     private static void demonstrateTraditionalVsFunctionalTransformation(List<Movie> movies) {
         System.out.println("2. Transformation: Traditional vs Functional Approach");
@@ -142,6 +150,13 @@ public class MovieFunctionalProgramming {
 
     /**
      * Demonstrates advanced functional operations not easily done traditionally
+     *
+     * Covers:
+     * - Finding operations: max(), min() with custom comparators
+     * - Optional handling with ifPresent()
+     * - Existence checks: anyMatch(), allMatch()
+     * - Counting filtered elements
+     * - Complex comparisons (duration, rating, release year)
      */
     private static void demonstrateAdvancedFunctionalOperations(List<Movie> movies) {
         System.out.println("3. Advanced Functional Operations");
@@ -180,117 +195,6 @@ public class MovieFunctionalProgramming {
                 .count();
         System.out.println("  Recent movies (after 2000): " + recentMoviesCount);
 
-        System.out.println();
-    }
-
-    /**
-     * Demonstrates practical movie analytics using streams
-     */
-    private static void demonstrateMovieAnalytics(List<Movie> movies) {
-        System.out.println("4. Movie Analytics with Streams");
-        System.out.println("=".repeat(50));
-
-        // Group movies by genre
-        System.out.println("Movies grouped by genre:");
-        Map<MovieGenre, List<Movie>> moviesByGenre = movies.stream()
-                .collect(Collectors.groupingBy(Movie::genre));
-
-        moviesByGenre.forEach((genre, movieList) -> {
-            System.out.println("  " + genre + " (" + movieList.size() + " movies):");
-            movieList.forEach(movie -> System.out.println("    - " + movie.title()));
-        });
-
-        // Calculate statistics
-        System.out.println("\nMovie Statistics:");
-        double averageRating = movies.stream()
-                .mapToDouble(Movie::rating)
-                .average()
-                .orElse(0.0);
-        System.out.println("  Average rating: " + String.format("%.2f", averageRating));
-
-        double averageDuration = movies.stream()
-                .mapToInt(Movie::duration)
-                .average()
-                .orElse(0.0);
-        System.out.println("  Average duration: " + String.format("%.1f", averageDuration) + " minutes");
-
-        // Count by availability
-        long availableCount = movies.stream()
-                .filter(Movie::isAvailable)
-                .count();
-        System.out.println("  Available movies: " + availableCount + "/" + movies.size());
-
-        System.out.println();
-    }
-
-    /**
-     * Demonstrates complex stream pipelines combining multiple operations
-     */
-    private static void demonstrateComplexStreamPipelines(List<Movie> movies) {
-        System.out.println("5. Complex Stream Pipelines");
-        System.out.println("=".repeat(50));
-
-        // Pipeline 1: Find top rated available movies from each genre
-        System.out.println("Top rated available movie from each genre:");
-        movies.stream()
-                .filter(Movie::isAvailable)
-                .collect(Collectors.groupingBy(
-                    Movie::genre,
-                    Collectors.maxBy(Comparator.comparing(Movie::rating))
-                ))
-                .forEach((genre, movieOpt) -> {
-                    movieOpt.ifPresent(movie ->
-                        System.out.println("  " + genre + ": " + movie.title() + " (" + movie.rating() + "/10)"));
-                });
-
-        // Pipeline 2: Create movie recommendations summary
-        System.out.println("\nMovie Recommendations (high-rated, recent, available):");
-        String recommendations = movies.stream()
-                .filter(movie -> movie.rating() > 8.0)
-                .filter(movie -> movie.releaseYear() > 1990)
-                .filter(Movie::isAvailable)
-                .sorted(Comparator.comparing(Movie::rating).reversed())
-                .map(movie -> movie.title() + " (" + movie.rating() + "/10)")
-                .collect(Collectors.joining(", "));
-
-        System.out.println("  " + recommendations);
-
-        // Pipeline 3: Directors with their movie count and average rating
-        System.out.println("\nDirector Statistics:");
-        movies.stream()
-                .collect(Collectors.groupingBy(
-                    Movie::director,
-                    Collectors.averagingDouble(Movie::rating)
-                ))
-                .entrySet().stream()
-                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
-                .forEach(entry ->
-                    System.out.println("  " + entry.getKey() + ": avg " + String.format("%.2f", entry.getValue())));
-
-        // Pipeline 4: Genre analysis with multiple metrics
-        System.out.println("\nGenre Analysis:");
-        movies.stream()
-                .collect(Collectors.groupingBy(Movie::genre))
-                .forEach((genre, genreMovies) -> {
-                    double avgRating = genreMovies.stream()
-                            .mapToDouble(Movie::rating)
-                            .average()
-                            .orElse(0.0);
-                    double avgDuration = genreMovies.stream()
-                            .mapToInt(Movie::duration)
-                            .average()
-                            .orElse(0.0);
-                    System.out.println("  " + genre + ": " + genreMovies.size() + " movies, " +
-                            "avg rating " + String.format("%.2f", avgRating) + ", " +
-                            "avg duration " + String.format("%.0f", avgDuration) + " min");
-                });
-
-        System.out.println("\nKey Benefits of Functional Programming:");
-        System.out.println("✓ More readable and expressive code");
-        System.out.println("✓ Less boilerplate and fewer intermediate variables");
-        System.out.println("✓ Operations can be chained together naturally");
-        System.out.println("✓ Easier to reason about data transformations");
-        System.out.println("✓ Built-in support for parallel processing");
         System.out.println();
     }
 
