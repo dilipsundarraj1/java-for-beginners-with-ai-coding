@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class MovieFunctionalProgramming {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Movie Functional Programming Examples ===\n");
 
         // Create sample movie data

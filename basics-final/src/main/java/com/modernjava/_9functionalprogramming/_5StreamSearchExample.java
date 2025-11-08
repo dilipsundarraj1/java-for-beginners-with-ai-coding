@@ -15,7 +15,7 @@ import java.util.Optional;
 public class _5StreamSearchExample {
 
     @SuppressWarnings("unused")
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Java Streams API: Search Functions ===\n");
 
         // Demonstrate each search function separately

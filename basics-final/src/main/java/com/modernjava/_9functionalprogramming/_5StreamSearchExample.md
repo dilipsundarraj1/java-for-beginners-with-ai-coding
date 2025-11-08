@@ -1,5 +1,22 @@
 # _5StreamSearchExample.java - Stream API Search Functions
 
+<!-- TOC -->
+* [_5StreamSearchExample.java - Stream API Search Functions](#_5streamsearchexamplejava---stream-api-search-functions)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: findFirst() - Finding the First Matching Element](#prompt-1-findfirst---finding-the-first-matching-element)
+    * [Prompt 2: findAny() - Finding Any Matching Element](#prompt-2-findany---finding-any-matching-element)
+    * [Prompt 3: anyMatch() - Testing if Any Element Matches](#prompt-3-anymatch---testing-if-any-element-matches)
+    * [Prompt 4: allMatch() - Testing if All Elements Match](#prompt-4-allmatch---testing-if-all-elements-match)
+    * [Prompt 5: noneMatch() - Testing if No Elements Match](#prompt-5-nonematch---testing-if-no-elements-match)
+    * [Prompt 6: Best Practices - Effective Search Function Usage](#prompt-6-best-practices---effective-search-function-usage)
+  * [Key Learning Points](#key-learning-points)
+    * [Search Function Comparison](#search-function-comparison)
+    * [Performance Considerations](#performance-considerations)
+    * [Optional Handling Best Practices](#optional-handling-best-practices)
+  * [Common Use Cases](#common-use-cases)
+<!-- TOC -->
+
 ## Overview
 This file demonstrates the comprehensive use of Stream API search functions in Java, focusing on five primary search operations: `findFirst()`, `findAny()`, `anyMatch()`, `allMatch()`, and `noneMatch()`. It progresses from basic element finding to complex matching scenarios with practical examples. The class serves as a complete guide to understanding different search patterns, Optional handling, and performance considerations in functional programming with streams.
 

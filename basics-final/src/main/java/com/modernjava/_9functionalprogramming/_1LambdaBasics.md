@@ -1,5 +1,23 @@
 # LambdaBasics.java - Introduction to Lambda Expressions in Java
 
+<!-- TOC -->
+* [LambdaBasics.java - Introduction to Lambda Expressions in Java](#lambdabasicsjava---introduction-to-lambda-expressions-in-java)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Simple Uppercase Operation Comparison](#prompt-1-simple-uppercase-operation-comparison)
+    * [Prompt 2: Traditional Anonymous Class Problem](#prompt-2-traditional-anonymous-class-problem)
+    * [Prompt 3: Lambda Expression Solutions](#prompt-3-lambda-expression-solutions)
+    * [Prompt 4: Functional Interfaces Deep Dive](#prompt-4-functional-interfaces-deep-dive)
+    * [Prompt 5: Lambdas with Collection Operations](#prompt-5-lambdas-with-collection-operations)
+    * [Prompt 6: Method References as Lambda Shortcuts](#prompt-6-method-references-as-lambda-shortcuts)
+  * [Key Learning Objectives](#key-learning-objectives)
+    * [1. Lambda Expression Fundamentals](#1-lambda-expression-fundamentals)
+    * [2. Progressive Complexity](#2-progressive-complexity)
+    * [3. Readability and Maintainability](#3-readability-and-maintainability)
+    * [4. Foundation for Streams](#4-foundation-for-streams)
+  * [Class Structure Analysis](#class-structure-analysis)
+  * [Connection to Other Modules](#connection-to-other-modules)
+<!-- TOC -->
 ## Overview
 This file introduces lambda expressions in Java, demonstrating how they simplify functional programming compared to traditional approaches. It progresses from simple String operations to complex functional interfaces, showing the evolution from verbose anonymous classes to concise lambda expressions and method references. The class serves as a foundation for understanding functional programming concepts before applying them to complex object types.
 

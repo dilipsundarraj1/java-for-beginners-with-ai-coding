@@ -1,5 +1,18 @@
 # _8LambdaVariables.java - Lambdas and Local Variables: Effectively Final
-
+<!-- TOC -->
+* [_8LambdaVariables.java - Lambdas and Local Variables: Effectively Final](#_8lambdavariablesjava---lambdas-and-local-variables-effectively-final)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Effectively Final Variables - Valid Usage](#prompt-1-effectively-final-variables---valid-usage)
+    * [Prompt 2: Object Mutation Inside Lambdas](#prompt-2-object-mutation-inside-lambdas)
+  * [Key Concepts Explained](#key-concepts-explained)
+    * [What is "Effectively Final"?](#what-is-effectively-final)
+    * [Why This Restriction Exists](#why-this-restriction-exists)
+    * [Important Distinctions](#important-distinctions)
+    * [Best Practices](#best-practices)
+  * [Common Compilation Errors](#common-compilation-errors)
+  * [Real-World Applications](#real-world-applications)
+<!-- TOC -->
 ## Overview
 This file demonstrates the concept of "effectively final" variables in lambda expressions. When lambdas access local variables from their enclosing scope, those variables must be either explicitly final or "effectively final" (never modified after initialization). The class provides clear examples of valid usage patterns and explains the fundamental restrictions that ensure thread-safety and predictable behavior in lambda expressions.
 

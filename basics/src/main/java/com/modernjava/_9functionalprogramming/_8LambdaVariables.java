@@ -61,6 +61,7 @@ public class _8LambdaVariables {
         System.out.println("Using effectively final 'prefix' variable in lambda:");
         items.forEach(item -> {
             // Lambda can access 'prefix' because it's effectively final
+            //prefix="Item: ";  // Uncommenting this line would cause a compilation error
             System.out.println("  " + prefix + item);
         });
 

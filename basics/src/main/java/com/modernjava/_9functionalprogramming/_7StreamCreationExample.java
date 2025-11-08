@@ -13,20 +13,16 @@ import java.util.stream.Stream;
  */
 public class _7StreamCreationExample {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Different Ways to Create Streams ===\n");
 
         // 1. Stream.of() - Creating streams from elements
-        demonstrateStreamOf();
 
         // 2. Stream.iterate() - Creating iterative streams
-        demonstrateStreamIterate();
 
         // 3. Stream.generate() - Creating streams with suppliers
-        demonstrateStreamGenerate();
 
         // 4. Practical examples combining stream creation with operations
-        demonstratePracticalExamples();
     }
 
     /**
@@ -148,43 +144,4 @@ public class _7StreamCreationExample {
         System.out.println("─────────────────────────────────────────────────────────\n");
     }
 
-    /**
-     * Demonstrates practical examples combining stream creation with common operations
-     */
-    private static void demonstratePracticalExamples() {
-        System.out.println("4. Practical Examples - Combining Stream Creation with Operations:\n");
-
-        // Example 1: Creating a multiplication table
-        System.out.println("Multiplication table for 7 (using iterate):");
-        Stream.iterate(7, n -> n + 7)
-                .limit(10)
-                .forEach(n -> System.out.println("  7 x " + (n/7) + " = " + n));
-        System.out.println();
-
-        // Example 2: Creating number ranges with filtering
-        System.out.println("Even numbers in range 1-20 (using iterate with filter):");
-        Stream.iterate(1, n -> n + 1)
-                .limit(20)
-                .filter(n -> n % 2 == 0)
-                .forEach(n -> System.out.print(n + " "));
-        System.out.println("\n");
-
-        // Example 3: Combining of() with complex operations
-        System.out.println("Processing scores with statistics:");
-        List<Integer> processedScores = Stream.of(85, 92, 78, 96, 88, 76, 94)
-                .filter(score -> score >= 80)
-                .map(score -> score + 5) // Bonus points
-                .sorted()
-                .toList();
-        System.out.println("  Processed scores (>=80 with bonus): " + processedScores);
-        System.out.println();
-
-        // Example 4: Infinite stream with takeWhile (Java 9+)
-        System.out.println("Powers of 2 less than 1000 (using iterate with takeWhile):");
-        Stream.iterate(1, n -> n * 2)
-                .takeWhile(n -> n < 1000)
-                .forEach(n -> System.out.print(n + " "));
-        System.out.println("\n");
-        System.out.println("─────────────────────────────────────────────────────────\n");
-    }
 }

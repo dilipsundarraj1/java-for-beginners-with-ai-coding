@@ -1,5 +1,21 @@
 # StreamsBasics.java - Introduction to Java Streams API
 
+<!-- TOC -->
+* [StreamsBasics.java - Introduction to Java Streams API](#streamsbasicsjava---introduction-to-java-streams-api)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Basic Stream Operations](#prompt-1-basic-stream-operations)
+    * [Prompt 2: Filtering Operations](#prompt-2-filtering-operations)
+    * [Prompt 3: Mapping (Transformation) Operations](#prompt-3-mapping-transformation-operations)
+    * [Prompt 4: Combined Operations Pipeline](#prompt-4-combined-operations-pipeline)
+  * [Key Concepts Demonstrated](#key-concepts-demonstrated)
+    * [Stream Characteristics](#stream-characteristics)
+    * [Operation Types](#operation-types)
+    * [Functional Programming Benefits](#functional-programming-benefits)
+  * [Prerequisites](#prerequisites)
+  * [Next Steps](#next-steps)
+<!-- TOC -->
+
 ## Overview
 This file introduces the Java Streams API, demonstrating how streams make collection operations simpler and more readable. Building on lambda expressions, it shows powerful data processing pipelines that transform imperative code into declarative operations. The class progresses from basic stream operations to complex chained transformations, serving as a foundation for functional programming with collections.
 

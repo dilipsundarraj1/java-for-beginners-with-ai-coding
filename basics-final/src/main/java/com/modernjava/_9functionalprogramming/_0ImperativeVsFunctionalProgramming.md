@@ -1,5 +1,35 @@
 # Imperative vs Functional Programming
 
+<!-- TOC -->
+* [Imperative vs Functional Programming](#imperative-vs-functional-programming)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Simple Uppercase Conversion Comparison](#prompt-1-simple-uppercase-conversion-comparison)
+    * [Prompt 2: Complex Sorting Operation Comparison](#prompt-2-complex-sorting-operation-comparison)
+    * [Prompt 3: Main Method Structure](#prompt-3-main-method-structure)
+  * [Examples Demonstrated](#examples-demonstrated)
+    * [Example 1: Converting Strings to Uppercase](#example-1-converting-strings-to-uppercase)
+      * [Sample Data](#sample-data)
+      * [Traditional Imperative Approach](#traditional-imperative-approach)
+      * [Functional Approach with Lambda](#functional-approach-with-lambda)
+    * [Example 2: Sorting by String Length](#example-2-sorting-by-string-length)
+      * [Sample Data](#sample-data-1)
+      * [Traditional Approach (Verbose Anonymous Class)](#traditional-approach-verbose-anonymous-class)
+      * [Functional Approach with Lambda](#functional-approach-with-lambda-1)
+      * [Most Concise: Method Reference Approach](#most-concise-method-reference-approach)
+  * [Code Comparison Summary](#code-comparison-summary)
+    * [Visual Comparison](#visual-comparison)
+  * [Benefits of Functional Programming](#benefits-of-functional-programming)
+    * [✅ Advantages Demonstrated in the Code](#-advantages-demonstrated-in-the-code)
+    * [Key Takeaways from Examples](#key-takeaways-from-examples)
+  * [When to Use Each Approach](#when-to-use-each-approach)
+    * [Use Functional Programming When:](#use-functional-programming-when)
+    * [Use Imperative Programming When:](#use-imperative-programming-when)
+  * [Modern Java Best Practices Shown](#modern-java-best-practices-shown)
+  * [Program Output Analysis](#program-output-analysis)
+  * [Related Topics](#related-topics)
+<!-- TOC -->
+
 ## Overview
 This document demonstrates the key differences between imperative and functional programming paradigms in Java, showing how functional programming with lambdas and method references leads to more concise, readable, and maintainable code.
 

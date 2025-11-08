@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class _4StreamsBasics {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Java Streams Basics ===\n");
 
         // 1. Basic stream operations
