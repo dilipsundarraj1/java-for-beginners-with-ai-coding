@@ -2,9 +2,7 @@
 .gradle/
 build/
 gradle-app.setting
-!gradle-wrapper.jar
 !gradle-wrapper.properties
-!gradle/wrapper/gradle-wrapper.jar
 
 # IDE
 .idea/
@@ -22,7 +20,6 @@ Thumbs.db
 
 # Java
 *.class
-*.jar
 *.war
 *.ear
 *.nar
