@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class MovieArrayList {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Movie ArrayList Examples ===\n");
 
         // 1. Creating movies using List.of() - immutable list
@@ -38,16 +38,7 @@ public class MovieArrayList {
         System.out.println("1. Creating Movies with List.of():");
 
         // Create immutable list of movies using List.of()
-        List<Movie> movies = List.of(
-                new Movie("Inception", 148, MovieGenre.ACTION, 8.8, 2010, "Christopher Nolan"),
-                new Movie("The Hangover", 100, MovieGenre.COMEDY, 7.7, 2009, "Todd Phillips")
-        );
 
-        System.out.println("Created " + movies.size() + " movies:");
-        for (Movie movie : movies) {
-            System.out.println(movie);
-        }
-        System.out.println();
     }
 
     /**
@@ -56,29 +47,6 @@ public class MovieArrayList {
     public static void createMoviesWithArrayList() {
         System.out.println("2. Creating and Manipulating ArrayList:");
 
-        // Create mutable ArrayList
-        ArrayList<Movie> movies = new ArrayList<>();
-
-        // Add movies using add() function
-        movies.add(new Movie("The Dark Knight", 152, MovieGenre.ACTION, 9.0, 2008, "Christopher Nolan"));
-        movies.add(new Movie("Titanic", 194, MovieGenre.ROMANCE, 7.9, 1997, "James Cameron"));
-
-        System.out.println("After adding 2 movies: " + movies.size());
-
-        // Add at specific index
-        movies.add(1, new Movie("Pulp Fiction", 154, MovieGenre.DRAMA, 8.9, 1994, "Quentin Tarantino"));
-
-        System.out.println("After inserting at index 1: " + movies.size());
-        for (Movie movie : movies) {
-            System.out.println(movie);
-        }
-
-        // Remove movie using remove() function
-        movies.remove(0); // Remove first movie
-        System.out.println("\nAfter removing first movie: " + movies.size());
-        for (Movie movie : movies) {
-            System.out.println(movie);
-        }
         System.out.println();
     }
 
@@ -95,32 +63,6 @@ public class MovieArrayList {
                 new Movie("Toy Story", 81, MovieGenre.ANIMATION, 8.3, 1995, "John Lasseter")
         );
 
-        // Filter movies with rating > 8.0 using traditional loop
-        ArrayList<Movie> highRatedMovies = new ArrayList<>();
-        for (Movie movie : movies) {
-            if (movie.rating() > 8.0) {
-                highRatedMovies.add(movie);
-            }
-        }
-
-        System.out.println("High-rated movies (>8.0):");
-        for (Movie movie : highRatedMovies) {
-            System.out.println(movie);
-        }
-
-        // Filter ACTION movies using traditional loop
-        ArrayList<Movie> actionMovies = new ArrayList<>();
-        for (Movie movie : movies) {
-            if (movie.genre() == MovieGenre.ACTION) {
-                actionMovies.add(movie);
-            }
-        }
-
-        System.out.println("\nAction movies:");
-        for (Movie movie : actionMovies) {
-            System.out.println(movie);
-        }
-        System.out.println();
     }
 
     /**
@@ -134,29 +76,6 @@ public class MovieArrayList {
                 new Movie("Shrek", 90, MovieGenre.ANIMATION, 7.9, 2001, "Andrew Adamson")
         );
 
-        // Transform to get only movie titles using traditional loop
-        ArrayList<String> movieTitles = new ArrayList<>();
-        for (Movie movie : movies) {
-            movieTitles.add(movie.title());
-        }
-
-        System.out.println("Movie titles only:");
-        for (String title : movieTitles) {
-            System.out.println("- " + title);
-        }
-
-        // Transform to get formatted movie info using traditional loop
-        ArrayList<String> movieSummaries = new ArrayList<>();
-        for (Movie movie : movies) {
-            String summary = movie.title() + " (" + movie.getFormattedDuration() + ")";
-            movieSummaries.add(summary);
-        }
-
-        System.out.println("\nMovie summaries:");
-        for (String summary : movieSummaries) {
-            System.out.println("- " + summary);
-        }
-        System.out.println();
     }
 
     /**
@@ -171,32 +90,5 @@ public class MovieArrayList {
                 new Movie("Finding Nemo", 100, MovieGenre.ANIMATION, 8.1, 2003, "Andrew Stanton"),
                 new Movie("The Shawshank Redemption", 142, MovieGenre.DRAMA, 9.3, 1994, "Frank Darabont")
         );
-
-        // Filter movies with rating > 8.5 and transform to get only titles using traditional loop
-        ArrayList<String> filteredMovieTitles = new ArrayList<>();
-        for (Movie movie : movies) {
-            if (movie.rating() > 8.5) {
-                filteredMovieTitles.add(movie.title());
-            }
-        }
-
-        System.out.println("High-rated movie titles (>8.5 rating):");
-        for (String title : filteredMovieTitles) {
-            System.out.println("- " + title);
-        }
-
-        // Filter ACTION/DRAMA movies and transform to formatted strings using traditional loop
-        ArrayList<String> filteredSummaries = new ArrayList<>();
-        for (Movie movie : movies) {
-            if (movie.genre() == MovieGenre.ACTION || movie.genre() == MovieGenre.DRAMA) {
-                String summary = movie.title() + " (" + movie.releaseYear() + ") - " + movie.rating() + "/10";
-                filteredSummaries.add(summary);
-            }
-        }
-
-        System.out.println("\nAction/Drama movie summaries:");
-        for (String summary : filteredSummaries) {
-            System.out.println("- " + summary);
-        }
     }
 }

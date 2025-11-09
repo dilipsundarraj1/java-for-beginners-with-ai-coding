@@ -1,5 +1,19 @@
 # MovieArrayList.java - ArrayList Operations with Movie Collections
 
+<!-- TOC -->
+* [MovieArrayList.java - ArrayList Operations with Movie Collections](#moviearraylistjava---arraylist-operations-with-movie-collections)
+  * [Overview](#overview)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: Creating Movie Collections](#prompt-1-creating-movie-collections)
+    * [Prompt 2: ArrayList Manipulation Operations](#prompt-2-arraylist-manipulation-operations)
+    * [Prompt 3: Movie Filtering Operations](#prompt-3-movie-filtering-operations)
+    * [Prompt 4: Movie Transformation Operations](#prompt-4-movie-transformation-operations)
+    * [Prompt 5: Combined Filter and Transform Operations](#prompt-5-combined-filter-and-transform-operations)
+  * [Key Learning Points](#key-learning-points)
+  * [Implementation Notes](#implementation-notes)
+  * [Usage](#usage)
+<!-- TOC -->
+
 ## Overview
 This file demonstrates fundamental ArrayList operations using Movie records with traditional loop-based approaches. It covers creation, manipulation, filtering, transformation, and combined operations using enhanced for loops and basic conditional logic. The class showcases practical patterns for working with collections in Java without using streams or lambdas, making it perfect for beginners learning core ArrayList concepts.
 
