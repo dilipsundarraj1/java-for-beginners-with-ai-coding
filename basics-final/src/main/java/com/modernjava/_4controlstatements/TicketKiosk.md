@@ -17,7 +17,6 @@
     * [Prompt 11: Show Kiosk Statistics](#prompt-11-show-kiosk-statistics)
     * [Prompt 12: Process Final Order](#prompt-12-process-final-order)
     * [Prompt 13: Main Method Integration](#prompt-13-main-method-integration)
-  * [High-Level Logical Flow](#high-level-logical-flow-1)
 <!-- /TOC -->
 
 ## Prompts for Replication

@@ -7,7 +7,7 @@ import app.service.TicketPurchaseService;
  * Entry point for the Movie Ticket Kiosk application.
  */
 public class MovieTicketApp {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("\n🎬 Welcome to the Movie Ticket Kiosk! 🎬");
         System.out.println("---------------------------------------");
         TicketPurchaseService ticketPurchaseService = new TicketPurchaseService();

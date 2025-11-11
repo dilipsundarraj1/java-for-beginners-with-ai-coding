@@ -21,41 +21,65 @@ import java.util.Scanner;
  * 4. Exit
  *
  * Uses Ticket objects to store sold tickets and maintains total revenue.
+ * This is the main entry point for the movie ticket purchase system.
  */
 public class MovieTicketKiosk {
 
-    private final PurchaseService purchaseService = new PurchaseService();
+    // Instance variables for managing user interaction and business logic
     private final Scanner scanner;
     private final TicketPurchaseService ticketPurchaseService;
     private final StatisticsService statisticsService;
-    private final List<Ticket> soldTickets = new ArrayList<>();
-    private int totalRevenue = 0; // Updated after each finalized purchase batch
 
+    /**
+     * Constructs a MovieTicketKiosk with required service dependencies.
+     * Initializes the scanner for user input and injects the ticket purchase
+     * and statistics services needed for kiosk operations.
+     *
+     * @param ticketPurchaseService Service responsible for handling ticket purchase flow
+     * @param statisticsService Service responsible for calculating sales statistics and maintaining data persistence
+     */
     public MovieTicketKiosk(TicketPurchaseService ticketPurchaseService, StatisticsService statisticsService) {
         this.scanner = new Scanner(System.in);
         this.ticketPurchaseService = ticketPurchaseService;
         this.statisticsService = statisticsService;
     }
 
+    /**
+     * Main execution loop for the kiosk application.
+     * Continuously displays the main menu, reads user choice, and routes to appropriate functions
+     * until the user chooses to exit. Maintains state across multiple transactions including
+     * sold tickets and revenue totals.
+     */
     public void run() {
         boolean keepRunning = true;
+        // Continue running until user selects exit option
         while (keepRunning) {
+            // Display menu and get user choice
             showMainMenu();
             int choice = readIntInRange("Select option (1-4): ", 1, 4);
+
+            // Route to appropriate function based on user choice
             switch (choice) {
                 case 1 -> buyTicketsFlow();
                 case 2 -> showPricingInformation();
-                case 3 -> showStatistics();
+                case 3 -> statisticsService.displayStatistics();
                 case 4 -> {
+                    // User selected exit
                     keepRunning = false;
                     System.out.println("Exiting kiosk... Goodbye!");
                 }
                 default -> System.out.println("Invalid choice. Try again.");
             }
+
+            // Wait for user confirmation before returning to main menu
             if (keepRunning) waitForEnter();
         }
     }
 
+    /**
+     * Displays the main menu options for the kiosk.
+     * Shows all available actions a user can perform in the system.
+     */
     private void showMainMenu() {
         System.out.println();
         System.out.println("==============================");
@@ -67,121 +91,183 @@ public class MovieTicketKiosk {
         System.out.println("4. Exit");
     }
 
+    /**
+     * Orchestrates the complete ticket purchase flow.
+     * Handles:
+     * 1. Ticket selection and purchase via TicketPurchaseService
+     * 2. Display of order summary
+     * 3. Purchase confirmation from user
+     * 4. Recording of tickets and revenue if confirmed
+     * 5. Display of updated kiosk statistics
+     */
     // ===== BUY TICKETS FLOW =====
     private void buyTicketsFlow() {
         System.out.println("\n=== Ticket Purchase ===");
-        PurchaseResult purchaseResult = ticketPurchaseService.run(scanner, purchaseService);
 
+        // Delegate to TicketPurchaseService to handle ticket selection
+        PurchaseResult purchaseResult = ticketPurchaseService.run(scanner);
+
+        // Display order summary with all ticket details
         System.out.println("\n--- Order Summary ---");
         for (Ticket t : purchaseResult.getTickets()) {
             System.out.printf("Ticket #%d | Age %d (%s) | %s | %s | $%d%n",
                     t.getId(), t.getAge(), t.ageCategory(), t.isMember() ? "Member" : "Non-Member", t.getSeatType(), t.getPrice());
         }
+
+        // Extract purchase details for display
         var sessionTickets = purchaseResult.getTickets();
         var discount = purchaseResult.getSummary().getDiscount();
+
+        // Display pricing breakdown
         System.out.println("Tickets: " + sessionTickets.size());
         System.out.println("Subtotal: $" + purchaseResult.getSummary().getSubtotal());
         System.out.println(discount > 0 ? ("Bulk Discount: -$" + purchaseResult.getSummary().getDiscount()) : "No bulk discount");
         System.out.println("Final Total: $" + purchaseResult.getSummary().getFinalTotal());
 
+        // Ask user for final confirmation
         boolean confirm = readYesNo("Confirm purchase? (y/n): ");
         if (confirm) {
-            soldTickets.addAll(sessionTickets);
-            totalRevenue += purchaseResult.getSummary().getFinalTotal();
+            // Record purchase and get updated statistics snapshot all in one call
+            StatsSnapshot snapshot = statisticsService.snapshot(sessionTickets, purchaseResult.getSummary().getFinalTotal());
+
             System.out.println("Purchase completed. Enjoy the show!\n");
 
-            // Display updated statistics snapshot
-            StatsSnapshot snapshot = statisticsService.snapshot(soldTickets, totalRevenue);
+            // Display the updated statistics snapshot
             System.out.printf("Updated Stats -> Tickets Sold: %d | Revenue: $%d | Avg Price: %.2f | Member %%: %d%%%n",
                     snapshot.getTicketsSold(), snapshot.getTotalRevenue(), snapshot.getAverageTicketPrice(), snapshot.getMemberPercentage());
         } else {
+            // Purchase was cancelled, no changes to kiosk state
             System.out.println("Purchase cancelled.");
         }
     }
 
+    /**
+     * Displays comprehensive pricing information including:
+     * 1. Age-based pricing tiers
+     * 2. Seat type surcharges
+     * 3. Member discount information
+     * 4. Bulk discount details
+     * 5. Example ticket categories
+     */
     // ===== PRICING INFO =====
     private void showPricingInformation() {
         System.out.println("\n=== Pricing Information ===");
+
+        // Show age-based pricing tiers
         demonstrateAgePricing();
+
+        // Show seat type surcharges
         demonstrateSeatPricing();
+
+        // Display discount information
         System.out.println("Member Discount: $1 off base price (not below $0)");
         System.out.println("Bulk Discount: $2 off for every 5 tickets in a single order.");
+
+        // Show example ticket categories with different combinations
         System.out.println("\nCategory Examples:");
         System.out.println("Child Member Premium: " + PricingEngine.determineTicketCategory(8, true, SeatType.PREMIUM));
         System.out.println("Adult Regular Standard: " + PricingEngine.determineTicketCategory(30, false, SeatType.REGULAR));
         System.out.println("Senior Member Luxury: " + PricingEngine.determineTicketCategory(65, true, SeatType.RECLINER));
     }
 
+    /**
+     * Demonstrates age-based ticket pricing for various ages.
+     * Shows how prices vary across different age categories (Toddler, Child, Adult, Senior).
+     */
     private void demonstrateAgePricing() {
         System.out.println("Age-based pricing:");
+        // Test ages covering all pricing tiers
         int[] ages = {2, 8, 15, 25, 59, 60, 75};
         for (int age : ages) {
+            // Calculate base price for the age
             int price = PricingEngine.calculateBasePriceByAge(age);
+            // Format price display (FREE for $0, otherwise show amount)
             String label = price == 0 ? "FREE" : "$" + price;
             System.out.printf("Age %d (%s): %s%n", age, PricingEngine.getAgeCategoryName(age), label);
         }
     }
 
+    /**
+     * Demonstrates seat type surcharges added to base ticket prices.
+     * Shows how each seat type (REGULAR, PREMIUM, RECLINER) affects the final price
+     * by applying surcharges to a base adult ticket price.
+     */
     private void demonstrateSeatPricing() {
         System.out.println("\nSeat surcharges:");
+        // Iterate through all available seat types
         for (SeatType st : SeatType.values()) {
+            // Use adult base price as reference
             int baseAdult = PricingEngine.calculateBasePriceByAge(30);
+            // Apply seat surcharge to calculate final price
             int price = PricingEngine.applySeatSurcharge(baseAdult, st);
             System.out.printf("%s seat -> $%d (including surcharge)%n", st, price);
         }
     }
 
-    // ===== STATS =====
-    private void showStatistics() {
-        System.out.println("\n=== Kiosk Statistics ===");
-        System.out.println("Tickets sold: " + soldTickets.size());
-        System.out.println("Total revenue: $" + totalRevenue);
-        if (!soldTickets.isEmpty()) {
-            double avg = soldTickets.stream().mapToInt(Ticket::getPrice).average().orElse(0);
-            System.out.printf("Average ticket price: $%.2f%n", avg);
-            long members = soldTickets.stream().filter(Ticket::isMember).count();
-            System.out.println("Member tickets: " + members + " (" + (members * 100 / soldTickets.size()) + "%)");
-        } else {
-            System.out.println("No tickets sold yet.");
-        }
-    }
-
+    /**
+     * Validates and reads an integer input from the user within a specified range.
+     * Continuously prompts the user until a valid integer within the specified range is provided.
+     * Handles invalid input gracefully with error messages.
+     *
+     * @param prompt The message to display when prompting the user
+     * @param min The minimum allowed value (inclusive)
+     * @param max The maximum allowed value (inclusive)
+     * @return The validated integer input from the user
+     */
     // ===== INPUT HELPERS =====
     private int readIntInRange(String prompt, int min, int max) {
         while (true) {
             System.out.print(prompt);
             String line = scanner.nextLine();
             try {
+                // Attempt to parse user input as integer
                 int val = Integer.parseInt(line.trim());
+
+                // Validate value is within acceptable range
                 if (val < min || val > max) {
                     System.out.printf("Enter a number between %d and %d.%n", min, max);
-                } else return val;
+                } else {
+                    // Valid input, return the value
+                    return val;
+                }
             } catch (NumberFormatException e) {
+                // Handle non-numeric input
                 System.out.println("Invalid number. Try again.");
             }
         }
     }
 
+    /**
+     * Reads and validates a yes/no response from the user.
+     * Accepts 'y', 'yes', 'n', or 'no' (case-insensitive).
+     * Continuously prompts until a valid response is provided.
+     *
+     * @param prompt The message to display when prompting the user
+     * @return true if user answers yes, false if user answers no
+     */
     private boolean readYesNo(String prompt) {
         while (true) {
             System.out.print(prompt);
             String in = scanner.nextLine().trim().toLowerCase();
-            if (in.equals("y") || in.equals("yes")) return true;
-            if (in.equals("n") || in.equals("no")) return false;
+
+            // Check for affirmative responses
+            if (in.equals("y") || in.equals("yes")) {
+                return true;
+            }
+            // Check for negative responses
+            if (in.equals("n") || in.equals("no")) {
+                return false;
+            }
+
+            // Invalid response, prompt again
             System.out.println("Please answer y or n.");
         }
     }
 
-    private SeatType readSeatType() {
-        while (true) {
-            System.out.print("Seat type (REGULAR, PREMIUM, RECLINER): ");
-            String raw = scanner.nextLine();
-            SeatType st = SeatType.fromString(raw);
-            if (st != null) return st;
-            System.out.println("Invalid seat type. Try again.");
-        }
-    }
-
+    /**
+     * Pauses execution and waits for the user to press Enter.
+     * Used to allow users to review information before returning to the main menu.
+     */
     private void waitForEnter() {
         System.out.print("\nPress Enter to continue...");
         scanner.nextLine();
