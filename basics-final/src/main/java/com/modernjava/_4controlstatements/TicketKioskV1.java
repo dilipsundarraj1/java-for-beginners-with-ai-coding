@@ -14,7 +14,7 @@ public class TicketKioskV1 {
     private static int totalTicketsSold = 0;
     private static int totalRevenue = 0;
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("🎬 Welcome to CineMax Ticket Kiosk V1! 🎬");
         System.out.println("=========================================");
 

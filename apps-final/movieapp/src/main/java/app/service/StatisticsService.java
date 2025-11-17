@@ -43,10 +43,10 @@ public class StatisticsService {
         int ticketsSold = soldTickets.size();
 
         // Calculate the average ticket price, defaulting to 0.0 if no tickets exist
-        double average = ticketsSold == 0 ? 0.0 : soldTickets.stream().mapToInt(Ticket::getPrice).average().orElse(0.0);
+        double average = ticketsSold == 0 ? 0.0 : soldTickets.stream().mapToInt(Ticket::price).average().orElse(0.0);
 
         // Count the number of member tickets
-        long memberTickets = soldTickets.stream().filter(Ticket::isMember).count();
+        long memberTickets = soldTickets.stream().filter(Ticket::member).count();
 
         // Calculate the percentage of member tickets, defaulting to 0 if no tickets exist
         int memberPct = ticketsSold == 0 ? 0 : (int)(memberTickets * 100 / ticketsSold);
@@ -72,10 +72,10 @@ public class StatisticsService {
         int ticketsSold = soldTickets.size();
 
         // Calculate the average ticket price, defaulting to 0.0 if no tickets exist
-        double average = ticketsSold == 0 ? 0.0 : soldTickets.stream().mapToInt(Ticket::getPrice).average().orElse(0.0);
+        double average = ticketsSold == 0 ? 0.0 : soldTickets.stream().mapToInt(Ticket::price).average().orElse(0.0);
 
         // Count the number of member tickets
-        long memberTickets = soldTickets.stream().filter(Ticket::isMember).count();
+        long memberTickets = soldTickets.stream().filter(Ticket::member).count();
 
         // Calculate the percentage of member tickets, defaulting to 0 if no tickets exist
         int memberPct = ticketsSold == 0 ? 0 : (int)(memberTickets * 100 / ticketsSold);
@@ -102,16 +102,16 @@ public class StatisticsService {
         StatsSnapshot snapshot = getSnapshot();
 
         // Display basic counts and revenue
-        System.out.println("Tickets sold: " + snapshot.getTicketsSold());
-        System.out.println("Total revenue: $" + snapshot.getTotalRevenue());
+        System.out.println("Tickets sold: " + snapshot.ticketsSold());
+        System.out.println("Total revenue: $" + snapshot.totalRevenue());
 
         // Only display averages and percentages if tickets have been sold
-        if (snapshot.getTicketsSold() > 0) {
+        if (snapshot.ticketsSold() > 0) {
             // Display average ticket price from snapshot
-            System.out.printf("Average ticket price: $%.2f%n", snapshot.getAverageTicketPrice());
+            System.out.printf("Average ticket price: $%.2f%n", snapshot.averageTicketPrice());
 
             // Display member tickets and percentage
-            System.out.println("Member tickets: " + snapshot.getMemberTickets() + " (" + snapshot.getMemberPercentage() + "%)");
+            System.out.println("Member tickets: " + snapshot.memberTickets() + " (" + snapshot.memberPercentage() + "%)");
         } else {
             // No sales yet, display informational message
             System.out.println("No tickets sold yet.");

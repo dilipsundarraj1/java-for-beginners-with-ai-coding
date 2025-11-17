@@ -34,7 +34,7 @@ public class PurchaseService {
      */
     public PurchaseSummary summarize(List<Ticket> tickets) {
         // Calculate the subtotal by summing all ticket prices
-        int subtotal = tickets.stream().mapToInt(Ticket::getPrice).sum();
+        int subtotal = tickets.stream().mapToInt(Ticket::price).sum();
         // Apply bulk discount calculation based on subtotal and ticket quantity
         int finalTotal = PricingEngine.calculateBulkDiscount(subtotal, tickets.size());
         // Calculate the discount amount as the difference between subtotal and final total

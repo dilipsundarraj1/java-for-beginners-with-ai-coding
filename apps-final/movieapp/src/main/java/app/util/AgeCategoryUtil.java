@@ -1,4 +1,4 @@
-package app.domain;
+package app.util;
 
 /** Utility for determining age category, kept in domain to avoid domain->service dependency. */
 public final class AgeCategoryUtil {

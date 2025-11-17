@@ -109,32 +109,32 @@ public class MovieTicketKiosk {
 
         // Display order summary with all ticket details
         System.out.println("\n--- Order Summary ---");
-        for (Ticket t : purchaseResult.getTickets()) {
+        for (Ticket t : purchaseResult.tickets()) {
             System.out.printf("Ticket #%d | Age %d (%s) | %s | %s | $%d%n",
-                    t.getId(), t.getAge(), t.ageCategory(), t.isMember() ? "Member" : "Non-Member", t.getSeatType(), t.getPrice());
+                    t.id(), t.age(), t.ageCategory(), t.member() ? "Member" : "Non-Member", t.seatType(), t.price());
         }
 
         // Extract purchase details for display
-        var sessionTickets = purchaseResult.getTickets();
-        var discount = purchaseResult.getSummary().getDiscount();
+        var sessionTickets = purchaseResult.tickets();
+        var discount = purchaseResult.summary().discount();
 
         // Display pricing breakdown
         System.out.println("Tickets: " + sessionTickets.size());
-        System.out.println("Subtotal: $" + purchaseResult.getSummary().getSubtotal());
-        System.out.println(discount > 0 ? ("Bulk Discount: -$" + purchaseResult.getSummary().getDiscount()) : "No bulk discount");
-        System.out.println("Final Total: $" + purchaseResult.getSummary().getFinalTotal());
+        System.out.println("Subtotal: $" + purchaseResult.summary().subtotal());
+        System.out.println(discount > 0 ? ("Bulk Discount: -$" + purchaseResult.summary().discount()) : "No bulk discount");
+        System.out.println("Final Total: $" + purchaseResult.summary().finalTotal());
 
         // Ask user for final confirmation
         boolean confirm = readYesNo("Confirm purchase? (y/n): ");
         if (confirm) {
             // Record purchase and get updated statistics snapshot all in one call
-            StatsSnapshot snapshot = statisticsService.snapshot(sessionTickets, purchaseResult.getSummary().getFinalTotal());
+            StatsSnapshot snapshot = statisticsService.snapshot(sessionTickets, purchaseResult.summary().finalTotal());
 
             System.out.println("Purchase completed. Enjoy the show!\n");
 
             // Display the updated statistics snapshot
             System.out.printf("Updated Stats -> Tickets Sold: %d | Revenue: $%d | Avg Price: %.2f | Member %%: %d%%%n",
-                    snapshot.getTicketsSold(), snapshot.getTotalRevenue(), snapshot.getAverageTicketPrice(), snapshot.getMemberPercentage());
+                    snapshot.ticketsSold(), snapshot.totalRevenue(), snapshot.averageTicketPrice(), snapshot.memberPercentage());
         } else {
             // Purchase was cancelled, no changes to kiosk state
             System.out.println("Purchase cancelled.");

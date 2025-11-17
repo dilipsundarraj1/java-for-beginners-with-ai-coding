@@ -34,7 +34,7 @@ public class TicketPurchaseService {
             // Create ticket and add to session list
             Ticket ticket = purchaseService.createTicket(age, member, seatType);
             sessionTickets.add(ticket);
-            System.out.println("Ticket added: ID " + ticket.getId() + ", Price $" + ticket.getPrice() + ", Category: " + PricingEngine.determineTicketCategory(age, member, seatType));
+            System.out.println("Ticket added: ID " + ticket.id() + ", Price $" + ticket.price() + ", Category: " + PricingEngine.determineTicketCategory(age, member, seatType));
 
             // Ask if user wants to add another ticket
             addMore = readYesNo(scanner, "Add another ticket? (y/n): ");
@@ -74,14 +74,14 @@ public class TicketPurchaseService {
 
         // Display details for each ticket
         for (Ticket t : sessionTickets) {
-            System.out.printf("Ticket #%d | Age %d (%s) | %s | %s | $%d%n", t.getId(), t.getAge(), t.ageCategory(), t.isMember() ? "Member" : "Non-Member", t.getSeatType(), t.getPrice());
+            System.out.printf("Ticket #%d | Age %d (%s) | %s | %s | $%d%n", t.id(), t.age(), t.ageCategory(), t.member() ? "Member" : "Non-Member", t.seatType(), t.price());
         }
 
         // Display pricing breakdown
-        System.out.println("Tickets: " + summary.getTicketCount());
-        System.out.println("Subtotal: $" + summary.getSubtotal());
-        System.out.println(summary.getDiscount() > 0 ? ("Bulk Discount: -$" + summary.getDiscount()) : "No bulk discount");
-        System.out.println("Final Total: $" + summary.getFinalTotal());
+        System.out.println("Tickets: " + summary.ticketCount());
+        System.out.println("Subtotal: $" + summary.subtotal());
+        System.out.println(summary.discount() > 0 ? ("Bulk Discount: -$" + summary.discount()) : "No bulk discount");
+        System.out.println("Final Total: $" + summary.finalTotal());
     }
 
     /**

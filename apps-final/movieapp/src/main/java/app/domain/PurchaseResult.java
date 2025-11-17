@@ -3,18 +3,19 @@ package app.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class PurchaseResult {
-    private final List<Ticket> tickets;
-    private final PurchaseSummary summary; // nullable when not confirmed
-    private final boolean confirmed;
-
-    public PurchaseResult(List<Ticket> tickets, PurchaseSummary summary, boolean confirmed) {
-        this.tickets = tickets == null ? List.of() : Collections.unmodifiableList(tickets);
-        this.summary = summary;
-        this.confirmed = confirmed;
+/**
+ * Immutable record wrapping the result of a purchase transaction.
+ * Provides unmodifiable list and automatic accessor methods.
+ */
+public record PurchaseResult(
+    List<Ticket> tickets,
+    PurchaseSummary summary,
+    boolean confirmed
+) {
+    /**
+     * Compact constructor ensures tickets list is unmodifiable.
+     */
+    public PurchaseResult {
+        tickets = tickets == null ? List.of() : Collections.unmodifiableList(tickets);
     }
-    public List<Ticket> getTickets() { return tickets; }
-    public PurchaseSummary getSummary() { return summary; }
-    public boolean isConfirmed() { return confirmed; }
 }
-
