@@ -16,10 +16,10 @@
 * [Phase 3: Exit Functionality](#phase-3-exit-functionality)
   * [Prompt 3.1: Implement Exit Option with Graceful Shutdown](#prompt-31-implement-exit-option-with-graceful-shutdown)
 * [Phase 4: Ticket Kiosk - Buy Tickets Flow](#phase-4-ticket-kiosk---buy-tickets-flow)
-  * [Prompt 4.1: TicketPurchaseService - Interactive Ticket Collection](#prompt-41-ticketpurchaseservice---interactive-ticket-collection)
-  * [Prompt 4.2: PurchaseService - Ticket Creation and Summarization](#prompt-42-purchaseservice---ticket-creation-and-summarization)
-  * [Prompt 4.3: MovieTicketKiosk - Complete Buy Tickets Flow](#prompt-43-movieticketkiosk---complete-buy-tickets-flow)
-  * [Prompt 4.4: StatisticsService - Display Updated Stats After Purchase](#prompt-44-statisticsservice---display-updated-stats-after-purchase)
+  * [Prompt 4.1: TicketPurchaseService - Interactive Ticket Collection and Summarization](#prompt-41-ticketpurchaseservice---interactive-ticket-collection-and-summarization)
+  * [Prompt 4.2: MovieTicketKiosk - Complete Buy Tickets Flow](#prompt-42-movieticketkiosk---complete-buy-tickets-flow)
+  * [Prompt 4.3: StatisticsService - Display Updated Stats After Purchase](#prompt-43-statisticsservice---display-updated-stats-after-purchase)
+  * [Prompt 4.4: MovieTicketKiosk - View Statistics Option](#prompt-44-movieticketkiosk---view-statistics-option)
 * [Build and Run](#build-and-run)
   * [Building the Project](#building-the-project)
   * [Running the Application](#running-the-application)
@@ -49,8 +49,7 @@ The data model (domain layer) and presentation layer skeleton are **already impl
 | **MovieTicketApp** | Entry point of the application. Initializes services and starts the kiosk. | Class |
 | **MovieTicketKiosk** | Main user interface and menu orchestrator. Handles user interactions and routes to appropriate functions. | Class |
 | **PricingEngine** | Utility class that handles all pricing calculations (base price, discounts, surcharges, ticket categories). | Final Class |
-| **PurchaseService** | Service for creating tickets and generating purchase summaries with bulk discounts. | Class |
-| **TicketPurchaseService** | Orchestrates the interactive ticket purchase flow, collecting user input and managing multiple tickets per session. | Class |
+| **TicketPurchaseService** | Orchestrates the interactive ticket purchase flow with input validation. Creates tickets, generates purchase summaries, and manages the complete purchase workflow. | Class |
 | **StatisticsService** | Tracks and maintains cumulative sales statistics (tickets sold, revenue, averages, member percentages). | Class |
 | **SeatType** | Enum representing the three seat categories (REGULAR, PREMIUM, RECLINER) with case-insensitive parsing. | Enum |
 | **Ticket** | **Record** representing a purchased ticket with auto-incrementing ID, customer details, and price. Provides compact constructor for auto-ID generation and timestamp. | Record |
@@ -409,108 +408,93 @@ PricingEngine.calculateBasePriceByAge(70);  // Returns 9
 
 # Phase 4: Ticket Kiosk - Buy Tickets Flow
 
-## Prompt 4.1: TicketPurchaseService - Interactive Ticket Collection
+## Prompt 4.1: TicketPurchaseService - Interactive Ticket Collection and Summarization
 
-**Task**: Implement TicketPurchaseService to handle interactive ticket purchase flow.
+**Task**: Implement TicketPurchaseService to handle the complete ticket purchase workflow.
 
 **File**: `apps-final/movieapp/src/main/java/app/service/TicketPurchaseService.java`
 
-**Expected Code Structure**: Class with interactive user input methods
+**Expected Code Structure**: Single service class with all purchase logic
 
 **Requirements**:
 
 - Create a class named `TicketPurchaseService`
-- Add field: `private PurchaseService purchaseService = new PurchaseService()`
 
-- Add a method `run(Scanner scanner)` that:
+- Add a private method `createTicket(int age, boolean member, SeatType seatType)` that:
+  - Calculates ticket price using `PricingEngine.calculateTicketPrice()`
+  - Creates and returns new `Ticket(age, member, seatType, price)`
+
+- Add a private method `summarize(List<Ticket> tickets)` that:
+  - Calculates subtotal: sum of all ticket prices
+  - Calculates final total using `PricingEngine.calculateBulkDiscount()`
+  - Calculates discount: subtotal - finalTotal
+  - Returns new `PurchaseSummary(ticketCount, subtotal, discount, finalTotal)`
+
+- Add a public method `buyTicket(Scanner scanner)` that:
   - Orchestrates the interactive purchase flow:
     - Loop until user answers "no" to "Add another ticket?"
     - In each iteration:
       - Use `readIntInRange()` to prompt for age (0-120)
       - Use `readYesNo()` to prompt for membership
       - Use `readSeatType()` to prompt for seat type
-      - Call `purchaseService.createTicket()` to create ticket
+      - Call `createTicket()` to create ticket
       - Add to list
       - Print: "Ticket added: ID [id], Price $[price], Category: [category]"
     - When loop exits (user says no):
       - If no tickets: return unconfirmed empty result
-      - Otherwise: call `purchaseService.summarize()` and return confirmed result
+      - Otherwise: call `summarize()` and return confirmed result
+      - Ask for confirmation: "Confirm purchase? (y/n): "
+      - Return `PurchaseResult` with proper status
   - Returns `PurchaseResult` with:
     - List of created tickets
     - Purchase summary (null if empty, or calculated summary)
-    - Confirmation status (false if empty, true if has tickets)
+    - Confirmation status (false if cancelled, true if confirmed)
 
-- Inherit/Add input validation helpers:
+- Add private input validation helpers:
   - `readIntInRange(Scanner scanner, String prompt, int min, int max)`
   - `readYesNo(Scanner scanner, String prompt)`
   - `readSeatType(Scanner scanner)`
 
+- Add a private helper method `printSummary(List<Ticket> sessionTickets, PurchaseSummary summary)` that:
+  - Displays order summary with individual ticket details
+  - Shows pricing breakdown
+
 **Key Points**:
+- TicketPurchaseService now handles ALL ticket purchase operations
 - Input validation is critical
 - Each ticket is immediately added to the list with feedback
-- Empty purchases return unconfirmed results
 - Summary is calculated only if tickets exist
+- Confirmation happens within this service
 
 ---
 
-## Prompt 4.2: PurchaseService - Ticket Creation and Summarization
+## Prompt 4.2: MovieTicketKiosk - Complete Buy Tickets Flow
 
-**Task**: Implement PurchaseService for ticket creation and purchase summarization.
-
-**File**: `apps-final/movieapp/src/main/java/app/service/PurchaseService.java`
-
-**Expected Code Structure**: Class with ticket creation and summary methods
-
-**Requirements**:
-
-- Create a class named `PurchaseService`
-
-- Add a method `createTicket(int age, boolean isMember, SeatType seatType)` that:
-  - Calculates ticket price using `PricingEngine.calculateTicketPrice()`
-  - Creates and returns new `Ticket(age, isMember, seatType, price)`
-
-- Add a method `summarize(List<Ticket> tickets)` that:
-  - Calculates subtotal: sum of all ticket prices
-  - Calculates final total using `PricingEngine.calculateBulkDiscount()`
-  - Calculates discount: subtotal - finalTotal
-  - Returns new `PurchaseSummary(ticketCount, subtotal, discount, finalTotal)`
-
-**Key Points**:
-- PurchaseService is stateless
-- Delegates pricing to PricingEngine
-- Summarization applies bulk discount at session level
-
----
-
-## Prompt 4.3: MovieTicketKiosk - Complete Buy Tickets Flow
-
-**Task**: Replace the dummy buyTicketsFlow with complete implementation.
+**Task**: Implement the buyTicketsFlow method in MovieTicketKiosk.
 
 **File**: `apps-final/movieapp/src/main/java/app/MovieTicketKiosk.java`
 
-**Expected Code Structure**: Replace dummy method with full implementation
+**Expected Code Structure**: Method that orchestrates purchase confirmation and statistics
 
 **Requirements**:
 
-- Replace `buyTicketsFlowDummy()` with `buyTicketsFlow()` that:
-  - Calls `ticketPurchaseService.run(scanner)` to get PurchaseResult
-  - Displays order summary (already handled by TicketPurchaseService)
-  - Asks for confirmation: "Confirm purchase? (y/n): "
-  - If confirmed:
-    - Calls `statisticsService.snapshot(tickets, finalTotal)` to record purchase
+- Implement `buyTicketsFlow()` that:
+  - Calls `ticketPurchaseService.buyTicket(scanner)` to get `PurchaseResult`
+  - If purchase was confirmed (result.isConfirmed() == true):
+    - Calls `statisticsService.snapshot(result.tickets(), result.summary().finalTotal())` to record purchase
     - Prints: "Purchase completed. Enjoy the show!"
     - Prints updated stats: "Updated Stats -> Tickets Sold: [X] | Revenue: $[Y] | Avg Price: $[Z.ZZ] | Member %: [P]%"
-  - If not confirmed:
+  - If purchase was cancelled or no tickets:
     - Prints: "Purchase cancelled."
 
 **Key Points**:
-- TicketPurchaseService handles most of the flow
-- Kiosk handles confirmation and stats recording
+- TicketPurchaseService handles the entire purchase flow
+- MovieTicketKiosk only handles post-purchase confirmation and stats recording
 - Stats are updated immediately upon confirmation
 
 ---
 
-## Prompt 4.4: StatisticsService - Display Updated Stats After Purchase
+## Prompt 4.3: StatisticsService - Display Updated Stats After Purchase
 
 **Task**: Implement StatisticsService to track and display statistics.
 
@@ -556,6 +540,26 @@ PricingEngine.calculateBasePriceByAge(70);  // Returns 9
 - `snapshot()` both updates state and returns snapshot
 - `displayStatistics()` displays without affecting state
 - Member percentage should be integer (0-100)
+
+---
+
+## Prompt 4.4: MovieTicketKiosk - View Statistics Option
+
+**Task**: Implement the statistics display in MovieTicketKiosk.
+
+**File**: `apps-final/movieapp/src/main/java/app/MovieTicketKiosk.java`
+
+**Expected Code Structure**: Method that displays current statistics
+
+**Requirements**:
+
+- Implement `showStatistics()` method (replacing showStatisticsDummy):
+  - Calls `statisticsService.displayStatistics()` to show current stats
+  - Does not modify any state
+
+**Key Points**:
+- Simple wrapper around StatisticsService.displayStatistics()
+- Used in the main menu when option 3 is selected
 
 ---
 
