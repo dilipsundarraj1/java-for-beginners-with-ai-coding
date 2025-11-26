@@ -5,7 +5,6 @@ import app.domain.SeatType;
 import app.domain.Ticket;
 import app.domain.StatsSnapshot;
 import app.service.PricingEngine;
-import app.service.PurchaseService;
 import app.service.StatisticsService;
 import app.service.TicketPurchaseService;
 
@@ -105,7 +104,7 @@ public class MovieTicketKiosk {
         System.out.println("\n=== Ticket Purchase ===");
 
         // Delegate to TicketPurchaseService to handle ticket selection
-        PurchaseResult purchaseResult = ticketPurchaseService.run(scanner);
+        PurchaseResult purchaseResult = ticketPurchaseService.buyTicket(scanner);
 
         // Display order summary with all ticket details
         System.out.println("\n--- Order Summary ---");

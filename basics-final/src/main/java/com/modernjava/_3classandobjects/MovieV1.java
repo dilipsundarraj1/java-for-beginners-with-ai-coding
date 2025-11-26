@@ -89,6 +89,10 @@ public class MovieV1 {
         }
     }
 
+    public void printMovie(){
+        System.out.println("Movie: " + this.title + ", Duration: " + this.duration + " minutes, Genre: " + this.genre + ", Rating: " + this.rating + "/10.0, Minimum Age: " + this.minimumAge + ", Streaming Platform: " + this.streamingPlatform);
+    }
+
     // Getter for minimum age
     public int getMinimumAge() {
         return minimumAge;
