@@ -22,29 +22,29 @@ public  class MovieUtils {
         return movieRating;
     }
 
-    public static void addIntermission(Movie m, int extraMinutes) {
+    public static void addIntermission(MovieV1 m, int extraMinutes) {
         if (m == null) return;
         if (extraMinutes < 0) extraMinutes = 0;
-        m.duration += extraMinutes; // <— mutation
+        m.setDuration(m.getDuration()+ extraMinutes) ; // <— mutation
     }
 
     /**
      * Creates a copy of a Movie object with all the same field values
      * and then modifies the title of the newly created object.
      */
-    public static Movie copyAndModifyMovie(Movie original) {
+    public static Movie copyAndModifyMovie(MovieV1 original) {
         if (original == null) {
             return null;
         }
 
         // Create a new Movie object with copied values
         Movie copy = new Movie(
-            original.title,
-            original.duration,
-            original.genre,
-            original.rating,
-            original.minimumAge,
-            original.streamingPlatform
+            original.getTitle(),
+            original.getDuration(),
+            original.getGenre(),
+            original.getRating(),
+            original.getMinimumAge(),
+            original.getStreamingPlatform()
         );
 
         // Modify the newly created object

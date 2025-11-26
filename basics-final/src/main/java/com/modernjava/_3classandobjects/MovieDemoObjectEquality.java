@@ -9,9 +9,8 @@ public class MovieDemoObjectEquality {
         System.out.println("=== Movie Object Equality Demo ===\n");
 
         // Create movie objects for testing
-        Movie movie1 = new Movie("The Matrix", 136, "Sci-Fi", 8.7, 13, MovieUtils.streamingPlatform_netflix);
-        Movie movie2 = new Movie("The Matrix", 136, "Sci-Fi", 8.7, 13, MovieUtils.streamingPlatform_netflix);
-        Movie movie3 = movie1; // Same reference
+        MovieV1 movie1 = new MovieV1("The Matrix", 136, "Sci-Fi", 8.7, 13, MovieUtils.streamingPlatform_netflix);
+        MovieV1 movie2 = new MovieV1("The Matrix", 136, "Sci-Fi", 8.7, 13, MovieUtils.streamingPlatform_netflix);
 
         // ============= toString() Method Demo =============
         System.out.println("1. toString() Method:");
@@ -20,11 +19,10 @@ public class MovieDemoObjectEquality {
 
         System.out.println("movie1: " + movie1);
         System.out.println("movie2: " + movie2);
-        System.out.println("movie3: " + movie3);
         System.out.println();
 
         System.out.println("Notice: movie1 and movie2 have different hash codes");
-        System.out.println("        movie1 and movie3 have the same hash code (same object)");
+        System.out.println("        but they have identical content");
         System.out.println();
 
         // ============= equals() Method Demo =============
@@ -34,8 +32,8 @@ public class MovieDemoObjectEquality {
 
         // Same reference test
         System.out.println("Same Reference Test:");
-        System.out.println("movie1 == movie3: " + (movie1 == movie3));
-        System.out.println("movie1.equals(movie3): " + movie1.equals(movie3));
+        System.out.println("movie1 == movie1: " + (movie1 == movie1));
+        System.out.println("movie1.equals(movie1): " + movie1.equals(movie1));
         System.out.println();
 
         // Same content, different objects test
@@ -49,17 +47,17 @@ public class MovieDemoObjectEquality {
         System.out.println("Let's check if movie1 and movie2 have the same content:");
         System.out.println();
 
-        boolean sameTitle = movie1.title.equals(movie2.title);
-        boolean sameDuration = movie1.duration == movie2.duration;
-        boolean sameGenre = movie1.genre.equals(movie2.genre);
-        boolean sameRating = movie1.rating == movie2.rating;
-        boolean sameMinAge = movie1.minimumAge == movie2.minimumAge;
+        boolean sameTitle = movie1.getTitle().equals(movie2.getTitle());
+        boolean sameDuration = movie1.getDuration() == movie2.getDuration();
+        boolean sameGenre = movie1.getGenre().equals(movie2.getGenre());
+        boolean sameRating = movie1.getRating() == movie2.getRating();
+        boolean sameMinAge = movie1.getMinimumAge() == movie2.getMinimumAge();
 
-        System.out.println("Title same: " + sameTitle + " ('" + movie1.title + "' vs '" + movie2.title + "')");
-        System.out.println("Duration same: " + sameDuration + " (" + movie1.duration + " vs " + movie2.duration + ")");
-        System.out.println("Genre same: " + sameGenre + " ('" + movie1.genre + "' vs '" + movie2.genre + "')");
-        System.out.println("Rating same: " + sameRating + " (" + movie1.rating + " vs " + movie2.rating + ")");
-        System.out.println("MinAge same: " + sameMinAge + " (" + movie1.minimumAge + " vs " + movie2.minimumAge + ")");
+        System.out.println("Title same: " + sameTitle + " ('" + movie1.getTitle() + "' vs '" + movie2.getTitle() + "')");
+        System.out.println("Duration same: " + sameDuration + " (" + movie1.getDuration() + " vs " + movie2.getDuration() + ")");
+        System.out.println("Genre same: " + sameGenre + " ('" + movie1.getGenre() + "' vs '" + movie2.getGenre() + "')");
+        System.out.println("Rating same: " + sameRating + " (" + movie1.getRating() + " vs " + movie2.getRating() + ")");
+        System.out.println("MinAge same: " + sameMinAge + " (" + movie1.getMinimumAge() + " vs " + movie2.getMinimumAge() + ")");
         System.out.println();
 
         boolean contentEqual = sameTitle && sameDuration && sameGenre && sameRating && sameMinAge;
@@ -76,7 +74,7 @@ public class MovieDemoObjectEquality {
 
         // ============= Different Objects Demo =============
         System.out.println("5. Different Content Test:");
-        Movie movie4 = new Movie("Inception", 148, "Thriller", 8.8, 13, "Amazon Prime");
+        MovieV1 movie4 = new MovieV1("Inception", 148, "Thriller", 8.8, 13, "Amazon Prime");
         System.out.println("movie1: " + movie1);
         System.out.println("movie4: " + movie4);
         System.out.println("movie1.equals(movie4): " + movie1.equals(movie4));
