@@ -1,99 +1,145 @@
 package com.modernjava._3classandobjects;
 
+import java.util.Objects;
+
 public class MovieV2 {
-    // Private fields for encapsulation
+
     private String title;
     private int duration; // in minutes
-    private MovieGenreEnum genre; // Using enum instead of String
+    private MovieGenreEnum genre;
     private double rating; // out of 10.0
-    private int minimumAge; // minimum age requirement for the movie
-    private String streamingPlatform; // streaming platform where movie is available
+    private int minimumAge; // minimum age requirement
+    private String streamingPlatform;
 
-    // No-Argument constructor
     public MovieV2() {
-        System.out.println("Default constructor called");
+        //super();
+        System.out.println("MovieV2 Default Constructor called");
         this.title = "Unknown";
         this.duration = 0;
-        this.genre = MovieGenreEnum.DRAMA; // Default genre
+        this.genre = MovieGenreEnum.ACTION;
         this.rating = 0.0;
         this.minimumAge = 0;
         this.streamingPlatform = "Unknown";
     }
 
-    // Parameterized constructor with validation
     public MovieV2(String title, int duration, MovieGenreEnum genre, double rating, int minimumAge, String streamingPlatform) {
-        setTitle(title);
-        setDuration(duration);
-        setGenre(genre);
-        setRating(rating);
-        setMinimumAge(minimumAge);
-        setStreamingPlatform(streamingPlatform);
+        // super(title, duration, genre, rating);
+        // Validate title
+        if (title == null || title.isEmpty()) {
+            this.title = "Unknown";
+        } else {
+            this.title = title;
+        }
+
+        // Validate duration
+        if (duration < 0) {
+            this.duration = 0;
+        } else {
+            this.duration = duration;
+        }
+
+        // Validate genre
+        if (genre == null) {
+            this.genre = MovieGenreEnum.ACTION;
+        } else {
+            this.genre = genre;
+        }
+
+        // Validate rating
+        if (rating < 0.0 || rating > 10.0) {
+            this.rating = 0.0;
+        } else {
+            this.rating = rating;
+        }
+
+        // Validate minimumAge
+        if (minimumAge < 0) {
+            this.minimumAge = 0;
+        } else {
+            this.minimumAge = minimumAge;
+        }
+
+        // Validate streamingPlatform
+        if (streamingPlatform == null || streamingPlatform.isEmpty()) {
+            this.streamingPlatform = "Unknown";
+        } else {
+            this.streamingPlatform = streamingPlatform;
+        }
     }
 
-    // Getter for title
+    // Getters
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
-    // Setter for title with validation
+    public int getDuration() {
+        return this.duration;
+    }
+
+    public MovieGenreEnum getGenre() {
+        return this.genre;
+    }
+
+    public double getRating() {
+        return this.rating;
+    }
+
+    public int getMinimumAge() {
+        return this.minimumAge;
+    }
+
+    public String getStreamingPlatform() {
+        return this.streamingPlatform;
+    }
+
+    public static String trimTitle(String title) {
+        if(title == null){
+            return "Unknown";
+        }
+        //this.title
+        return title.trim();
+    }
+
+    public static String trimTitle(String title, String title1) {
+        if(title == null){
+            return "Unknown";
+        }
+        return title.trim();
+    }
+
+    // Setters
     public void setTitle(String title) {
-        if (title == null) {
+        if (title == null || title.isEmpty()) {
             this.title = "Unknown";
         } else {
             this.title = title;
         }
     }
 
-    // Getter for duration
-    public int getDuration() {
-        return duration;
-    }
-
-    // Setter for duration with validation
     public void setDuration(int duration) {
-        if (duration < 0) { // validation in place
+        if (duration < 0) {
             this.duration = 0;
         } else {
             this.duration = duration;
         }
     }
 
-    // Getter for genre
-    public MovieGenreEnum getGenre() {
-        return genre;
-    }
-
-    // Setter for genre with validation
     public void setGenre(MovieGenreEnum genre) {
         if (genre == null) {
-            this.genre = MovieGenreEnum.DRAMA; // Default to DRAMA if null
+            this.genre = MovieGenreEnum.ACTION;
         } else {
             this.genre = genre;
         }
     }
 
-    // Getter for rating
-    public double getRating() {
-        return rating;
-    }
-
-    // Setter for rating with validation
     public void setRating(double rating) {
-        if (rating < 0) {
+        if (rating < 0.0 || rating > 10.0) {
             this.rating = 0.0;
-        } else if (rating > 10.0) {
-            this.rating = 10.0;
         } else {
             this.rating = rating;
         }
     }
 
-    // Getter for minimum age
-    public int getMinimumAge() {
-        return minimumAge;
-    }
-
-    // Setter for minimum age with validation
     public void setMinimumAge(int minimumAge) {
         if (minimumAge < 0) {
             this.minimumAge = 0;
@@ -102,87 +148,65 @@ public class MovieV2 {
         }
     }
 
-    // Getter for streaming platform
-    public String getStreamingPlatform() {
-        return streamingPlatform;
-    }
-
-    // Setter for streaming platform with validation
     public void setStreamingPlatform(String streamingPlatform) {
-        if (streamingPlatform == null) {
+        if (streamingPlatform == null || streamingPlatform.isEmpty()) {
             this.streamingPlatform = "Unknown";
         } else {
             this.streamingPlatform = streamingPlatform;
         }
     }
 
-    public static String trimTitle(String title) {
-        if (title == null) {
-            return "Unknown";
-        }
-
-        return title.trim();
-    }
-
-    public static String trimTitle(String title, String title2) {
-        if (title == null) {
-            return "Unknown";
-        }
-
-        return title.trim();
-    }
-
-    public void printMovie(MovieV2 movie){
-        System.out.println("Movie Details are : " + movie.getTitle() + ", Duration: " + movie.formattedDuration() + ", Genre: " + movie.getGenre() + ", Rating: " + movie.getRating() + "/10.0, Minimum Age: " + movie.getMinimumAge());
-    }
-
-    public void printMovie(){
-        System.out.println("Movie Details are : " + this.getTitle() + ", Duration: " + this.formattedDuration() + ", Genre: " + this.getGenre() + ", Rating: " + this.getRating() + "/10.0, Minimum Age: " + this.getMinimumAge());
+    // Methods from parent class
+    public void printMovie() {
+        System.out.println("Movie: " + this.title +
+                ", Duration: " + this.duration +
+                " minutes, Genre: " + this.genre +
+                ", Rating: " + this.rating + "/10.0" +
+                ", Minimum Age: " + this.minimumAge +
+                ", Streaming Platform: " + this.streamingPlatform);
     }
 
     public String formattedDuration() {
-        int hours = duration / 60;
-        int minutes = duration % 60;
-
-        return formattedDuration(hours, minutes);
-    }
-
-    // Overloaded method that accepts hours and minutes as parameters
-    public String formattedDuration(int hours, int minutes) {
+        if (this.duration < 0) {
+            return "Invalid duration";
+        }
+        int hours = this.duration / 60;
+        int mins = this.duration % 60;
         String result = "";
         if (hours > 0) {
             result = hours + "h ";
         }
-        result = result + minutes + "m";
+        result += mins + "m";
         return result;
     }
 
-    // Simple toString implementation
     @Override
     public String toString() {
-        return "Movie: " + title + ", Duration: " + duration + " minutes, Genre: " + genre
-                + ", Rating: " + rating + "/10.0, Minimum Age: " + minimumAge + ", Streaming Platform: " + streamingPlatform;
+        return "MovieV2{" +
+                "title='" + title + '\'' +
+                ", duration=" + duration +
+                ", genre='" + genre + '\'' +
+                ", rating=" + rating +
+                ", minimumAge=" + minimumAge +
+                ", streamingPlatform='" + streamingPlatform + '\'' +
+                '}';
     }
 
-    // Simple equals implementation
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
-        if (!(obj instanceof MovieV2)) return false;
-
-        MovieV2 other = (MovieV2) obj;
-        return title.equals(other.title) &&
-               duration == other.duration &&
-               genre == other.genre && // Enum comparison using ==
-               rating == other.rating &&
-               minimumAge == other.minimumAge;
+    public boolean equals(Object o) {
+        if (!(o instanceof MovieV2 movieV2)) return false;
+        return getDuration() == movieV2.getDuration() &&
+//                Double.compare(getRating(), movieV2.getRating()) == 0 &&
+                getMinimumAge() == movieV2.getMinimumAge() &&
+                Objects.equals(getTitle(), movieV2.getTitle()) &&
+                Objects.equals(getStreamingPlatform(), movieV2.getStreamingPlatform());
+//                &&
+//                Objects.equals(getGenre(), movieV2.getGenre());
     }
 
-   public void displayMovie() {
-        // Local variable
-        String movieName = "Inception";
-        int duration = 120; // in minutes
-        System.out.println("Movie: " + movieName + ", Duration: " + duration + " mins");
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitle(), getDuration(), getGenre(), getRating(), getMinimumAge(), getStreamingPlatform());
     }
 }
+

@@ -1,62 +1,70 @@
 package com.modernjava._3classandobjects;
 
-/**
- * MovieV3 - A record-based implementation of Movie class
- * Records provide immutability, automatic getters, equals(), hashCode(), and toString()
- * Validation is performed in the compact constructor
- */
 public record MovieRecord(
     String title,
     int duration, // in minutes
     MovieGenreEnum genre,
     double rating, // out of 10.0
-    int minimumAge, // minimum age requirement for the movie
-    String streamingPlatform // streaming platform where movie is available
+    int minimumAge, // minimum age requirement
+    String streamingPlatform
 ) {
-
     // Compact constructor with validation
     public MovieRecord {
-        System.out.println("Parameterized constructor called");
-        // Validate and set defaults for null/invalid values
-        title = (title == null) ? "Unknown" : title;
-        duration = Math.max(0, duration); // Ensure non-negative duration
-        genre = (genre == null) ? MovieGenreEnum.DRAMA : genre;
-        rating = Math.max(0.0, Math.min(10.0, rating)); // Clamp rating between 0.0 and 10.0
-        minimumAge = Math.max(0, minimumAge); // Ensure non-negative age
-        streamingPlatform = (streamingPlatform == null) ? "Unknown" : streamingPlatform;
+        // Validate title
+        if (title == null || title.isEmpty()) {
+            title = "Unknown";
+        }
+
+        // Validate duration
+        if (duration < 0) {
+            duration = 0;
+        }
+
+        // Validate genre
+        if (genre == null) {
+            genre = MovieGenreEnum.ACTION;
+        }
+
+        // Validate rating
+        if (rating < 0.0 || rating > 10.0) {
+            rating = 0.0;
+        }
+
+        // Validate minimumAge
+        if (minimumAge < 0) {
+            minimumAge = 0;
+        }
+
+        // Validate streamingPlatform
+        if (streamingPlatform == null || streamingPlatform.isEmpty()) {
+            streamingPlatform = "Unknown";
+        }
     }
 
-    // Format duration as hours and minutes
+    // Method to create a new MovieRecord with updated rating
+    public MovieRecord withRating(double newRating) {
+        return new MovieRecord(
+                this.title,
+                this.duration,
+                this.genre,
+                newRating,
+                this.minimumAge,
+                this.streamingPlatform
+        );
+    }
+
     public String formattedDuration() {
-        int hours = duration / 60;
-        int minutes = duration % 60;
-        return formattedDuration(hours, minutes);
-    }
-
-    // Overloaded method that accepts hours and minutes as parameters
-    public String formattedDuration(int hours, int minutes) {
+        if (this.duration < 0) {
+            return "Invalid duration";
+        }
+        int hours = this.duration / 60;
+        int mins = this.duration % 60;
         String result = "";
         if (hours > 0) {
             result = hours + "h ";
         }
-        result = result + minutes + "m";
+        result += mins + "m";
         return result;
     }
 
-    // Override toString to match MovieV2 format
-//    @Override
-//    public String toString() {
-//        return "Movie: " + title + ", Duration: " + duration + " minutes, Genre: " + genre
-//                + ", Rating: " + rating + "/10.0, Minimum Age: " + minimumAge + ", Streaming Platform: " + streamingPlatform;
-//    }
-
-    // Method to create a new MovieV3 with updated rating (since records are immutable)
-    public MovieRecord withRating(double newRating) {
-        return new MovieRecord(title, duration, genre, newRating, minimumAge, streamingPlatform);
-    }
-
-    // Method to create a new MovieV3 with updated streaming platform
-    public MovieRecord withStreamingPlatform(String newPlatform) {
-        return new MovieRecord(title, duration, genre, rating, minimumAge, newPlatform);
-    }
 }

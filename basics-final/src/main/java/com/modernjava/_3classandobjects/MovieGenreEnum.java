@@ -5,5 +5,11 @@ public enum MovieGenreEnum {
     COMEDY,
     DRAMA,
     HORROR,
-    ROMANCE
+    ROMANCE,
+    SCI_FI,
+    DOCUMENTARY,
+    THRILLER,
+    ANIMATION,
+    FANTASY,
+    MUSICAL
 }

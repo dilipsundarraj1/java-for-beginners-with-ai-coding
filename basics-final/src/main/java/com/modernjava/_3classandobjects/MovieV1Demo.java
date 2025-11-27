@@ -1,110 +1,70 @@
 package com.modernjava._3classandobjects;
 
 public class MovieV1Demo {
-    public static void main(String[] args) {
-        System.out.println("=== MovieV1 Demo - Encapsulation Examples ===\n");
+    static void main(String[] args) {
+        // Create a MovieV1 object with parameterized constructor
+        MovieV1 movie = new MovieV1("Inception",
+                148, "Sci-Fi", 8.8, 13);
 
-        // 1. Creating objects using default constructor
-        System.out.println("1. Default Constructor:");
-        MovieV1 movie1 = new MovieV1();
-        System.out.println("Default movie: " + movie1);
-        System.out.println();
+        movie.setDuration(-148); // Testing validation in setter
 
-        // 2. Creating objects using parameterized constructor with valid values
-        System.out.println("2. Parameterized Constructor with Valid Values:");
-        MovieV1 movie2 = new MovieV1("The Matrix", 136, "Sci-Fi", 8.7, 13, MovieUtils.streamingPlatform_netflix);
-        System.out.println("Valid movie: " + movie2);
-        System.out.println();
+        // Print initial values
+        System.out.println("=== Initial Movie Details ===");
+        System.out.println("Title: " + movie.getTitle());
+        System.out.println("Duration: " + movie.getDuration() + " minutes");
+        System.out.println("Genre: " + movie.getGenre());
+        System.out.println("Rating: " + movie.getRating() + "/10.0");
+        System.out.println("Minimum Age: " + movie.getMinimumAge());
+        movie.printMovie();
 
-        // 3. Creating objects with null and negative values (testing validation)
-        System.out.println("3. Parameterized Constructor with Invalid Values:");
-        MovieV1 movie3 = new MovieV1(null, -120, null, -5.5, -10, null);
-        System.out.println("Movie with invalid values: " + movie3);
-        System.out.println();
+        System.out.println("\n=== Modifying Movie Properties ===");
+        // Set different values using setters
+        movie.setTitle("The Dark Knight");
+        movie.setDuration(152);
+        movie.setGenre("Action");
+        movie.setRating(9.0);
+        movie.setMinimumAge(18);
 
-        // 4. Using setter methods to modify existing object
-        System.out.println("4. Using Setter Methods:");
-        MovieV1 movie4 = new MovieV1();
-        movie4.setTitle("Inception");
-        movie4.setDuration(148);
-        movie4.setGenre("Thriller");
-        movie4.setRating(8.8);
-        movie4.setMinimumAge(13);
-        movie4.setStreamingPlatform(MovieUtils.streamingPlatform_netflix);
-        System.out.println("Movie created with setters: " + movie4);
-        System.out.println();
+        // Print updated values
+        System.out.println("Updated Title: " + movie.getTitle());
+        System.out.println("Updated Duration: " + movie.getDuration() + " minutes");
+        System.out.println("Updated Genre: " + movie.getGenre());
+        System.out.println("Updated Rating: " + movie.getRating() + "/10.0");
+        System.out.println("Updated Minimum Age: " + movie.getMinimumAge());
+        movie.printMovie();
 
-        // 5. Testing setter validation with invalid values
-        System.out.println("5. Testing Setter Validation:");
-        MovieV1 movie5 = new MovieV1("Avatar", 162, "Action", 7.8, 13, MovieUtils.streamingPlatform_amazonprime);
-        System.out.println("Before invalid updates: " + movie5);
+        // Display formatted duration
+        System.out.println("\nFormatted Duration: " + movie.formattedDuration());
 
-        // Trying to set invalid values
-        movie5.setTitle(null);
-        movie5.setDuration(-50);
-        movie5.setGenre(null);
-        movie5.setRating(-3.0);
-        movie5.setMinimumAge(-5);
-        movie5.setStreamingPlatform(null);
-        System.out.println("After invalid updates: " + movie5);
-        System.out.println();
+        var rating = MovieUtils.minimumAgeToRating(movie.getMinimumAge());
+        System.out.println("Film Rating: " + rating);
 
-        // 6. Testing rating upper limit validation
-        System.out.println("6. Testing Rating Upper Limit:");
-        MovieV1 movie6 = new MovieV1("Best Movie Ever", 90, "Comedy", 15.0, 0, MovieUtils.streamingPlatform_netflix);
-        System.out.println("Movie with rating > 10: " + movie6);
-        System.out.println();
+        // Create different objects to capture all ratings
+        System.out.println("\n=== Demonstrating All Movie Ratings ===");
 
-        // 7. Using getter methods to access individual fields
-        System.out.println("7. Accessing Individual Fields with Getters:");
-        MovieV1 movie7 = new MovieV1("Pulp Fiction", 154, "Crime", 8.9, 17, MovieUtils.streamingPlatform_amazonprime);
-        System.out.println("Title: " + movie7.getTitle());
-        System.out.println("Duration: " + movie7.getDuration() + " minutes");
-        System.out.println("Genre: " + movie7.getGenre());
-        System.out.println("Rating: " + movie7.getRating() + "/10.0");
-        System.out.println("Minimum Age: " + movie7.getMinimumAge());
-        System.out.println("Streaming Platform: " + movie7.getStreamingPlatform());
-        System.out.println();
+        // G Rating - minimumAge < 6
+        MovieV1 gRatedMovie = new MovieV1("Toy Story", 81, "Animation", 8.3, 0);
+        String gRating = MovieUtils.minimumAgeToRating(gRatedMovie.getMinimumAge());
+        System.out.println("Movie: " + gRatedMovie.getTitle() + " | Minimum Age: " + gRatedMovie.getMinimumAge() + " | Rating: " + gRating);
 
-        // 8. Modifying specific fields while keeping others unchanged
-        System.out.println("8. Selective Field Updates:");
-        MovieV1 movie8 = new MovieV1("The Godfather", 175, "Crime", 9.2, 17, MovieUtils.streamingPlatform_netflix);
-        System.out.println("Original: " + movie8);
+        // PG Rating - minimumAge >= 6 && < 13
+        MovieV1 pgRatedMovie = new MovieV1("Finding Nemo", 100, "Animation", 8.1, 6);
+        String pgRating = MovieUtils.minimumAgeToRating(pgRatedMovie.getMinimumAge());
+        System.out.println("Movie: " + pgRatedMovie.getTitle() + " | Minimum Age: " + pgRatedMovie.getMinimumAge() + " | Rating: " + pgRating);
 
-        // Only update rating
-        movie8.setRating(9.5);
-        System.out.println("After rating update: " + movie8);
+        // PG-13 Rating - minimumAge >= 13 && < 17
+        MovieV1 pg13RatedMovie = new MovieV1("The Avengers", 143, "Action", 8.0, 13);
+        String pg13Rating = MovieUtils.minimumAgeToRating(pg13RatedMovie.getMinimumAge());
+        System.out.println("Movie: " + pg13RatedMovie.getTitle() + " | Minimum Age: " + pg13RatedMovie.getMinimumAge() + " | Rating: " + pg13Rating);
 
-        // Only update duration
-        movie8.setDuration(180);
-        System.out.println("After duration update: " + movie8);
+        // R Rating - minimumAge >= 17
+        MovieV1 rRatedMovie = new MovieV1("Deadpool", 108, "Action", 7.6, 17);
+        String rRating = MovieUtils.minimumAgeToRating(rRatedMovie.getMinimumAge());
+        System.out.println("Movie: " + rRatedMovie.getTitle() + " | Minimum Age: " + rRatedMovie.getMinimumAge() + " | Rating: " + rRating);
 
-        // Only update minimum age
-        movie8.setMinimumAge(16);
-        System.out.println("After minimum age update: " + movie8);
 
-        // Only update streaming platform
-        movie8.setStreamingPlatform(MovieUtils.streamingPlatform_amazonprime);
-        System.out.println("After streaming platform update: " + movie8);
-        System.out.println();
-
-        // 9. Demonstrating encapsulation benefits
-        System.out.println("9. Encapsulation Benefits Demonstration:");
-        MovieV1 movie9 = new MovieV1("Test Movie", 120, "Drama", 7.0, 13, MovieUtils.streamingPlatform_netflix);
-        System.out.println("Original movie: " + movie9);
-
-        // These would cause compilation errors (demonstrating encapsulation):
-        // movie9.title = "Direct Access"; // Error: title has private access
-        // movie9.rating = -1.0; // Error: rating has private access
-        // movie9.minimumAge = -5; // Error: minimumAge has private access
-        // movie9.streamingPlatform = "Direct Access"; // Error: streamingPlatform has private access
-
-        // Must use setters (which provide validation):
-        movie9.setTitle("Updated Movie");
-        movie9.setRating(8.5);
-        movie9.setMinimumAge(18);
-        movie9.setStreamingPlatform(MovieUtils.streamingPlatform_amazonprime);
-        System.out.println("Updated through setters: " + movie9);
-        System.out.println();
+        MovieV1 gRatedMovie1 = new MovieV1("  Toy Story  ", 81, "Animation", 8.3, 0);
+        var trimmedTitle  = MovieV1.trimTitle(gRatedMovie1.getTitle());
+        System.out.println("trimmedTitle: '" + trimmedTitle + "'");
     }
 }

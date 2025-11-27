@@ -1,23 +1,24 @@
 package com.modernjava._3classandobjects;
 
 public class ObjectExample {
-    public static void main(String[] args) {
-        Object strObj = "John Wick";
-        Object movieObj = new MovieV2("John Wick", 101, MovieGenreEnum.ACTION, 7.4, 18, "Netflix");
-        String name = "John";
-        var movie = new MovieV2("John Wick", 101, MovieGenreEnum.ACTION, 7.4, 18, "Netflix");
-        printName(name);
-        printName(movie);
+
+    static void main() {
+
+        Object name = "John Wick";
+        Object movie = new MovieV2("John Wick", 101, MovieGenreEnum.ACTION, 7.4, 18, "Netflix");
+
+        String name1 = "John Wick";
+        MovieV2 movie1 = new MovieV2("John Wick", 101, MovieGenreEnum.ACTION, 7.4, 18, "Netflix");
+        MovieRecord movieRecord = new MovieRecord("Inception", 148, MovieGenreEnum.ACTION,
+                8.8, 13, "HBO Max");
+
+        printObject(name1);
+        printObject(movie1);
+        printObject(movieRecord);
     }
 
-    private static void printName(Object obj) {
-
-        if (obj instanceof String) {
-            System.out.println("String name: " + obj);
-        } else if (obj instanceof MovieV2) {
-            System.out.println("Movie title: " + ((MovieV2) obj).getTitle());
-        } else {
-            System.out.println("Unknown object type");
-        }
+    public static void printObject(Object obj){
+        System.out.println("object value: " + obj);
     }
+
 }

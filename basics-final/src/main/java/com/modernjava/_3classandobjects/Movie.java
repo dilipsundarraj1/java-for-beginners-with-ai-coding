@@ -1,136 +1,96 @@
 package com.modernjava._3classandobjects;
 
-public class Movie extends Object {
+public class Movie {
+
     String title;
-    int duration; // in minutes
-    String genre;
-    double rating; // out of 10.0
-    int minimumAge; // minimum age requirement for the movie
-    String streamingPlatform; // streaming platform where movie is available
 
-    // No-Argument constructor
-    public Movie() {
-        System.out.println("Default constructor called");
-        this.minimumAge = 0;
-        this.streamingPlatform = "Unknown";
+    int duration; // in minutes // 0
+
+    String genre; // null
+
+    double rating; // out of 10.0 // 0.0
+
+    public Movie(){
+        System.out.println("Default Constructor called");
+        this.title = "Unknown";
+        this.duration = 0;
+        this.genre = "Unknown";
+        this.rating = 0.0;
     }
 
-    //Parameterized constructor
-//    public Movie(String title, int duration, String genre, double rating) {
-//        this.title = title;
-//        this.duration = duration;
-//        this.genre = genre;
-//        this.rating = rating;
-//    }
-//}
-
-    public static String trimTitle(String title) {
-        if (title == null) {
-            return "Unknown";
-        }
-
-        return title.trim();
-    }
-
-    public void printMovie(Movie movie){
-//        System.out.println("Movie: " + movie.title + ", Duration: " + movie.formattedDuration() + ", Genre: " + movie.genre + ", Rating: " + movie.rating + "/10.0");
-        System.out.println("Movie Details are : " + movie.title + ", Duration: " + movie.formattedDuration() + ", Genre: " + movie.genre + ", Rating: " + movie.rating + "/10.0, Minimum Age: " + movie.minimumAge);
-    }
-
-    public void printMovie(){
-//        System.out.println("Movie: " + movie.title + ", Duration: " + movie.formattedDuration() + ", Genre: " + movie.genre + ", Rating: " + movie.rating + "/10.0");
-        System.out.println("Movie Details are : " + this.title + ", Duration: " + this.formattedDuration() + ", Genre: " + this.genre + ", Rating: " + this.rating + "/10.0, Minimum Age: " + this.minimumAge);
-    }
-
-    // Parameterized constructor with validation
-    public Movie(String title, int duration, String genre, double rating, int minimumAge, String streamingPlatform) {
-        if (title == null) {
+    public Movie(String title, int duration, String genre, double rating) {
+        // Validate title
+        if(title == null || title.isEmpty()){
             this.title = "Unknown";
         } else {
             this.title = title;
         }
 
-        if (duration < 0) {
+        // Validate duration
+        if(duration < 0){
             this.duration = 0;
         } else {
             this.duration = duration;
         }
 
-        if (genre == null) {
+        // Validate genre
+        if(genre == null || genre.isEmpty()){
             this.genre = "Unknown";
         } else {
             this.genre = genre;
         }
 
-        if (rating < 0) {
+        // Validate rating
+        if(rating < 0.0 || rating > 10.0){
             this.rating = 0.0;
         } else {
             this.rating = rating;
         }
+    }
 
-        if (minimumAge < 0) {
-            this.minimumAge = 0;
-        } else {
-            this.minimumAge = minimumAge;
-        }
+    public void printMovie(){
+        System.out.println("Movie: " + this.title +
+                ", Duration: " + this.duration +
+                " minutes, Genre: " + this.genre +
+                ", Rating: " + this.rating + "/10.0");
+    }
 
-        if (streamingPlatform == null) {
-            this.streamingPlatform = "Unknown";
-        } else {
-            this.streamingPlatform = streamingPlatform;
-        }
+    public void printMovie(Movie movie){
+        System.out.println("Movie: " + movie.title +
+                ", Duration: " + movie.duration +
+                " minutes, Genre: " + movie.genre +
+                ", Rating: " + movie.rating + "/10.0");
     }
 
     public String formattedDuration() {
-        int hours = duration / 60;
-        int minutes = duration % 60;
-
-//        String result = "";
-//        if (hours > 0) {
-//            result = hours + "h ";
-//        }
-//        result = result + minutes + "m";
-//        return result;
-        return formattedDuration(hours, minutes);
-    }
-
-    // Overloaded method that accepts hours and minutes as parameters
-    public String formattedDuration(int hours, int minutes) {
+        if (this.duration < 0) {
+            return "Invalid duration";
+        }
+        int hours = this.duration / 60;
+        int mins = this.duration % 60;
         String result = "";
-        if (hours > 0) {
+        if (hours >  0) {
             result = hours + "h ";
         }
-        result = result + minutes + "m";
+        result += mins + "m"; // result = result + mins + "m";
         return result;
+
     }
 
-    // Simple toString implementation
-    @Override
-    public String toString() {
-        return "Movie: " + title + ", Duration: " + duration + " minutes, Genre: " + genre
-                + ", Rating: " + rating + "/10.0, Minimum Age: " + minimumAge;
+    public String formattedDuration(int minutes) {
+        if (minutes < 0) {
+            return "Invalid duration";
+        }
+        int hours = minutes / 60;
+        int mins = minutes % 60;
+        String result = "";
+        if (hours >  0) {
+            result = hours + "h ";
+        }
+        result += mins + "m"; // result = result + mins + "m";
+        return result;
+
     }
 
-    // Simple equals implementation
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
-        if (!(obj instanceof Movie)) return false;
-
-        Movie other = (Movie) obj;
-        return title.equals(other.title) &&
-               duration == other.duration &&
-               genre.equals(other.genre) &&
-               rating == other.rating &&
-               minimumAge == other.minimumAge;
-    }
-
-   public void displayMovie() {
-        // Local variable
-        String movieName = "Inception";
-        int duration = 120; // in minutes
-        System.out.println("Movie: " + movieName + ", Duration: " + duration + " mins");
-    }
 
 }
