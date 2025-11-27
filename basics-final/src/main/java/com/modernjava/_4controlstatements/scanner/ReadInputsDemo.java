@@ -3,7 +3,7 @@ package com.modernjava._4controlstatements.scanner;
 import java.util.Scanner;
 
 public class ReadInputsDemo {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your age (0–120): ");
         var age = sc.nextInt();
