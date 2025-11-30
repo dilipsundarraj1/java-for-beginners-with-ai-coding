@@ -4,17 +4,19 @@ public class TernaryDemo {
 
     static void main(String[] args) {
         int age = 65;
-        ticketlabelUsingIfElse(age);
+        var label = ticketlabelUsingIfElse(age);
+        System.out.println("label = " + label);
 
     }
 
-    private static void ticketlabelUsingIfElse(int age) {
-        String discountLabel2;
+    private static String ticketlabelUsingIfElse(int age) {
+        String discountLabel1;
         if (age >= 60) {
-            discountLabel2 = "Senior Discount";
+            discountLabel1 = "Senior Discount";
         } else {
-            discountLabel2 = "Regular Price";
+            discountLabel1 = "Regular Price";
         }
-    }
 
+        return discountLabel1;
+    }
 }
