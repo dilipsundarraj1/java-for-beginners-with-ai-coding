@@ -46,6 +46,9 @@ public class CalculatorApp {
 
         while (continueCalculation) {
             try {
+                // Get operation from user first
+                CalculatorOperation calculatorOperation = operationSelector.getOperation();
+
                 // Get first number
                 System.out.print("Enter first number: ");
                 double num1 = scanner.nextDouble();
@@ -54,8 +57,6 @@ public class CalculatorApp {
                 System.out.print("Enter second number: ");
                 double num2 = scanner.nextDouble();
 
-                // Get operation from user
-                CalculatorOperation calculatorOperation = operationSelector.getOperation();
 
                 // Perform calculation
                 double result = calculator.performCalculation(num1, num2, calculatorOperation);

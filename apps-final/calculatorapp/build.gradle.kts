@@ -8,12 +8,12 @@ version = ""
 
 
 application {
-    mainClass.set("app.CalculatorApp")
+    mainClass.set("com.calculator.app.CalculatorApp")
 }
 
 tasks.jar {
     manifest {
-        attributes["Main-Class"] = "app.CalculatorApp"
+        attributes["Main-Class"] = "com.calculator.app.CalculatorApp"
     }
 }
 
