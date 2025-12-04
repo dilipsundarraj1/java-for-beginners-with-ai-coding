@@ -1,40 +1,46 @@
 package com.calculator.domain;
 
-/**
- * Enum representing all available arithmetic operations
- */
 public enum CalculatorOperation {
-    ADD("+", "Add"),
-    SUBTRACT("-", "Subtract"),
-    MULTIPLY("*", "Multiply"),
-    DIVIDE("/", "Divide");
+    ADD(1, "+", "Add"),
+    SUBTRACT(2, "-", "Subtract"),
+    MULTIPLY(3, "*", "Multiply"),
+    DIVIDE(4, "/", "Divide");
 
+    private final int optionNumber;
     private final String symbol;
     private final String displayName;
 
-    /**
-     * Constructor for CalculatorOperation enum
-     * @param symbol the mathematical symbol for this operation
-     * @param displayName the user-friendly display name
-     */
-    CalculatorOperation(String symbol, String displayName) {
+    CalculatorOperation(int optionNumber, String symbol, String displayName) {
+        this.optionNumber = optionNumber;
         this.symbol = symbol;
         this.displayName = displayName;
     }
 
-    /**
-     * Gets the mathematical symbol for this operation
-     */
+    public int getOptionNumber() {
+        return optionNumber;
+    }
+
     public String getSymbol() {
         return symbol;
     }
 
-    /**
-     * Gets the display name for this operation
-     */
     public String getDisplayName() {
         return displayName;
     }
-}
 
+    /**
+     * Retrieves a CalculatorOperation by its option number.
+     *
+     * @param option the option number (1-4)
+     * @return the corresponding CalculatorOperation, or null if not found
+     */
+    public static CalculatorOperation fromOptionNumber(int option) {
+        for (CalculatorOperation op : values()) {
+            if (op.optionNumber == option) {
+                return op;
+            }
+        }
+        return null;
+    }
+}
 

@@ -1,95 +1,103 @@
 package com.calculator.app;
 
-import java.util.Scanner;
 import com.calculator.core.Calculator;
 import com.calculator.domain.CalculatorOperation;
 import com.calculator.ui.OperationSelector;
+import java.util.Scanner;
 
 /**
- * Main Calculator Application class that provides command line interface
- * for performing basic arithmetic operations.
- * This class orchestrates the interaction between all layers of the application.
+ * CalculatorApp is the main orchestrator for the calculator application.
+ * It coordinates between the UI layer, domain layer, and core business logic.
  */
 public class CalculatorApp {
 
-    private final Calculator calculator;
-    private final Scanner scanner;
-    private final OperationSelector operationSelector;
+    private Scanner scanner;
+    private OperationSelector operationSelector;
+    private Calculator calculator;
 
     /**
-     * Constructor for CalculatorApp
-     * @param calculator the Calculator instance to use for computations
-     * @param scanner the Scanner instance to use for user input
+     * Constructor to initialize all dependencies.
+     * Creates instances of Scanner, OperationSelector, and Calculator.
      */
-    public CalculatorApp(Calculator calculator, Scanner scanner) {
-        this.calculator = calculator;
-        this.scanner = scanner;
+    public CalculatorApp() {
+        this.scanner = new Scanner(System.in);
         this.operationSelector = new OperationSelector(scanner);
+        this.calculator = new Calculator();
     }
 
     /**
-     * Main method to start the calculator application
+     * Main method to start the calculator application.
+     *
+     * @param args command line arguments (not used)
      */
-    static void main(@SuppressWarnings("unused") String[] args) {
-        CalculatorApp app = new CalculatorApp(new Calculator(), new Scanner(System.in));
-        app.orchestration();
+    static void main(String[] args) {
+        CalculatorApp app = new CalculatorApp();
+        app.orchestrate();
     }
 
     /**
-     * Main application loop.
-     * Continuously processes user calculations until they choose to exit.
+     * Orchestrates the entire calculator workflow.
+     * This method handles:
+     * 1. Getting the operation from the user
+     * 2. Getting two numbers from the user
+     * 3. Performing the calculation
+     * 4. Displaying the result
+     * 5. Asking if user wants to perform another calculation
      */
-    public void orchestration() {
-        System.out.println("=== Welcome to Calculator App ===");
+    private void orchestrate() {
+        System.out.println("=== Welcome to Calculator App ===\n");
 
-        boolean continueCalculation = true;
+        boolean continueCalculating = true;
 
-        while (continueCalculation) {
-            try {
-                // Get operation from user first
-                CalculatorOperation calculatorOperation = operationSelector.getOperation();
-
-                // Get first number
-                System.out.print("Enter first number: ");
-                double num1 = scanner.nextDouble();
-
-                // Get second number
-                System.out.print("Enter second number: ");
-                double num2 = scanner.nextDouble();
-
-
-                // Perform calculation
-                double result = calculator.performCalculation(num1, num2, calculatorOperation);
-
-                // Display result
-                System.out.println("Result: " + num1 + " " + calculatorOperation.getSymbol() + " " + num2 + " = " + result);
-
-                // Ask if user wants to continue
-                continueCalculation = askToContinue();
-
-            } catch (ArithmeticException e) {
-                System.out.println("Error: " + e.getMessage());
-            } catch (Exception e) {
-                System.out.println("Invalid input! Please try again.");
-                scanner.nextLine(); // Clear invalid input
+        while (continueCalculating) {
+            // 1. Get the operation from user
+            CalculatorOperation operation = operationSelector.getOperation();
+            if (operation == null) {
+                System.out.println("\n✅ Exiting Calculator. Goodbye!");
+                break;
             }
+
+            // 2. Get two numbers from user
+            double num1 = getNumberInput("Enter first number: ");
+            double num2 = getNumberInput("Enter second number: ");
+
+            // 3. Perform calculation
+            try {
+                double result = calculator.performCalculation(num1, num2, operation);
+
+                // 4. Display result
+                System.out.printf("\n📊 Result: %.2f %s %.2f = %.2f\n",
+                        num1, operation.getSymbol(), num2, result);
+            } catch (ArithmeticException e) {
+                System.out.println("\n❌ Error: " + e.getMessage());
+            }
+
+            // 5. Ask if user wants to continue
+            continueCalculating = askToContinue();
         }
 
-        System.out.println("Thank you for using Calculator App!");
         scanner.close();
     }
 
+    /**
+     * Gets a numeric input from the user with validation.
+     *
+     * @param prompt the message to display to the user
+     * @return the numeric input entered by the user
+     */
+    private double getNumberInput(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextDouble();
+    }
 
     /**
-     * Asks user if they want to continue with more calculations.
-     * Accepts "y", "yes", "n", "no" (case-insensitive).
+     * Asks the user if they want to perform another calculation.
      *
-     * @return true if user wants to continue, false otherwise
+     * @return true if user enters 'y' or 'Y', false otherwise
      */
     private boolean askToContinue() {
         System.out.print("\nDo you want to perform another calculation? (y/n): ");
-        String response = scanner.next().toLowerCase();
-        return response.equals("y") || response.equals("yes");
+        return scanner.next().equalsIgnoreCase("y");
     }
 }
 

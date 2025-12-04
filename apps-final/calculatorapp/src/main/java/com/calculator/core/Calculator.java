@@ -3,13 +3,14 @@ package com.calculator.core;
 import com.calculator.domain.CalculatorOperation;
 
 /**
- * Core calculator engine that performs basic arithmetic operations.
- * This class contains pure business logic independent of the user interface.
+ * Calculator class that performs arithmetic operations on two numbers.
+ * Supports addition, subtraction, multiplication, and division.
  */
 public class Calculator {
 
     /**
-     * Adds two numbers
+     * Adds two numbers.
+     *
      * @param num1 the first number
      * @param num2 the second number
      * @return the sum of num1 and num2
@@ -19,17 +20,19 @@ public class Calculator {
     }
 
     /**
-     * Subtracts two numbers
+     * Subtracts the second number from the first number.
+     *
      * @param num1 the first number
-     * @param num2 the second number to subtract
-     * @return the difference of num1 minus num2
+     * @param num2 the second number
+     * @return the difference (num1 - num2)
      */
     public double subtract(double num1, double num2) {
         return num1 - num2;
     }
 
     /**
-     * Multiplies two numbers
+     * Multiplies two numbers.
+     *
      * @param num1 the first number
      * @param num2 the second number
      * @return the product of num1 and num2
@@ -39,10 +42,11 @@ public class Calculator {
     }
 
     /**
-     * Divides two numbers
+     * Divides the first number by the second number.
+     *
      * @param num1 the dividend
      * @param num2 the divisor
-     * @return the quotient of num1 divided by num2
+     * @return the quotient (num1 / num2)
      * @throws ArithmeticException if num2 is zero
      */
     public double divide(double num1, double num2) {
@@ -53,15 +57,20 @@ public class Calculator {
     }
 
     /**
-     * Performs the calculation based on operation.
-     * Routes to the appropriate calculation method based on the operation type.
+     * Performs a calculation based on the specified operation.
      *
-     * @param num1 first operand
-     * @param num2 second operand
-     * @param operation the Operation enum specifying which calculation to perform
+     * @param num1 the first number
+     * @param num2 the second number
+     * @param operation the operation to perform
      * @return the result of the calculation
+     * @throws IllegalArgumentException if operation is null
+     * @throws ArithmeticException if division by zero is attempted
      */
     public double performCalculation(double num1, double num2, CalculatorOperation operation) {
+        if (operation == null) {
+            throw new IllegalArgumentException("Operation cannot be null!");
+        }
+
         return switch (operation) {
             case ADD -> add(num1, num2);
             case SUBTRACT -> subtract(num1, num2);
@@ -70,4 +79,3 @@ public class Calculator {
         };
     }
 }
-

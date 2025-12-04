@@ -1,73 +1,91 @@
 package com.calculator.ui;
 
-import java.util.Scanner;
 import com.calculator.domain.CalculatorOperation;
+import java.util.Scanner;
 
 /**
- * Handles user input for selecting arithmetic operations.
- * Responsible for displaying operation menu and getting valid user choice.
+ * OperationSelector class handles user interaction for selecting calculator operations.
+ * This class is responsible for displaying the operation menu and validating user input.
  */
 public class OperationSelector {
 
     private final Scanner scanner;
 
     /**
-     * Constructor for OperationSelector
-     * @param scanner the Scanner instance to use for reading user input
+     * Constructor to initialize OperationSelector with a Scanner instance.
+     *
+     * @param scanner the Scanner instance for reading user input
      */
     public OperationSelector(Scanner scanner) {
         this.scanner = scanner;
     }
 
     /**
-     * Gets the operation choice from user via interactive menu.
-     * Displays available operations and validates user input.
+     * Displays the operation menu and gets the user's operation choice.
+     * Validates input and ensures a valid operation is selected or exit is chosen.
      *
-     * @return the selected CalculatorOperation enum
+     * @return the selected CalculatorOperation, or null if user chooses to exit (option 5)
      */
     public CalculatorOperation getOperation() {
-        CalculatorOperation calculatorOperation;
-        boolean validOperation = false;
+        CalculatorOperation operation = null;
+        boolean validChoice = false;
 
-        do {
+        while (!validChoice) {
             displayOperationMenu();
-            int choice = scanner.nextInt();
+            System.out.print("Enter your choice (1-5): ");
 
-            calculatorOperation = switch (choice) {
-                case 1 -> CalculatorOperation.ADD;
-                case 2 -> CalculatorOperation.SUBTRACT;
-                case 3 -> CalculatorOperation.MULTIPLY;
-                case 4 -> CalculatorOperation.DIVIDE;
-                case 5 -> {
-                    System.out.println("Goodbye!");
-                    System.exit(0);
-                    yield null;
-                }
-                default -> {
-                    System.out.println("Invalid choice! Please select 1-5.");
-                    yield null;
-                }
-            };
+            try {
+                int userChoice = scanner.nextInt();
 
-            if (calculatorOperation != null) {
-                validOperation = true;
+                if (!isValidInput(userChoice)) {
+                    System.out.println("❌ Invalid choice! Please select 1-5.\n");
+                    continue;
+                }
+
+                operation = convertUserInputToOperation(userChoice);
+                validChoice = true;
+
+            } catch (Exception e) {
+                System.out.println("❌ Invalid input! Please enter a number between 1-5.\n");
+                scanner.nextLine(); // Clear input buffer
             }
-        } while (!validOperation);
+        }
 
-        return calculatorOperation;
+        return operation;
     }
 
     /**
-     * Displays the operation menu to the user
+     * Displays the operation menu with all available options.
      */
     private void displayOperationMenu() {
-        System.out.println("\nSelect operation:");
-        System.out.println("1. Add");
-        System.out.println("2. Subtract");
-        System.out.println("3. Multiply");
-        System.out.println("4. Divide");
+        System.out.println("\n=== Select Operation ===");
+        for (CalculatorOperation op : CalculatorOperation.values()) {
+            System.out.println(op.getOptionNumber() + ". " + op.getDisplayName());
+        }
         System.out.println("5. Exit");
-        System.out.print("Enter your choice (1-5): ");
+    }
+
+    /**
+     * Converts user input (1-5) to a CalculatorOperation or signals exit.
+     *
+     * @param userInput the option number entered by user
+     * @return the corresponding CalculatorOperation, or null if user chose to exit
+     */
+    private CalculatorOperation convertUserInputToOperation(int userInput) {
+        if (userInput == 5) {
+            return null; // Signal to exit
+        }
+        return CalculatorOperation.fromOptionNumber(userInput);
+    }
+
+    /**
+     * Validates if the user input is within the valid range (1-5).
+     *
+     * @param userInput the option number to validate
+     * @return true if input is valid (1-5), false otherwise
+     */
+    private boolean isValidInput(int userInput) {
+        return userInput >= 1 && userInput <= 5;
     }
 }
 
