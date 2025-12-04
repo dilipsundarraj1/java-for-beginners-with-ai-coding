@@ -1,6 +1,4 @@
-package com.calculator;
-
-import java.util.Scanner;
+package com.calculator.app;
 
 /**
  * Main Calculator Application class that provides command line interface
