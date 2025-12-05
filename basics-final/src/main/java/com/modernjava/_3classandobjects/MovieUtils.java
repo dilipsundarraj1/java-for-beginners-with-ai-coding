@@ -6,9 +6,9 @@ package com.modernjava._3classandobjects;
  */
 public  class MovieUtils {
 
-    static String StreamingPlatform_netflix = "Netflix";
-    static String StreamingPlatform_amazonprime = "Amazon_Prime";
-    static String StreamingPlatform_disney = "DISNEY";
+    public static String StreamingPlatform_netflix = "Netflix";
+    public static String StreamingPlatform_amazonprime = "Amazon_Prime";
+    public static String StreamingPlatform_disney = "DISNEY";
     /**
      * Maps minimum age to MPAA rating category.
      */

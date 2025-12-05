@@ -23,7 +23,6 @@
   * [Expected Output](#expected-output)
   * [Next Steps](#next-steps)
 <!-- TOC -->
-
 ## Overview
 This file introduces the core concepts of arrays in Java, focusing on how arrays are created, initialized, and their reference behavior. This covers primitive type arrays - for reference type arrays like String[], see the `StringArrays.java` class.
 
@@ -62,7 +61,7 @@ This file introduces the core concepts of arrays in Java, focusing on how arrays
 ---
 
 ### Prompt 3: Array Properties and Element Access
-**Task**: Create a method that demonstrates array length property, indexing, and element modification.
+**Task**: Create a method that demonstrates array length property, indexing
 
 **Expected Function Signature**: `private static void demonstrateArrayProperties()`
 
@@ -72,9 +71,6 @@ This file introduces the core concepts of arrays in Java, focusing on how arrays
 - Show array length using `.length` property
 - Demonstrate zero-based indexing: first element `data[0]` and last element `data[data.length - 1]`
 - Access all elements using for loop with descriptive output
-- Modify an element: `data[2] = 35;` and show the change
-- Print array before and after modification
-
 ---
 
 ### Prompt 4: Memory and Reference Concepts
@@ -172,7 +168,7 @@ System.out.println("Last element: " + data[data.length - 1]); // 50
 
 // Accessing all elements
 for (int i = 0; i < data.length; i++) {
-    System.out.println("Index " + i + ": " + data[i]);
+        System.out.println("Index " + i + ": " + data[i]);
 }
 
 // Modifying elements
@@ -201,7 +197,7 @@ int[] copy = original;  // Copies the REFERENCE, not the array!
 copy[0] = 100;  // Modifying through 'copy'
 
 // Both variables point to same array:
-System.out.println("original[0]: " + original[0]); // 100 (changed!)
+        System.out.println("original[0]: " + original[0]); // 100 (changed!)
 System.out.println("copy[0]: " + copy[0]);         // 100
 ```
 

@@ -20,7 +20,7 @@ import java.util.Arrays;
  */
 public class ArrayOperations {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Array Operations - Lecture 3 ===\n");
 
         // Demonstrate updating elements
@@ -261,6 +261,7 @@ public class ArrayOperations {
     private static int[] addElementAtEnd(int[] array, int element) {
         int[] newArray = new int[array.length + 1];
         System.arraycopy(array, 0, newArray, 0, array.length);
+//        int[] newArray = Arrays.copyOf(array, array.length+1);
         newArray[array.length] = element;
         return newArray;
     }
