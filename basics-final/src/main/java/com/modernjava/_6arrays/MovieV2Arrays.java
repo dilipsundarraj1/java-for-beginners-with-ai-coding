@@ -3,6 +3,7 @@ package com.modernjava._6arrays;
 import com.modernjava._3classandobjects.MovieV2;
 import com.modernjava._3classandobjects.MovieGenreEnum;
 import com.modernjava._3classandobjects.MovieUtils;
+import java.util.Arrays;
 
 /**
  * This class demonstrates working with arrays of MovieV2 objects.
@@ -31,6 +32,7 @@ public class MovieV2Arrays {
         printAllMovies();
         searchNetflixMovies();
         collectActionMovies();
+        sortMoviesByName();
     }
 
 
@@ -66,6 +68,23 @@ public class MovieV2Arrays {
             if (movie.getGenre() == MovieGenreEnum.ACTION) {
                 movie.printMovie();
             }
+        }
+    }
+
+    /**
+     * Function 4: Sort movies by name alphabetically
+     */
+    public static void sortMoviesByName() {
+        System.out.println("\n=== Movies Sorted by Name ===");
+        // Create a copy of the array to avoid modifying the original
+        MovieV2[] sortedMovies = Arrays.copyOf(movies, movies.length);
+
+        // Sort by movie title using comparator
+        Arrays.sort(sortedMovies, (movie1, movie2) -> movie1.getTitle().compareTo(movie2.getTitle()));
+
+        // Display sorted movies
+        for (MovieV2 movie : sortedMovies) {
+            movie.printMovie();
         }
     }
 

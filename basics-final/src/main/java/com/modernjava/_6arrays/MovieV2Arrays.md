@@ -8,12 +8,12 @@
     * [Prompt 1: Print All Movies from Array](#prompt-1-print-all-movies-from-array)
     * [Prompt 2: Search Movies by Streaming Platform](#prompt-2-search-movies-by-streaming-platform)
     * [Prompt 3: Collect Action Genre Movies](#prompt-3-collect-action-genre-movies)
-  * [Key Concepts Covered](#key-concepts-covered)
+    * [Prompt 4: Sort Movies by Name](#prompt-4-sort-movies-by-name)
     * [1. Arrays of Objects](#1-arrays-of-objects)
     * [2. Object Property Access](#2-object-property-access)
     * [3. Filtering and Searching Arrays](#3-filtering-and-searching-arrays)
   * [MovieV2 Class Structure](#moviev2-class-structure)
-  * [Sample Data](#sample-data)
+    * [4. Sorting Arrays with Comparators](#4-sorting-arrays-with-comparators)
   * [Common Patterns](#common-patterns)
     * [Pattern 1: Iterate All Objects](#pattern-1-iterate-all-objects)
     * [Pattern 2: Filter by String Property](#pattern-2-filter-by-string-property)
@@ -135,30 +135,30 @@ private static final MovieV2[] movies = {
 
 ## Key Concepts Covered
 
-### 1. Arrays of Objects
+---
 
-**What you'll learn:**
-- Arrays can store references to complex objects, not just primitives
-- Each array element is a reference to a MovieV2 object
-- Object arrays follow same indexing and length principles as primitive arrays
+### Prompt 4: Sort Movies by Name
+**Task**: Create a method that sorts the movie array alphabetically by title and displays the sorted results.
 
-**Code Examples:**
-```java
-// Array of objects declaration and creation
-MovieV2[] movies = new MovieV2[10];
+**Expected Function Signature**: `public static void sortMoviesByName()`
 
-// Initialize array with object instances
-private static final MovieV2[] movies = {
-    new MovieV2("Inception", 148, MovieGenreEnum.SCI_FI, 8.8, 13, MovieUtils.StreamingPlatform_netflix),
-    new MovieV2("The Dark Knight", 152, MovieGenreEnum.ACTION, 9.0, 12, MovieUtils.StreamingPlatform_netflix),
-    // ... more movies
-};
-```
+**Requirements**:
+- Print section header: "=== Movies Sorted by Name ==="
+- Create a copy of the original array using `Arrays.copyOf(movies, movies.length)`
+- Use `Arrays.sort()` with a lambda comparator
+- Sort by movie title alphabetically: `(movie1, movie2) -> movie1.getTitle().compareTo(movie2.getTitle())`
+- Display all sorted movies using enhanced for loop
+- Call `movie.printMovie()` for each movie in sorted order
 
-**Key Points:**
-- Object arrays store memory references, not actual objects
-- Multiple variables can reference the same object array
-- Array size is fixed at creation time
+**Key Learning**:
+- Using `Arrays.copyOf()` to create a copy without modifying original array
+- `Arrays.sort()` with custom comparators
+- Lambda expressions for comparators: `(movie1, movie2) -> ...`
+- String comparison using `.compareTo()` for sorting
+- Preserving immutability of original data
+
+---
+
 - Objects must be initialized before access
 
 ### 2. Object Property Access
@@ -244,34 +244,34 @@ The MovieV2 class represents a movie with the following properties:
 
 The MovieV2Arrays class includes a static array of 10 sample movies:
 
+### 4. Sorting Arrays with Comparators
+
+**What you'll learn:**
+- How to sort arrays of objects using `Arrays.sort()`
+- Using lambda expressions with comparators
+- Creating copies of arrays to preserve original data
+
+**Code Examples:**
 ```java
-private static final MovieV2[] movies = {
-    new MovieV2("Inception", 148, MovieGenreEnum.SCI_FI, 8.8, 13, MovieUtils.StreamingPlatform_netflix),
-    new MovieV2("The Dark Knight", 152, MovieGenreEnum.ACTION, 9.0, 12, MovieUtils.StreamingPlatform_netflix),
-    new MovieV2("Forrest Gump", 142, MovieGenreEnum.DRAMA, 8.8, 10, MovieUtils.StreamingPlatform_amazonprime),
-    new MovieV2("The Matrix", 136, MovieGenreEnum.ACTION, 8.7, 15, MovieUtils.StreamingPlatform_netflix),
-    new MovieV2("Interstellar", 169, MovieGenreEnum.SCI_FI, 8.6, 13, MovieUtils.StreamingPlatform_netflix),
-    new MovieV2("Pulp Fiction", 154, MovieGenreEnum.THRILLER, 8.9, 18, MovieUtils.StreamingPlatform_disney),
-    new MovieV2("Fight Club", 139, MovieGenreEnum.ACTION, 8.8, 18, MovieUtils.StreamingPlatform_netflix),
-    new MovieV2("The Shawshank Redemption", 142, MovieGenreEnum.DRAMA, 9.3, 15, MovieUtils.StreamingPlatform_amazonprime),
-    new MovieV2("Gladiator", 155, MovieGenreEnum.ACTION, 8.5, 13, MovieUtils.StreamingPlatform_netflix),
-    new MovieV2("Avatar", 162, MovieGenreEnum.SCI_FI, 7.8, 12, MovieUtils.StreamingPlatform_disney)
-};
+// Sort a copy of the array to preserve original
+MovieV2[] sortedMovies = Arrays.copyOf(movies, movies.length);
+
+// Sort using lambda comparator
+Arrays.sort(sortedMovies, (movie1, movie2) -> movie1.getTitle().compareTo(movie2.getTitle()));
+
+// Display sorted results
+for (MovieV2 movie : sortedMovies) {
+    movie.printMovie();
+}
 ```
 
-**Distribution:**
-- **Netflix**: 5 movies
-- **Prime Video**: 2 movies
-- **Disney+**: 2 movies
-- **ACTION genre**: 4 movies
-- **SCI_FI genre**: 3 movies
-- **DRAMA genre**: 2 movies
-- **THRILLER genre**: 1 movie
+**Key Points:**
+- **`Arrays.copyOf()`**: Creates independent copy of array
+- **`Arrays.sort()`**: Sorts array in-place using provided comparator
+- **Lambda comparator**: `(a, b) -> a.compareTo(b)` for ascending order
+- **String sorting**: Use `.compareTo()` for alphabetical ordering
+- **Preserve original**: Always work on a copy when original data matters
 
-## Common Patterns
-
-### Pattern 1: Iterate All Objects
-```java
 for (MovieV2 movie : movies) {
     movie.printMovie();
 }

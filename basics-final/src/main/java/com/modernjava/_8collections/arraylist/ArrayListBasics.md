@@ -10,8 +10,7 @@
     * [Prompt 4: Modifying Elements in ArrayList](#prompt-4-modifying-elements-in-arraylist)
     * [Prompt 5: Removing Elements Using Different Approaches](#prompt-5-removing-elements-using-different-approaches)
     * [Prompt 6: ArrayList Properties and Utility Methods](#prompt-6-arraylist-properties-and-utility-methods)
-    * [Prompt 7: String-Specific Operations and Helper Methods](#prompt-7-string-specific-operations-and-helper-methods)
-    * [Prompt 8: Combined Filtering and Transforming Operations](#prompt-8-combined-filtering-and-transforming-operations)
+    * [Prompt 7: Combined Filtering and Transforming Operations](#prompt-7-combined-filtering-and-transforming-operations)
   * [Key Concepts Covered](#key-concepts-covered)
     * [1. ArrayList Creation and Initialization](#1-arraylist-creation-and-initialization)
     * [2. Adding Elements to ArrayList](#2-adding-elements-to-arraylist)
@@ -19,8 +18,7 @@
     * [4. Modifying ArrayList Elements](#4-modifying-arraylist-elements)
     * [5. Removing ArrayList Elements](#5-removing-arraylist-elements)
     * [6. ArrayList Properties and Search Operations](#6-arraylist-properties-and-search-operations)
-    * [7. Common Operations with String ArrayList](#7-common-operations-with-string-arraylist)
-    * [8. Combined Filtering and Transforming Operations](#8-combined-filtering-and-transforming-operations)
+    * [7. Combined Filtering and Transforming Operations](#7-combined-filtering-and-transforming-operations)
   * [Performance Characteristics](#performance-characteristics)
   * [Best Practices with String ArrayList](#best-practices-with-string-arraylist)
   * [Common Use Cases](#common-use-cases)
@@ -130,31 +128,14 @@ This file introduces the fundamental concepts of ArrayList in Java using simple 
 
 ---
 
-### Prompt 7: String-Specific Operations and Helper Methods
-**Task**: Create a method demonstrating practical String operations with ArrayList.
 
-**Expected Function Signature**: `private static void demonstrateStringOperations()`
-
-**Requirements**:
-- Print section header: "7. Common Operations with String ArrayList:"
-- Create words list with: "hello", "world", "java", "programming", "arraylist"
-- Call helper methods: `findLongestWord(words)`, `findShortestWord(words)`, showing word lengths
-- Count words with specific length: `countWordsWithLength(words, 5)`
-- Find words starting with letter: `findWordsStartingWith(words, "j")`
-- Transform to uppercase: `convertToUppercase(words)`
-- Join words into sentence: `joinWords(words, " ")`
-- Calculate total characters: `calculateTotalCharacters(words)`
-- Display results showing practical String manipulation with ArrayList
-
----
-
-### Prompt 8: Combined Filtering and Transforming Operations
+### Prompt 7: Combined Filtering and Transforming Operations
 **Task**: Create a method demonstrating how to combine filtering and transforming operations on ArrayList elements.
 
 **Expected Function Signature**: `private static void demonstrateFilteringAndTransforming()`
 
 **Requirements**:
-- Print section header: "8. Combined Filtering and Transforming Operations:"
+- Print section header: "7. Combined Filtering and Transforming Operations:"
 - Create items list with: "apple", "banana", "cherry", "date", "fig", "grape"
 - Demonstrate separate operations first:
   - Filter items with length > 3: Create new list with qualifying items
@@ -356,48 +337,8 @@ int notFound = books.indexOf("Unknown");    // -1
 - `indexOf()` returns -1 if element not found
 - `lastIndexOf()` useful for finding last occurrence of duplicates
 
-### 7. Common Operations with String ArrayList
 
-**What you'll learn:**
-- Common patterns for processing String collections
-- How to implement utility methods for String ArrayList operations
-- String manipulation techniques within collection context
-- Building reusable helper methods for common tasks
-
-**Code Examples:**
-```java
-public static String findLongestWord(List<String> words) {
-    if (words.isEmpty()) return "";
-    
-    String longest = words.get(0);
-    for (String word : words) {
-        if (word.length() > longest.length()) {
-            longest = word;
-        }
-    }
-    return longest;
-}
-
-public static List<String> findWordsStartingWith(List<String> words, String prefix) {
-    List<String> result = new ArrayList<>();
-    String lowerPrefix = prefix.toLowerCase();
-    
-    for (String word : words) {
-        if (word.toLowerCase().startsWith(lowerPrefix)) {
-            result.add(word);
-        }
-    }
-    return result;
-}
-```
-
-**Key Points:**
-- Always handle empty collections in utility methods
-- Use String methods like length(), startsWith(), toLowerCase() for filtering
-- Create new ArrayList for filtered results (don't modify original)
-- Consider case-insensitive comparisons for user-friendly operations
-
-### 8. Combined Filtering and Transforming Operations
+### 7. Combined Filtering and Transforming Operations
 
 **What you'll learn:**
 - How to combine filtering and transforming operations for efficiency

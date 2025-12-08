@@ -32,10 +32,7 @@ public class ArrayListBasics {
         // 6. ArrayList properties and methods
         demonstrateArrayListProperties();
 
-        // 7. Common operations with Strings
-        demonstrateStringOperations();
-
-        // 8. Combined filtering and transforming operations
+        // 7. Combined filtering and transforming operations
         demonstrateFilteringAndTransforming();
 
     }
@@ -152,6 +149,7 @@ public class ArrayListBasics {
         animals.set(animals.size() - 1, "Eagle");
         System.out.println("   After replacing first and last: " + animals);
 
+
         // Note: Cannot modify String objects directly since they're immutable
         // You must use set() to replace the entire string
         System.out.println("   Note: Strings are immutable, so we use set() to replace entire elements");
@@ -235,54 +233,12 @@ public class ArrayListBasics {
         System.out.println("   First index of '1984': " + books.indexOf("1984"));
         System.out.println("   Last index of '1984': " + books.lastIndexOf("1984"));
 
-        System.out.println();
-    }
-
-    private static void demonstrateStringOperations() {
-        System.out.println("7. Common Operations with String ArrayList:");
-
-        List<String> words = new ArrayList<>();
-        words.add("hello");
-        words.add("world");
-        words.add("java");
-        words.add("programming");
-        words.add("arraylist");
-
-        System.out.println("   Words: " + words);
-
-        // Find longest word
-        String longestWord = findLongestWord(words);
-        System.out.println("   Longest word: " + longestWord + " (length: " + longestWord.length() + ")");
-
-        // Find shortest word
-        String shortestWord = findShortestWord(words);
-        System.out.println("   Shortest word: " + shortestWord + " (length: " + shortestWord.length() + ")");
-
-        // Count words with specific length
-        int wordsWithLength5 = countWordsWithLength(words, 5);
-        System.out.println("   Words with exactly 5 letters: " + wordsWithLength5);
-
-        // Find words starting with specific letter
-        List<String> wordsStartingWithJ = findWordsStartingWith(words, "j");
-        System.out.println("   Words starting with 'j': " + wordsStartingWithJ);
-
-        // Convert all words to uppercase
-        List<String> uppercaseWords = convertToUppercase(words);
-        System.out.println("   Uppercase words: " + uppercaseWords);
-
-        // Join all words into a sentence
-        String sentence = joinWords(words, " ");
-        System.out.println("   Joined sentence: \"" + sentence + "\"");
-
-        // Calculate total character count
-        int totalChars = calculateTotalCharacters(words);
-        System.out.println("   Total characters in all words: " + totalChars);
 
         System.out.println();
     }
 
     private static void demonstrateFilteringAndTransforming() {
-        System.out.println("8. Combined Filtering and Transforming Operations:");
+        System.out.println("7. Combined Filtering and Transforming Operations:");
 
         List<String> items = new ArrayList<>();
         items.add("apple");
@@ -320,109 +276,5 @@ public class ArrayListBasics {
         System.out.println("   Combined filter & transform: " + combinedResult);
 
         System.out.println();
-    }
-
-    // ===== HELPER METHODS =====
-
-    /**
-     * Find the longest word in the list
-     */
-    public static String findLongestWord(List<String> words) {
-        if (words.isEmpty()) {
-            return "";
-        }
-
-        String longest = words.get(0);
-        for (String word : words) {
-            if (word.length() > longest.length()) {
-                longest = word;
-            }
-        }
-        return longest;
-    }
-
-    /**
-     * Find the shortest word in the list
-     */
-    public static String findShortestWord(List<String> words) {
-        if (words.isEmpty()) {
-            return "";
-        }
-
-        String shortest = words.get(0);
-        for (String word : words) {
-            if (word.length() < shortest.length()) {
-                shortest = word;
-            }
-        }
-        return shortest;
-    }
-
-    /**
-     * Count words with specific length
-     */
-    public static int countWordsWithLength(List<String> words, int targetLength) {
-        int count = 0;
-        for (String word : words) {
-            if (word.length() == targetLength) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    /**
-     * Find words starting with specific prefix
-     */
-    public static List<String> findWordsStartingWith(List<String> words, String prefix) {
-        List<String> result = new ArrayList<>();
-        String lowerPrefix = prefix.toLowerCase();
-
-        for (String word : words) {
-            if (word.toLowerCase().startsWith(lowerPrefix)) {
-                result.add(word);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Convert all words to uppercase
-     */
-    public static List<String> convertToUppercase(List<String> words) {
-        List<String> uppercaseWords = new ArrayList<>();
-        for (String word : words) {
-            uppercaseWords.add(word.toUpperCase());
-        }
-        return uppercaseWords;
-    }
-
-    /**
-     * Join words with a separator
-     */
-    public static String joinWords(List<String> words, String separator) {
-        if (words.isEmpty()) {
-            return "";
-        }
-
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < words.size(); i++) {
-            result.append(words.get(i));
-            if (i < words.size() - 1) {
-                result.append(separator);
-            }
-        }
-        return result.toString();
-    }
-
-    /**
-     * Calculate total number of characters in all words
-     */
-    public static int calculateTotalCharacters(List<String> words) {
-        int total = 0;
-        for (String word : words) {
-            total += word.length();
-        }
-        return total;
     }
 }
