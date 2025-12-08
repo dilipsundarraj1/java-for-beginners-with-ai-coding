@@ -8,7 +8,6 @@
     * [Prompt 2: ArrayList Operations with Wrapper Classes - Practical Methods](#prompt-2-arraylist-operations-with-wrapper-classes---practical-methods)
     * [Prompt 3: Different Wrapper Types in ArrayLists with Specific Examples](#prompt-3-different-wrapper-types-in-arraylists-with-specific-examples)
     * [Prompt 4: BigDecimal Example for Precise Monetary Calculations](#prompt-4-bigdecimal-example-for-precise-monetary-calculations)
-    * [Prompt 5: Performance and Memory Considerations with Measurements](#prompt-5-performance-and-memory-considerations-with-measurements)
   * [Key Concepts Covered](#key-concepts-covered)
     * [1. Wrapper Classes Fundamentals](#1-wrapper-classes-fundamentals)
     * [2. Autoboxing and Unboxing](#2-autoboxing-and-unboxing)
@@ -21,6 +20,9 @@
   * [Performance Characteristics](#performance-characteristics)
   * [Best Practices with Wrapper Collections](#best-practices-with-wrapper-collections)
   * [Common Pitfalls and Solutions](#common-pitfalls-and-solutions)
+    * [1. NullPointerException with Unboxing](#1-nullpointerexception-with-unboxing)
+    * [2. Remove Method Confusion](#2-remove-method-confusion)
+    * [3. Equality Comparison](#3-equality-comparison)
   * [Common Use Cases](#common-use-cases)
   * [Real-World Applications](#real-world-applications)
 <!-- TOC -->
@@ -103,26 +105,6 @@ This file introduces wrapper classes and their use with ArrayList collections in
 
 ---
 
-### Prompt 5: Performance and Memory Considerations with Measurements
-
-**Task**: Create a method demonstrating and measuring performance/memory differences between primitives and wrappers.
-
-**Expected Function Signature**: `private static void demonstratePerformanceConsiderations()`
-
-**Requirements**:
-- Print section header: "5. Performance and Memory Considerations:"
-- Show memory comparison: int primitive (4 bytes) vs Integer wrapper (~16 bytes with object overhead)
-- Create two collections with 100,000 elements:
-  - `List<Integer> wrapperList` - demonstrating wrapper object creation
-  - `int[] primitiveArray` - demonstrating primitive efficiency
-- Measure time to populate wrapper ArrayList with autoboxing
-- Measure time to populate primitive array
-- Show performance timing results comparing the two approaches
-- Demonstrate that frequent autoboxing in loops can impact performance
-- Show the trade-off between using Collections framework (flexible) vs primitive arrays (performance)
-- Display results with recommendations on when to use each approach
-
----
 
 ## Key Concepts Covered
 
