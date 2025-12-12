@@ -12,7 +12,7 @@ import java.util.Optional;
  * Covers findFirst, findAny, allMatch, anyMatch, noneMatch and their practical applications
  * Each search function is demonstrated in separate methods for clarity
  */
-public class _5StreamSearchExample {
+public class _4StreamSearchExample {
 
     @SuppressWarnings("unused")
     static void main(String[] args) {

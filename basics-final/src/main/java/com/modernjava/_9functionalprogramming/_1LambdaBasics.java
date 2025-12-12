@@ -2,10 +2,17 @@ package com.modernjava._9functionalprogramming;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * LambdaBasics - Introduction to Lambda Expressions in Java
@@ -14,145 +21,181 @@ import java.util.function.Predicate;
  */
 public class _1LambdaBasics {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("=== Lambda Expressions Basics ===\n");
 
-        // 1. Introduction to lambda expressions
-        introduceLambdaExpressions();
-
-        // 4. Common functional interfaces
-        demonstrateFunctionalInterfaces();
-
-        // 5. Lambda expressions with collections
-        demonstrateLambdasWithCollections();
-
-        // 6. Method references - shorthand for lambdas
-        demonstrateMethodReferences();
-    }
-
-
-    /**
-     * Shows how lambdas solve the verbosity problem
-     */
-    private static void introduceLambdaExpressions() {
-        // Method reference approach (most concise)
-        List<String> names = new ArrayList<>(Arrays.asList("Alice", "Bob", "Charlie", "Diana", null));
-
-        System.out.println("\nMethod reference (most concise):");
-        System.out.print("Result: ");
-        var upperCaseList = names.stream()
-                .filter(name -> !name.isEmpty())
-                .map((s)-> s.toUpperCase())  // Lambda version
-                // .map(String::toUpperCase) // Method reference version
-                .toList();
-        System.out.println("Result: " + upperCaseList);
-
-//        upperCaseList
-//                .forEach(s -> {
-//                    System.out.println("  " + s);
-//                });
+        // Function<T, R>: transforms input to output
+        demonstrateFunction();
+        // Consumer<T>: accepts input, performs action, returns nothing
+        demonstrateConsumer();
+        // Predicate<T>: tests condition, returns boolean
+        demonstratePredicate();
+        // Supplier<T>: produces values on-demand with no input
+        demonstrateSupplier();
+        // Comparator<T>: compares two objects for sorting
+        demonstrateComparator();
+        // BiFunction<T, U, R>: accepts two inputs, returns one output
+        demonstrateBiFunction();
+        // BiConsumer<T, U>: accepts two inputs, performs action, returns nothing
+        demonstrateBiConsumer();
+        // BiPredicate<T, U>: tests two inputs, returns boolean
+        demonstrateBiPredicate();
     }
 
     /**
-     * Demonstrates common functional interfaces used with lambdas
+     * Demonstrates Function<T, R> - transforms input to output
      */
-    private static void demonstrateFunctionalInterfaces() {
-        System.out.println("4. Common Functional Interfaces:");
+    private static void demonstrateFunction() {
+        System.out.println("1. Function<T, R> - Transforms Input to Output:");
 
-        List<String> words = Arrays.asList("hello", "world", "java", "programming", "fun");
-        System.out.println("Working with words: " + words);
+        Function<String, Integer> stringLength = str -> str.length();
+        System.out.println("Length of 'Hello': " + stringLength.apply("Hello"));
 
-        // Predicate<T> - tests a condition, returns boolean
-        System.out.println("\nPredicate<T> - Testing conditions:");
-        Predicate<String> isLongWord = word -> word.length() > 4;
+        Function<Integer, Integer> square = num -> num * num;
+        System.out.println("Square of 5: " + square.apply(5));
 
-        for (String word : words) {
-            if (isLongWord.test(word)) {
-                System.out.println("  '" + word + "' is a long word (>4 chars)");
+        Function<String, Integer> countA = str -> (int) str.chars().filter(c -> c == 'a').count();
+        System.out.println("Count of 'a' in 'banana': " + countA.apply("banana"));
+        System.out.println();
+    }
+
+    /**
+     * Demonstrates Consumer<T> - accepts input, returns nothing
+     */
+    private static void demonstrateConsumer() {
+        System.out.println("2. Consumer<T> - Accepts Input, Returns Nothing:");
+
+        Consumer<String> printMessage = message -> System.out.println("Message: " + message);
+        printMessage.accept("Hello, World!");
+
+        Consumer<List<Integer>> printList = list -> list.forEach(System.out::print);
+        System.out.print("List contents: ");
+        printList.accept(Arrays.asList(1, 2, 3, 4, 5));
+        System.out.println();
+
+        Consumer<Integer> printSquare = num -> System.out.print(num + "^2=" + (num * num) + " ");
+        System.out.print("Squares: ");
+        Arrays.asList(2, 4, 6).forEach(printSquare);
+        System.out.println("\n");
+    }
+
+    /**
+     * Demonstrates Predicate<T> - tests conditions, returns boolean
+     */
+    private static void demonstratePredicate() {
+        System.out.println("3. Predicate<T> - Tests Conditions, Returns Boolean:");
+
+        Predicate<Integer> isEven = num -> num % 2 == 0;
+        System.out.println("Is 4 even? " + isEven.test(4));
+        System.out.println("Is 7 even? " + isEven.test(7));
+
+        Predicate<String> isLongerThan5 = str -> str.length() > 5;
+        List<String> words = Arrays.asList("Java", "Python", "JavaScript", "C");
+        System.out.print("Words longer than 5 characters: ");
+        words.stream().filter(isLongerThan5).forEach(w -> System.out.print(w + " "));
+        System.out.println("\n");
+    }
+
+    /**
+     * Demonstrates Supplier<T> - produces values, takes no input
+     */
+    private static void demonstrateSupplier() {
+        System.out.println("4. Supplier<T> - Produces Values, Takes No Input:");
+
+        Supplier<String> greeting = () -> "Hello from Supplier!";
+        System.out.println(greeting.get());
+
+        Supplier<Integer> randomNumber = () -> (int) (Math.random() * 100);
+        System.out.println("Random number 1: " + randomNumber.get());
+        System.out.println("Random number 2: " + randomNumber.get());
+
+        Supplier<LocalDateTime> currentTime = () -> LocalDateTime.now();
+        System.out.println("Current time: " + currentTime.get());
+        System.out.println();
+    }
+
+    /**
+     * Demonstrates Comparator<T> - compares two objects for sorting
+     */
+    private static void demonstrateComparator() {
+        System.out.println("5. Comparator<T> - Compares Two Objects for Sorting:");
+
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "Diana");
+        System.out.println("Original names: " + names);
+
+        Comparator<String> byLength = (s1, s2) -> s1.length() - s2.length();
+        List<String> sortedByLength = new ArrayList<>(names);
+        Collections.sort(sortedByLength, byLength);
+        System.out.println("Sorted by length: " + sortedByLength);
+
+        Comparator<String> alphabetically = (s1, s2) -> s1.compareToIgnoreCase(s2);
+        List<String> sortedAlphabetically = new ArrayList<>(names);
+        Collections.sort(sortedAlphabetically, alphabetically);
+        System.out.println("Sorted alphabetically: " + sortedAlphabetically);
+        System.out.println();
+    }
+
+    /**
+     * Demonstrates BiFunction<T, U, R> - accepts two inputs, returns one output
+     */
+    private static void demonstrateBiFunction() {
+        System.out.println("6. BiFunction<T, U, R> - Two Inputs, One Output:");
+
+        BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
+        System.out.println("5 + 3 = " + add.apply(5, 3));
+
+        BiFunction<Integer, Integer, Integer> multiply = (a, b) -> a * b;
+        System.out.println("5 * 3 = " + multiply.apply(5, 3));
+
+        BiFunction<String, String, String> concatenate = (s1, s2) -> s1 + " " + s2;
+        System.out.println("Concatenate: " + concatenate.apply("Hello", "World"));
+
+        BiFunction<String, Integer, String> repeat = (str, n) -> str.repeat(n);
+        System.out.println("Repeat 'Java' 3 times: " + repeat.apply("Java", 3));
+        System.out.println();
+    }
+
+    /**
+     * Demonstrates BiConsumer<T, U> - accepts two inputs, returns nothing
+     */
+    private static void demonstrateBiConsumer() {
+        System.out.println("7. BiConsumer<T, U> - Two Inputs, No Output:");
+
+        BiConsumer<String, Integer> printWithCount = (str, count) -> {
+            for (int i = 0; i < count; i++) {
+                System.out.print(str + " ");
             }
-        }
+            System.out.println();
+        };
+        System.out.print("Repeat 'Java' 3 times: ");
+        printWithCount.accept("Java", 3);
 
-        // Function<T, R> - transforms input to output
-        System.out.println("\nFunction<T, R> - Transforming data:");
-        Function<String, String> toUpperCase = word -> word.toUpperCase();
-        Function<String, Integer> getLength = word -> word.length();
+        BiConsumer<Integer, Integer> printSum = (a, b) -> System.out.println("Sum of " + a + " + " + b + " = " + (a + b));
+        printSum.accept(10, 20);
 
-        for (String word : words) {
-            System.out.println("  '" + word + "' -> '" + toUpperCase.apply(word) + "' (length: " + getLength.apply(word) + ")");
-        }
-
-        // Consumer<T> - performs action, returns nothing
-        System.out.println("\nConsumer<T> - Performing actions:");
-        Consumer<String> printWithExclamation = word -> System.out.println("  " + word + "!");
-
-        System.out.println("Words with excitement:");
-        words.forEach(printWithExclamation);
+        BiConsumer<String, String> printPair = (key, value) -> System.out.println(key + ": " + value);
+        printPair.accept("Name", "John");
+        printPair.accept("City", "NYC");
         System.out.println();
     }
 
     /**
-     * Shows lambdas in action with collection operations
+     * Demonstrates BiPredicate<T, U> - accepts two inputs, returns boolean
      */
-    private static void demonstrateLambdasWithCollections() {
-        System.out.println("5. Lambdas with Collections:");
+    private static void demonstrateBiPredicate() {
+        System.out.println("8. BiPredicate<T, U> - Tests Two Inputs, Returns Boolean:");
 
-        List<String> cities = new ArrayList<>(Arrays.asList("New York", "London", "Tokyo", "Paris", "Sydney", "Berlin"));
-        System.out.println("Cities: " + cities);
+        BiPredicate<Integer, Integer> isFirstGreater = (a, b) -> a > b;
+        System.out.println("Is 10 > 5? " + isFirstGreater.test(10, 5));
+        System.out.println("Is 3 > 8? " + isFirstGreater.test(3, 8));
 
-        // Traditional approach - finding cities starting with 'L'
-        System.out.println("\nTraditional approach - find cities starting with 'L':");
-        List<String> citiesWithL = new ArrayList<>();
-        for (String city : cities) {
-            if (city.startsWith("L")) {
-                citiesWithL.add(city);
-            }
-        }
-        System.out.println("Cities starting with 'L': " + citiesWithL);
+        BiPredicate<String, String> isSameLength = (s1, s2) -> s1.length() == s2.length();
+        System.out.println("Is 'Java' same length as 'Code'? " + isSameLength.test("Java", "Code"));
+        System.out.println("Is 'Hello' same length as 'World'? " + isSameLength.test("Hello", "World"));
 
-        // Lambda approach - much cleaner (we'll see more in Streams)
-        System.out.println("\nLambda approach preview (using removeIf):");
-        List<String> citiesCopy = new ArrayList<>(cities);
-        citiesCopy.removeIf(city -> !city.startsWith("L"));
-        System.out.println("Cities starting with 'L': " + citiesCopy);
-
-        // Using forEach with lambda
-        System.out.println("\nUsing forEach with lambda:");
-        cities.forEach(city -> System.out.println("  Visit: " + city));
-        System.out.println();
+        BiPredicate<Integer, Integer> bothEven = (a, b) -> a % 2 == 0 && b % 2 == 0;
+        System.out.println("Are 4 and 8 both even? " + bothEven.test(4, 8));
+        System.out.println("Are 4 and 7 both even? " + bothEven.test(4, 7));
     }
 
-    /**
-     * Demonstrates method references as shorthand for lambdas
-     */
-    private static void demonstrateMethodReferences() {
-        System.out.println("6. Method References - Lambda Shorthand:");
-
-        List<String> languages = Arrays.asList("java", "python", "javascript", "go", "rust");
-        System.out.println("Programming languages: " + languages);
-
-        // Lambda expressions
-        System.out.println("\nWith lambda expressions:");
-        languages.forEach(lang -> System.out.println("  Language: " + lang));
-
-        // Method references - even more concise
-        System.out.println("\nWith method references (same result):");
-        languages.forEach(System.out::println);
-
-        // Sorting examples
-        List<String> languagesCopy = new ArrayList<>(languages);
-
-        // Lambda
-        languagesCopy.sort((s1, s2) -> s1.compareToIgnoreCase(s2));
-        System.out.println("\nSorted with lambda: " + languagesCopy);
-
-        // Method reference
-        languagesCopy.sort(String::compareToIgnoreCase);
-        System.out.println("Same sorting with method reference: " + languagesCopy);
-
-        System.out.println("\nKey Takeaway: Lambdas enable functional programming style in Java");
-        System.out.println("- More concise than anonymous classes");
-        System.out.println("- Focus on 'what' not 'how'");
-        System.out.println("- Enable powerful operations with Streams (next topic!)");
-        System.out.println();
-    }
 }

@@ -1,28 +1,29 @@
 package com.modernjava._9functionalprogramming;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class _0ImperativeVsFunctionalProgramming {
+public class ImperativeVsFunctionalProgramming {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
 
         List<String> words = Arrays.asList("java", "python", "javascript");
 
         System.out.println("=== Lambda Expressions Basics ===\n");
 
+        // Convert a list of Strings to uppercase
+        // java, python, javascript -> JAVA, PYTHON, JAVASCRIPT
         uppercaseImperative(words);
 
         uppercaseFunctional(words);
 
 
+        // Sort a list of names by their length
+        // Alice, Bob, Charlie, Diana -> Bob, Alice, Diana, Charlie
         List<String> names = new ArrayList<>(Arrays.asList("Alice", "Bob", "Charlie", "Diana"));
 
         sortImperative(names);
 
-        sortFunctional(new ArrayList<>(Arrays.asList("Alice", "Bob", "Charlie", "Diana")));
+        sortFunctional(names);
 
     }
 
@@ -51,10 +52,12 @@ public class _0ImperativeVsFunctionalProgramming {
         System.out.println("\nMethod reference (most concise):");
         System.out.print("Result: ");
         var upperCaseList = words
-                .stream().map((s)-> s.toUpperCase())  // Lambda version
-                // .map(String::toUpperCase) // Method reference version
+                .stream() // Pass elements one by one.
+                .map((s)-> s.toUpperCase())  // Every input is transformed using a Lambda version
                 .toList();
         System.out.println("Result: " + upperCaseList);
+
+        // .map(String::toUpperCase) // Method reference version
     }
 
     /**
@@ -66,8 +69,10 @@ public class _0ImperativeVsFunctionalProgramming {
 
         System.out.println("Original list: " + names);
 
+
+
         // Traditional way - using anonymous class for sorting
-        Collections.sort(names, new java.util.Comparator<String>() {
+        Collections.sort(names, new Comparator<String>() {
             @Override
             public int compare(String s1, String s2) {
                 return s1.length() - s2.length(); // Sort by length
@@ -99,19 +104,9 @@ public class _0ImperativeVsFunctionalProgramming {
 
         // Method reference approach - most concise
         System.out.println("\nMethod reference (most concise):");
-        names.sort(java.util.Comparator.comparing(String::length));
+        names.sort(Comparator.comparing(String::length));
         System.out.println("Sorted by length (method ref): " + names);
 
-        System.out.println("\nBenefits of Functional Approach:");
-        System.out.println("✓ Concise: 1 line instead of 6 lines");
-        System.out.println("✓ Readable: Focuses on 'what' not 'how'");
-        System.out.println("✓ Maintainable: Less boilerplate code");
-        System.out.println("✓ Expressive: Intent is immediately clear");
-
-        System.out.println("\nComparison:");
-        System.out.println("Traditional:  Collections.sort(names, new Comparator<String>() { ... 6 lines ... });");
-        System.out.println("Lambda:       names.sort((s1, s2) -> s1.length() - s2.length());");
-        System.out.println("Method Ref:   names.sort(Comparator.comparing(String::length));");
         System.out.println();
     }
 }

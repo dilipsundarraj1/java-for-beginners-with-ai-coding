@@ -19,6 +19,8 @@ public class _1LambdaBasics {
 
         // 1. Introduction to lambda expressions
 
+
+
         // 2. Common functional interfaces
 
         // 3. Lambda expressions with collections

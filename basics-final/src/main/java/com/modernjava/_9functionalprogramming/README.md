@@ -88,7 +88,7 @@ Apply concepts to complex scenarios:
 ```bash
 # Run each class to see the progression
 java com.modernjava._9functionalprogramming._1LambdaBasics
-java com.modernjava._9functionalprogramming._4StreamsBasics  
+java com.modernjava._9functionalprogramming._2StreamsBasics  
 java com.modernjava._9functionalprogramming.MovieFunctionalProgramming
 ```
 

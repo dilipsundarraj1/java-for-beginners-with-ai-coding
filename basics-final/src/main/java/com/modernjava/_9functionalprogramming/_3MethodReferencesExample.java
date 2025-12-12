@@ -14,7 +14,7 @@ import java.util.function.*;
  * 3. Reference to an instance method of an arbitrary object of a class (ClassName::instanceMethod)
  * 4. Reference to a constructor (ClassName::new)
  */
-public class _2MethodReferencesExample {
+public class _3MethodReferencesExample {
 
     static void main(String[] args) {
         System.out.println("=== Exploring Method References ===\n");
