@@ -11,18 +11,20 @@ import java.util.stream.Stream;
  * - Stream.iterate() - Creating infinite streams with iterative function
  * - Stream.generate() - Creating infinite streams with supplier function
  */
-public class _7StreamCreationExample {
+public class _6StreamCreationExample {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("=== Different Ways to Create Streams ===\n");
 
         // 1. Stream.of() - Creating streams from elements
+        demonstrateStreamOf();
 
         // 2. Stream.iterate() - Creating iterative streams
+        demonstrateStreamIterate();
 
         // 3. Stream.generate() - Creating streams with suppliers
+        demonstrateStreamGenerate();
 
-        // 4. Practical examples combining stream creation with operations
     }
 
     /**
@@ -46,13 +48,6 @@ public class _7StreamCreationExample {
         numberStream.forEach(num -> System.out.print(num + " "));
         System.out.println("\n");
 
-        // Creating stream from mixed types (using Object)
-        System.out.println("Creating stream from mixed types:");
-        Stream<Object> mixedStream = Stream.of("Hello", 42, 3.14, true);
-        System.out.print("Mixed types: ");
-        mixedStream.forEach(item -> System.out.print(item + " "));
-        System.out.println("\n");
-
         // Empty stream
         System.out.println("Creating empty stream:");
         Stream<String> emptyStream = Stream.of();
@@ -74,12 +69,6 @@ public class _7StreamCreationExample {
                 .forEach(n -> System.out.print(n + " "));
         System.out.println("\n");
 
-        // Powers of 2
-        System.out.println("Powers of 2 (starting from 1, multiplying by 2):");
-        Stream.iterate(1, n -> n * 2)
-                .limit(10)
-                .forEach(n -> System.out.print(n + " "));
-        System.out.println("\n");
 
         // String iteration
         System.out.println("String iteration (repeating 'Java' with increasing count):");
@@ -125,20 +114,12 @@ public class _7StreamCreationExample {
                 .forEach(d -> System.out.printf("%.3f ", d));
         System.out.println("\n");
 
-        // Generating UUIDs
-        System.out.println("Generating UUID strings (first 8 characters):");
-        Stream.generate(() -> java.util.UUID.randomUUID().toString().substring(0, 8))
-                .limit(3)
-                .forEach(uuid -> System.out.println("  " + uuid));
-        System.out.println();
-
         // Generating current timestamp
         System.out.println("Generating timestamps:");
         Stream.generate(() -> System.currentTimeMillis())
                 .limit(3)
                 .forEach(timestamp -> {
                     System.out.println("  " + timestamp);
-                    try { Thread.sleep(100); } catch (InterruptedException e) {}
                 });
         System.out.println();
         System.out.println("─────────────────────────────────────────────────────────\n");
