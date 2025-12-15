@@ -15,7 +15,7 @@ import java.util.List;
  * - Effectively final means the variable is never reassigned after initialization
  * - This restriction exists because lambdas may be executed in different threads
  */
-public class _8LambdaVariables {
+public class _7LambdaVariables {
 
     // Simple mutable class for demonstration
     static class Counter {

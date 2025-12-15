@@ -15,7 +15,7 @@ import java.util.List;
  * - Effectively final means the variable is never reassigned after initialization
  * - This restriction exists because lambdas may be executed in different threads
  */
-public class _8LambdaVariables {
+public class _7LambdaVariables {
 
     // Simple mutable class for demonstration
     static class Counter {
@@ -31,7 +31,7 @@ public class _8LambdaVariables {
         }
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== Lambdas and Local Variables: Effectively Final ===\n");
 
         // Example 1: Demonstrating effectively final variables
@@ -56,12 +56,13 @@ public class _8LambdaVariables {
         String prefix = "Item: ";  // This is effectively final
 
         List<String> items = List.of("Apple", "Banana", "Cherry");
-
+        int count = 0; // This is also effectively final
 
         System.out.println("Using effectively final 'prefix' variable in lambda:");
         items.forEach(item -> {
             // Lambda can access 'prefix' because it's effectively final
             System.out.println("  " + prefix + item);
+            //count++; // This would cause a compilation error if uncommented
         });
 
         // Explicitly final variable also works
@@ -93,7 +94,9 @@ public class _8LambdaVariables {
         System.out.println("\nProcessing items and incrementing counter inside lambda:");
         items.forEach(item -> {
             // We can modify the object's state even though 'counter' reference is effectively final
+
             counter.increment();
+            //counter = new Counter(); // Uncommenting this line would cause a compilation error
             System.out.println("  Processed: " + item + " | " + counter);
         });
 
