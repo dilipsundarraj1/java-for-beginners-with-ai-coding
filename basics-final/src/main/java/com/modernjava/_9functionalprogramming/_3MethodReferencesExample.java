@@ -157,12 +157,23 @@ public class _3MethodReferencesExample {
 
         // Using constructor reference with Function for single parameter
         Function<String, Person> personFactory = Person::new;  // Reference to single-arg constructor
+
         List<Person> peopleWithConstructorRef = names.stream()
             .map(personFactory)
             .toList();
 
         System.out.println("People created with lambda: " + peopleWithLambda);
         System.out.println("People created with constructor ref: " + peopleWithConstructorRef);
+
+        // Using constructor reference with BiFunction for two parameters
+        System.out.println("\nUsing BiFunction for two-parameter constructor:");
+        BiFunction<String, Integer, Person> personBiFactory = Person::new;  // Reference to two-arg constructor
+
+        Person person1 = personBiFactory.apply("Eve", 28);
+        Person person2 = personBiFactory.apply("Frank", 35);
+
+        System.out.println("Person 1 created with BiFunction: " + person1);
+        System.out.println("Person 2 created with BiFunction: " + person2);
 
         // Example with array constructor reference
         String[] array1 = names.stream().toArray(String[]::new);  // Reference to String array constructor
