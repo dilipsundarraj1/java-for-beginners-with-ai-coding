@@ -40,6 +40,7 @@ public class MapWithStreams {
         List<String> fruits = Arrays.asList("apple", "banana", "cherry", "date");
 
         // Create a map where key is the fruit and value is its length
+        // Example: "apple" -> 5, "banana" -> 6, etc.
         Map<String, Integer> fruitLengths = fruits.stream()
                 .collect(Collectors.toMap(
                         fruit -> fruit,           // key mapper
@@ -49,6 +50,7 @@ public class MapWithStreams {
         System.out.println("Fruit lengths: " + fruitLengths);
 
         // Create a map where key is the length and value is the fruit
+        // Example: 5 -> "apple", 6 -> "banana", etc.
         Map<Integer, String> lengthToFruit = fruits.stream()
                 .collect(Collectors.toMap(
                         String::length,    // key mapper (method reference)
@@ -58,6 +60,7 @@ public class MapWithStreams {
         System.out.println("Length to fruit: " + lengthToFruit);
 
         // Create a map with uppercase keys
+        // Example: "APPLE" -> "apple", "BANANA" -> "banana", etc.
         Map<String, String> uppercaseFruits = fruits.stream()
                 .collect(Collectors.toMap(
                         String::toUpperCase,
@@ -84,6 +87,7 @@ public class MapWithStreams {
         System.out.println("Original grades: " + studentGrades);
 
         // Filter students with grade >= 90
+        // Example: Alice-> 90, Charlie -> 92
         Map<String, Integer> highPerformers = studentGrades.entrySet().stream()
                 .filter(entry -> entry.getValue() >= 90)
                 .collect(Collectors.toMap(
@@ -94,6 +98,7 @@ public class MapWithStreams {
         System.out.println("High performers (>= 90): " + highPerformers);
 
         // Filter students whose names start with specific letter
+        // Example: Names starting with 'A' -> Alice
         Map<String, Integer> namesStartingWithA = studentGrades.entrySet().stream()
                 .filter(entry -> entry.getKey().startsWith("A"))
                 .collect(Collectors.toMap(
@@ -106,6 +111,7 @@ public class MapWithStreams {
         // Filter and transform in one operation
         // Create a map of students with grade >= 85 and categorize them
         // as "Excellent" (90+) or "Good" (85-89)
+        // Example: Alice -> Excellent, Bob -> Good, Charlie -> Excellent, Eve -> Good
         Map<String, String> gradeCategories = studentGrades.entrySet().stream()
                 .filter(entry -> entry.getValue() >= 85)
                 .collect(Collectors.toMap(
@@ -132,6 +138,7 @@ public class MapWithStreams {
         System.out.println("Original prices: " + prices);
 
         // Apply 10% discount to all prices
+        // Example : laptop -> 899.99, phone -> 629.99, etc.
         Map<String, Double> discountedPrices = prices.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -143,6 +150,7 @@ public class MapWithStreams {
 
         // Create a new map with price categories
         // "Budget" (<300), "Mid-range" (300-700), "Premium" (>700)
+        // Example: laptop -> Premium, phone -> Mid-range, etc.
         Map<String, String> priceCategories = prices.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -174,6 +182,7 @@ public class MapWithStreams {
         );
 
         // Group employees by department
+        // Example: "Engineering" -> [Alice, Charlie, Frank], etc.
         Map<String, List<Employee>> employeesByDepartment = employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
 
@@ -187,6 +196,7 @@ public class MapWithStreams {
 
         // Group and count employees by department
         // Count of employees in each department
+        // Example: "Engineering" -> 3, "Marketing" -> 2, etc.
         Map<String, Long> employeeCountByDepartment = employees.stream()
                 .collect(Collectors.groupingBy(
                         Employee::getDepartment,
@@ -197,6 +207,7 @@ public class MapWithStreams {
 
         // Group employees by salary range
         // "High" (>=80000) and "Standard" (<80000)
+        // Example: "High" -> [Alice, Charlie, Frank], "Standard" -> [Bob, David, Eve]
         Map<String, List<String>> employeesBySalaryRange = employees.stream()
                 .collect(Collectors.groupingBy(
                         emp -> emp.getSalary() >= 80000 ? "High" : "Standard",
@@ -206,6 +217,7 @@ public class MapWithStreams {
         System.out.println("Employees by salary range: " + employeesBySalaryRange);
 
         // Calculate average salary for each department
+        // Example: "Engineering" -> 95000.0, "Marketing" -> 61500.0, etc.
         Map<String, Double> avgSalaryByDepartment = employees.stream()
                 .collect(Collectors.groupingBy(
                         Employee::getDepartment,
@@ -228,6 +240,7 @@ public class MapWithStreams {
         subjectScores.put("English", Arrays.asList(79, 85, 91, 88, 93));
 
         // Calculate average score for each subject
+        //
         Map<String, Double> averageScores = subjectScores.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -240,29 +253,13 @@ public class MapWithStreams {
         System.out.println("Average scores by subject: " + averageScores);
 
         // Find the subject with highest average
+        // Example: Science with average 88.8
         Optional<Map.Entry<String, Double>> topSubject = averageScores.entrySet().stream()
                 .max(Map.Entry.comparingByValue());
 
         topSubject.ifPresent(entry ->
                 System.out.println("Top performing subject: " + entry.getKey() +
                         " with average " + String.format("%.2f", entry.getValue())));
-
-        // Create a summary map with statistics
-        Map<String, String> subjectSummary = subjectScores.entrySet().stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        entry -> {
-                            List<Integer> scores = entry.getValue();
-                            int min = scores.stream().mapToInt(i -> i).min().orElse(0);
-                            int max = scores.stream().mapToInt(i -> i).max().orElse(0);
-                            double avg = scores.stream().mapToInt(i -> i).average().orElse(0);
-                            return String.format("Min: %d, Max: %d, Avg: %.1f", min, max, avg);
-                        }
-                ));
-
-        System.out.println("\nSubject summary:");
-        subjectSummary.forEach((subject, summary) ->
-                System.out.println(subject + " - " + summary));
 
         System.out.println();
     }

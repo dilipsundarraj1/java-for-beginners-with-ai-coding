@@ -289,7 +289,7 @@ public class _5AggregateStreamsExample {
         // Statistical collectors
         System.out.println("\nd) Statistical collectors:");
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
+        // Get summary statistics using Collectors.summarizingInt
         IntSummaryStatistics stats = numbers.stream()
                 .collect(Collectors.summarizingInt(Integer::intValue));
 

@@ -62,13 +62,9 @@ This file demonstrates how to use Maps with the powerful Streams API for functio
 - Apply 10% discount to all prices:
   - Transform values using `entry -> entry.getValue() * 0.9`
   - Print as "Discounted prices (10% off): {map}"
-- Transform keys to uppercase and round prices:
-  - Use `entry.getKey().toUpperCase()` for keys
-  - Use `(int) Math.round(entry.getValue())` for values
-  - Print as "Uppercase keys with rounded prices: {map}"
 - Create price categories map:
   - Keep original keys
-  - Transform values to categories: "Budget" (<300), "Mid-range" (<700), "Premium" (>=700)
+  - Transform values to categories: "Budget" (<300), "Mid-range" (300-700), "Premium" (>700)
   - Print as "Price categories: {map}"
 - Add blank line at end for spacing
 
@@ -121,11 +117,8 @@ This file demonstrates how to use Maps with the powerful Streams API for functio
   - Print as "Average scores by subject: {map}"
 - Find subject with highest average:
   - Use `max(Map.Entry.comparingByValue())` on averageScores
+  - Use `ifPresent()` to print result
   - Print as "Top performing subject: {subject} with average {formatted_average}"
-- Create subject summary with statistics:
-  - For each subject, calculate min, max, and average from score lists
-  - Format as "Min: {min}, Max: {max}, Avg: {avg}" string
-  - Print "Subject summary:" header then each subject with its summary
 - Add blank line at end for spacing
 
 ---
@@ -328,29 +321,21 @@ Map<String, Double> averages = subjectScores.entrySet().stream()
             .orElse(0.0)
     ));
 
-// Find maximum
+// Find maximum using Optional and ifPresent
 Optional<Map.Entry<String, Double>> topSubject = averages.entrySet().stream()
     .max(Map.Entry.comparingByValue());
 
-// Create summary statistics
-Map<String, String> summary = subjectScores.entrySet().stream()
-    .collect(Collectors.toMap(
-        Map.Entry::getKey,
-        entry -> {
-            List<Integer> scores = entry.getValue();
-            int min = scores.stream().mapToInt(i -> i).min().orElse(0);
-            int max = scores.stream().mapToInt(i -> i).max().orElse(0);
-            double avg = scores.stream().mapToInt(i -> i).average().orElse(0);
-            return String.format("Min: %d, Max: %d, Avg: %.1f", min, max, avg);
-        }
-    ));
+topSubject.ifPresent(entry ->
+    System.out.println("Top subject: " + entry.getKey() + 
+                      " with average " + entry.getValue())
+);
 ```
 
 **Key Points:**
 - Can perform statistical operations on collections within Map values
 - Optional handling is important for empty collections
 - max() and min() operations return Optional results
-- Complex transformations can create summary strings or objects
+- ifPresent() is used for safe Optional handling
 - Nested stream operations allow deep data processing
 
 ## Performance Considerations
