@@ -16,14 +16,14 @@ public class SetBasics {
         // Example 1: Basic Set operations
         basicSetOperations();
 
-        // Example 2: Different types of Sets
-        differentSetTypes();
+        // Example 2: Set iteration techniques
+        setIterationExamples();
 
         // Example 3: Common Set operations
         commonSetOperations();
 
-        // Example 4: Set iteration techniques
-        setIterationExamples();
+        // Example 4: Different types of Sets
+        differentSetTypes();
 
         // Example 5: Real-world Set examples
         realWorldExamples();
@@ -34,6 +34,8 @@ public class SetBasics {
      */
     public static void basicSetOperations() {
         System.out.println("1. Basic Set Operations:");
+        // Creating a new HashSet with String elements
+        // Adding some fruits to the set and demonstrating that duplicates are not added
         Set<String> fruits = new HashSet<>();
         fruits.add("apple");
         fruits.add("banana");
@@ -68,7 +70,10 @@ public class SetBasics {
     public static void commonSetOperations() {
         System.out.println("3. Common Set Operations:");
         Set<Integer> numbers = new HashSet<>();
-        numbers.add(1); numbers.add(2); numbers.add(3);
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+
         numbers.remove(2);
         System.out.println("Numbers after removal: " + numbers);
         numbers.addAll(Arrays.asList(3, 4, 5)); // addAll ignores duplicates

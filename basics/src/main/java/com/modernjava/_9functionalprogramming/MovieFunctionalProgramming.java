@@ -53,8 +53,7 @@ public class MovieFunctionalProgramming {
 
     private static void displayMovieCollection(List<Movie> movies) {
         System.out.println("Sample Movie Collection (" + movies.size() + " movies):");
-        movies.forEach(movie -> System.out.println("  " + movie));
-        System.out.println();
+        // Display each movie using forEach
     }
 
     /**
@@ -83,24 +82,15 @@ public class MovieFunctionalProgramming {
         highRatedTraditional.forEach(movie -> System.out.println("  " + movie.title() + " - " + movie.rating()));
 
         // FUNCTIONAL APPROACH with Streams
-        System.out.println("\nFunctional Approach - High-rated movies (>8.5):");
-        List<Movie> highRatedFunctional = movies.stream()
-                .filter(movie -> movie.rating() > 8.5)
-                .toList();
-        System.out.println("Found " + highRatedFunctional.size() + " high-rated movies");
-        highRatedFunctional.forEach(movie -> System.out.println("  " + movie.title() + " - " + movie.rating()));
+        // filtering high-rated movies with rating > 8.5 using Stream API
+
 
         // More examples with different criteria
         System.out.println("\nAction movies available for streaming:");
-        movies.stream()
-                .filter(movie -> movie.genre() == MovieGenre.ACTION)
-                .filter(Movie::isAvailable)  // Method reference
-                .forEach(movie -> System.out.println("  " + movie.title()));
+        // filtering action genre movies that are available using method reference
 
         System.out.println("\nMovies from the 1990s:");
-        movies.stream()
-                .filter(movie -> movie.releaseYear() >= 1990 && movie.releaseYear() < 2000)
-                .forEach(movie -> System.out.println("  " + movie.title() + " (" + movie.releaseYear() + ")"));
+        // filtering movies released in the 1990s using Stream API
 
         System.out.println();
     }
@@ -128,6 +118,8 @@ public class MovieFunctionalProgramming {
         System.out.println("Movie titles: " + titlesTraditional);
 
         // FUNCTIONAL APPROACH
+        // extracting movie titles using Stream API map() and method reference
+        // Example: The Matrix, The Godfather, Finding Nemo, etc.
         System.out.println("\nFunctional Approach - Extract movie titles:");
         List<String> titlesFunctional = movies.stream()
                 .map(Movie::title)
@@ -135,12 +127,16 @@ public class MovieFunctionalProgramming {
         System.out.println("Movie titles: " + titlesFunctional);
 
         // More transformation examples
+        // converting movie durations from minutes to hours
+        // Example: The Matrix: 2.3h, The Godfather: 2.9h, Finding Nemo: 1.7h, etc.
         System.out.println("\nMovie durations in hours:");
         movies.stream()
                 .map(movie -> movie.title() + ": " + String.format("%.1f", movie.duration() / 60.0) + "h")
                 .forEach(System.out::println);
 
         System.out.println("\nMovie ratings as letter grades:");
+        // converting numeric ratings to letter grades
+        // Example: The Matrix: A, The Godfather: A+, Finding Nemo: A
         movies.stream()
                 .map(movie -> movie.title() + ": " + getRatingGrade(movie.rating()))
                 .forEach(System.out::println);
@@ -165,35 +161,27 @@ public class MovieFunctionalProgramming {
         // Finding operations
         System.out.println("Finding operations:");
 
+        // finding the longest movie by duration
+        // Example output: Longest movie: The Godfather (175 min)
         Optional<Movie> longestMovie = movies.stream()
                 .max(Comparator.comparing(Movie::duration));
         longestMovie.ifPresent(movie ->
             System.out.println("  Longest movie: " + movie.title() + " (" + movie.duration() + " min)"));
 
+        // finding the best rated movie
+        // Example output: Best rated movie: The Shawshank Redemption (9.3/
         Optional<Movie> bestRatedMovie = movies.stream()
                 .max(Comparator.comparing(Movie::rating));
         bestRatedMovie.ifPresent(movie ->
             System.out.println("  Best rated movie: " + movie.title() + " (" + movie.rating() + "/10)"));
 
+        // finding the oldest movie by release year
+        // Example output: Oldest movie: Casablanca (1942)
         Optional<Movie> oldestMovie = movies.stream()
                 .min(Comparator.comparing(Movie::releaseYear));
         oldestMovie.ifPresent(movie ->
             System.out.println("  Oldest movie: " + movie.title() + " (" + movie.releaseYear() + ")"));
 
-        // Checking conditions
-        System.out.println("\nCondition checks:");
-        boolean hasActionMovies = movies.stream()
-                .anyMatch(movie -> movie.genre() == MovieGenre.ACTION);
-        System.out.println("  Has action movies: " + hasActionMovies);
-
-        boolean allMoviesAvailable = movies.stream()
-                .allMatch(Movie::isAvailable);
-        System.out.println("  All movies available: " + allMoviesAvailable);
-
-        long recentMoviesCount = movies.stream()
-                .filter(movie -> movie.releaseYear() > 2000)
-                .count();
-        System.out.println("  Recent movies (after 2000): " + recentMoviesCount);
 
         System.out.println();
     }
