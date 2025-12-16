@@ -15,20 +15,20 @@ import java.util.TreeMap;
  */
 public class MapBasics {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== MAP BASICS ===\n");
 
         // Example 1: Creating and using a simple Map
         basicMapOperations();
 
-        // Example 2: Different types of Maps
-        differentMapTypes();
+        // Example 2: Map iteration techniques
+        mapIterationUsingStreamsAPI();
 
         // Example 3: Common Map operations
-        commonMapOperations();
+        modifyMapOperations();
 
-        // Example 4: Map iteration techniques
-        mapIterationExamples();
+        // Example 4: Different types of Maps
+        differentMapTypes();
 
         // Example 5: Real-world examples
         realWorldExamples();
@@ -44,24 +44,72 @@ public class MapBasics {
         Map<String, Integer> studentGrades = new HashMap<>();
 
         // Adding key-value pairs
-        studentGrades.put("Alice", 95);
-        studentGrades.put("Bob", 87);
-        studentGrades.put("Charlie", 92);
+        // Adding student names as keys and their grades as values
 
         System.out.println("Student grades: " + studentGrades);
 
         // Getting a value by key
-        Integer aliceGrade = studentGrades.get("Alice");
-        System.out.println("Alice's grade: " + aliceGrade);
+        // Retrieve Alice's grade
 
         // Checking if a key exists
-        if (studentGrades.containsKey("Bob")) {
-            System.out.println("Bob's grade: " + studentGrades.get("Bob"));
-        }
+        // Check if Bob is in the map
 
-        // Getting all keys and values
-        System.out.println("All students: " + studentGrades.keySet());
-        System.out.println("All grades: " + studentGrades.values());
+        // Get all student names and their grades
+
+        System.out.println();
+    }
+
+    /**
+     * Map iteration techniques - Different ways to loop through maps
+     */
+    public static void mapIterationUsingStreamsAPI() {
+        System.out.println("2. Map Iteration Techniques:");
+
+        Map<String, Integer> studentGrades = new HashMap<>();
+        studentGrades.put("Alice", 95);
+        studentGrades.put("Bob", 87);
+        studentGrades.put("Charlie", 92);
+
+        // 1. Using keySet() with functional approach
+        //  Iterate over keys and get values and print them.
+
+        // 2. Using entrySet() with functional approach
+        // Iterate over entries and print key-value pairs.
+
+        // 3. Using forEach() with lambda expression
+        // Directly iterate over map using forEach method.
+
+        System.out.println();
+    }
+
+    /**
+     * Common Map operations every developer should know
+     */
+    public static void modifyMapOperations() {
+        System.out.println("3. Common Map Operations:");
+
+        Map<String, Integer> inventory = new HashMap<>();
+        inventory.put("laptops", 10);
+        inventory.put("phones", 25);
+        inventory.put("tablets", 15);
+
+        // Get the size of the map and check if it's empty
+        System.out.println("Inventory size: " + inventory.size());
+        System.out.println("Is inventory empty? " + inventory.isEmpty());
+
+        // Update a value using computeIfPresent
+        // Update laptops to 12 if it exists
+
+
+        // Remove an item and capture the value
+        // remove tablets from inventory
+
+
+        // add a new item using putIfAbsent
+        // add ipads with quantity 10 if it doesn't exist
+
+        // Attempt to add an existing item using putIfAbsent
+        // update keyboards to 20 if it doesn't exist, update laptops to 99 if it doesn't exist
 
         System.out.println();
     }
@@ -73,27 +121,13 @@ public class MapBasics {
         System.out.println("2. Different Types of Maps:");
 
         // HashMap - No order guaranteed, fastest performance
-        Map<String, String> hashMap = new HashMap<>();
-        hashMap.put("apple", "red");
-        hashMap.put("banana", "yellow");
-        hashMap.put("grape", "purple");
-        System.out.println("HashMap (no order): " + hashMap);
+        // fruits and their colors - fruit name as key, color as value
 
         // LinkedHashMap - Maintains insertion order
-        Map<String, String> linkedHashMap = new LinkedHashMap<>();
-        linkedHashMap.put("apple", "red");
-        linkedHashMap.put("banana", "yellow");
-        linkedHashMap.put("grape", "purple");
-        System.out.println("LinkedHashMap (insertion order): " + linkedHashMap);
+        // fruits and their colors - fruit name as key, color as value
 
         // TreeMap - Sorted by keys
-        Map<String, String> treeMap = new TreeMap<>();
-        treeMap.put("apple", "red");
-        treeMap.put("banana", "yellow");
-        treeMap.put("grape", "purple");
-        System.out.println("TreeMap (sorted by key): " + treeMap);
-
-        System.out.println();
+        // fruits and their colors - fruit name as key, color as value
     }
 
     /**
@@ -108,6 +142,7 @@ public class MapBasics {
         inventory.put("tablets", 15);
 
         // Size and empty check
+        // Get the size of the map and check if it's empty
         System.out.println("Inventory size: " + inventory.size());
         System.out.println("Is inventory empty? " + inventory.isEmpty());
 
@@ -193,16 +228,9 @@ public class MapBasics {
 
         // Example 3: Word frequency counter
         String text = "hello world hello java world";
-        Map<String, Integer> wordCount = new HashMap<>();
 
-        String[] words = text.split(" ");
-        for (String word : words) {
-            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
-        }
-
-        System.out.println("\nWord Frequency:");
-        wordCount.forEach((word, count) ->
-            System.out.println(word + " appears " + count + " times"));
+        // Split the text into words and count frequency of each word
+        // Example: "hello" appears 2 times, "world" appears 2 times, "java" appears 1 time
 
         System.out.println();
     }
