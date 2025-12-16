@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 public class MapWithStreams {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== MAP WITH STREAMS API ===\n");
 
         // Example 1: Creating Maps from Lists using Streams
@@ -240,7 +240,7 @@ public class MapWithStreams {
         subjectScores.put("English", Arrays.asList(79, 85, 91, 88, 93));
 
         // Calculate average score for each subject
-        //
+        // Example: Math -> 87.6, Science -> 88.8, English -> 87.2
         Map<String, Double> averageScores = subjectScores.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
