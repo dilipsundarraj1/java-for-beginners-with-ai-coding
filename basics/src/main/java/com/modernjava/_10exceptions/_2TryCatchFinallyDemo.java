@@ -10,26 +10,24 @@ public class _2TryCatchFinallyDemo {
     }
 
     static void demoTryCatchFinally() {
+        // Add the finally block
         try {
             int result = 20 / 0;
 //            int result = 20 / 4;
             System.out.println("Result: " + result);
         } catch (ArithmeticException e) {
             System.out.println("Exception caught: " + e);
-        } finally {
-            System.out.println("Finally block always executes.");
         }
     }
 
     static void demoFinallyNoException() {
+        // Add the finally block
         System.out.println("--- Finally with No Exception Demo ---");
         try {
             int result = 20 / 4;
             System.out.println("Result: " + result);
         } catch (ArithmeticException e) {
             System.out.println("Exception caught: " + e);
-        } finally {
-            System.out.println("Finally block always executes (no exception).\n");
         }
     }
 
@@ -44,7 +42,7 @@ public class _2TryCatchFinallyDemo {
             System.out.println("In try block, returning 42.");
             return 42;
         } finally {
-            System.out.println("Finally block executes even after return statement.\n");
+            System.out.println("In finally block, always executes.");
         }
     }
 }

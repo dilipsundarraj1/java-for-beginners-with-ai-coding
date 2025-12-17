@@ -10,7 +10,7 @@ import java.util.*;
  * - Useful for membership tests, removing duplicates, etc.
  */
 public class SetBasics {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== SET BASICS ===\n");
 
         // Example 1: Basic Set operations

@@ -10,7 +10,7 @@ import java.util.*;
  * - Useful for membership tests, removing duplicates, etc.
  */
 public class SetBasics {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("=== SET BASICS ===\n");
 
         // Example 1: Basic Set operations
@@ -49,7 +49,6 @@ public class SetBasics {
     public static void differentSetTypes() {
         System.out.println("2. Different Types of Sets:");
         // create a HashSet of three elements
-
 
         // create a LinkedHashSet of three elements
 

@@ -3,7 +3,7 @@ package com.modernjava._10exceptions;
 import java.io.IOException;
 
 public class _4ThrowingExceptions {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("--- Throwing Exceptions Demo ---");
         demoThrowExample();
         try {
