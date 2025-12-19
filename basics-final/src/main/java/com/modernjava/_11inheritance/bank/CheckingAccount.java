@@ -4,11 +4,13 @@ package com.modernjava._11inheritance.bank;
 public class CheckingAccount extends BankAccount {
     private double overdraftLimit;
 
+    // Constructor to initialize checking account with account number, initial balance, and overdraft limit
     public CheckingAccount(String accountNumber, double initialBalance, double overdraftLimit) {
         super(accountNumber, initialBalance);
         this.overdraftLimit = overdraftLimit;
     }
 
+    // Override withdraw() method to allow withdrawals up to balance plus overdraft limit
     @Override
     public boolean withdraw(double amount) {
         if (amount > 0 && amount <= balance + overdraftLimit) {

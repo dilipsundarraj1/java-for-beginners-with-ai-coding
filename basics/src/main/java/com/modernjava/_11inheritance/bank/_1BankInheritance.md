@@ -1,5 +1,13 @@
 # BankInheritance.md
 
+<!-- TOC -->
+* [BankInheritance.md](#bankinheritancemd)
+  * [Bank Account Inheritance in Java](#bank-account-inheritance-in-java)
+  * [Prompts for Replication](#prompts-for-replication)
+    * [Prompt 1: BankAccount and SavingsAccount](#prompt-1-bankaccount-and-savingsaccount)
+    * [Prompt 2: CheckingAccount Subclass](#prompt-2-checkingaccount-subclass)
+<!-- TOC -->
+
 ## Bank Account Inheritance in Java
 
 This file demonstrates inheritance using a banking system. The base class `BankAccount` is extended by `SavingsAccount` and `CheckingAccount`, each adding or overriding behaviors to model real-world banking features.
