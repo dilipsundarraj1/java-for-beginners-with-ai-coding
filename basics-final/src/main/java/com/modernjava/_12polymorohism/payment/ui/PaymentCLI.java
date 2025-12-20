@@ -1,17 +1,17 @@
 package com.modernjava._12polymorohism.payment.ui;
 
-import com.modernjava._12polymorohism.payment.PaymentService;
+import com.modernjava._12polymorohism.payment.PaymentOrchestratorService;
 import com.modernjava._12polymorohism.payment.PaymentType;
 
 import java.util.Scanner;
 
 // Command-line interface for processing payments interactively
 public class PaymentCLI {
-    private PaymentService paymentService;
+    private PaymentOrchestratorService paymentOrchestratorService;
 
     // Constructor to initialize the PaymentCLI with a PaymentService instance
     public PaymentCLI() {
-        this.paymentService = new PaymentService();
+        this.paymentOrchestratorService = new PaymentOrchestratorService();
     }
 
     // Display menu options for available payment types
@@ -84,7 +84,7 @@ public class PaymentCLI {
             String detail = getPaymentDetails(scanner);
 
             System.out.println("\nProcessing payment...");
-            paymentService.processPayment(type, amount, detail);
+            paymentOrchestratorService.processPayment(type, amount, detail);
         }
 
         scanner.close();
