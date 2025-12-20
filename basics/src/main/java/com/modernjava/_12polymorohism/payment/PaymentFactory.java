@@ -10,9 +10,6 @@ public class PaymentFactory {
         return switch (type) {
             case CREDITCARD -> new CreditCardPayment(amount, detail);
             case PAYPAL -> new PayPalPayment(amount, detail);
-            case GIFTCARD -> new GiftCardPayment(amount, detail);
-            case DEBITCARD -> new DebitCardPayment(amount, detail);
-            case CRYPTO -> new CryptoPayment(amount, detail);
         };
     }
 }

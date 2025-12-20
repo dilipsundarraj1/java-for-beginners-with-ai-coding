@@ -18,9 +18,6 @@ public class PaymentCLI {
         System.out.println("\n===== Payment Processing System =====");
         System.out.println("1. Credit Card");
         System.out.println("2. PayPal");
-        System.out.println("3. Gift Card");
-        System.out.println("4. Debit Card");
-        System.out.println("5. Crypto");
         System.out.println("0. Exit");
         System.out.println("=====================================");
     }
@@ -30,9 +27,6 @@ public class PaymentCLI {
         return switch (choice) {
             case 1 -> PaymentType.CREDITCARD;
             case 2 -> PaymentType.PAYPAL;
-            case 3 -> PaymentType.GIFTCARD;
-            case 4 -> PaymentType.DEBITCARD;
-            case 5 -> PaymentType.CRYPTO;
             default -> null;
         };
     }
