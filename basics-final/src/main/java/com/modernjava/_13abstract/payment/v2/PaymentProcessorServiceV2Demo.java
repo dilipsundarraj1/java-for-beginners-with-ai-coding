@@ -1,7 +1,8 @@
-package com.modernjava._13abstract.payment;
+package com.modernjava._13abstract.payment.v2;
 
 import com.modernjava._13abstract.notification.NotificationSenderService;
 import com.modernjava._13abstract.notification.NotificationType;
+import com.modernjava._13abstract.payment.PaymentType;
 
 public class PaymentProcessorServiceV2Demo {
     public static void main(String[] args) {

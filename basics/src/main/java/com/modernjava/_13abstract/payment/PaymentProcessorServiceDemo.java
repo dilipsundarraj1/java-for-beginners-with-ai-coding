@@ -1,14 +1,14 @@
 package com.modernjava._13abstract.payment;
 
 public class PaymentProcessorServiceDemo {
-    public static void main(String[] args) {
-        PaymentProcessorService service = new PaymentProcessorService();
-        System.out.println("--- Credit Card Payment ---");
-        service.process(PaymentType.CREDIT, 100.0, "4111-1111-1111-1111");
-        System.out.println("\n--- PayPal Payment ---");
-        service.process(PaymentType.PAYPAL, 50.0, "user@example.com");
-        System.out.println("\n--- Gift Card Payment ---");
-        service.process(PaymentType.GIFTCARD, 25.0, "GIFT-1234-5678");
+    static void main(String[] args) {
+//        PaymentProcessorService service = new PaymentProcessorService();
+//        System.out.println("--- Credit Card Payment ---");
+//        service.process(PaymentType.CREDIT, 100.0, "4111-1111-1111-1111");
+//        System.out.println("\n--- PayPal Payment ---");
+//        service.process(PaymentType.PAYPAL, 50.0, "user@example.com");
+//        System.out.println("\n--- Gift Card Payment ---");
+//        service.process(PaymentType.GIFTCARD, 25.0, "GIFT-1234-5678");
     }
 }
 

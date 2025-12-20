@@ -1,6 +1,5 @@
 package com.modernjava.sealed.payment;
 
-import com.modernjava._13abstract.payment.FraudCheck;
 import com.modernjava._13abstract.pricingstrategy.RewardsStrategy;
 //public class CreditCardPaymentProcessor extends PaymentProcessor  {
 //public class CreditCardPaymentProcessor extends PaymentProcessor implements RewardsStrategy  {

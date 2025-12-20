@@ -1,12 +1,13 @@
 package com.modernjava._13abstract.payment;
 
 public class PaymentProcessorService {
+    // orchestration layer
     public void process(PaymentType paymentType, double amount, String details) {
-        PaymentProcessor processor = switch (paymentType) {
-            case CREDIT -> new CreditCardPaymentProcessor();
-            case PAYPAL -> new PaypalPaymentProcessor();
-            case GIFTCARD -> new GiftCardPaymentProcessor();
-        };
-        processor.processPayment(amount, details);
+//        PaymentProcessor processor = switch (paymentType) {
+//            case CREDIT -> new CreditCardPaymentProcessor();
+//            case PAYPAL -> new PaypalPaymentProcessor();
+//            case GIFTCARD -> new GiftCardPaymentProcessor();
+//        };
+//        processor.processPayment(amount, details);
     }
 }
