@@ -27,9 +27,9 @@ public class PatternMatchingUnnamedVariablesExample {
         System.out.println("=== Unnamed Variables in Pattern Matching ===");
 
         var people = List.of(
-            new Person("Alice", 30),
-            new Person("Bob", 25),
-            new Person("Charlie", 35)
+                new Person("Alice", 30),
+                new Person("Bob", 25),
+                new Person("Charlie", 35)
         );
 
         System.out.println("Extracting only names (ignoring age and city):");
@@ -46,13 +46,23 @@ public class PatternMatchingUnnamedVariablesExample {
     /**
      * Helper method to demonstrate the concept of ignoring certain values
      */
-    private static void extractNameOnly(Object obj) {
+    private static String extractNameOnly(Object obj) {
         if (obj instanceof Person person) {
             // We only care about the name, not age or city
             var name = person.name();
             // In pattern matching, we would use unnamed variables for age and city
             System.out.println("Person name: " + name);
+            return name;
         }
+
+        // switch expression with unnamed variables
+        return switch (obj){
+            case Person(var name, var _) -> {
+                System.out.println("Person name from switch: " + name);
+                yield name;
+            }
+            default -> "// Do nothing";
+        };
     }
 
 
@@ -71,12 +81,7 @@ public class PatternMatchingUnnamedVariablesExample {
         }
 
         // Unnamed variable approach - explicitly showing we don't need the exception
-        try {
-            Integer.parseInt("not a number");
-        } catch (NumberFormatException _) {
-            // Using _ explicitly shows we intentionally don't need the exception object
-            System.out.println("Unnamed variable: Exception occurred, intentionally ignoring details");
-        }
+
 
         System.out.println();
     }

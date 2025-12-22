@@ -40,6 +40,7 @@ public class PatternMatchingUnnamedVariablesExample {
             extractNameOnly(person);
         }
 
+        // switch expression with unnamed variables
         System.out.println();
     }
 
@@ -71,12 +72,7 @@ public class PatternMatchingUnnamedVariablesExample {
         }
 
         // Unnamed variable approach - explicitly showing we don't need the exception
-        try {
-            Integer.parseInt("not a number");
-        } catch (NumberFormatException _) {
-            // Using _ explicitly shows we intentionally don't need the exception object
-            System.out.println("Unnamed variable: Exception occurred, intentionally ignoring details");
-        }
+       
 
         System.out.println();
     }
