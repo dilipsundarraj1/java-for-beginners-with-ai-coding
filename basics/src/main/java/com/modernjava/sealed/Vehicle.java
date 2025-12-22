@@ -1,7 +1,6 @@
 package com.modernjava.sealed;
 
-public sealed abstract class Vehicle permits Car, Truck{
+public class Vehicle {
 
-    public abstract String drive();
 }
 

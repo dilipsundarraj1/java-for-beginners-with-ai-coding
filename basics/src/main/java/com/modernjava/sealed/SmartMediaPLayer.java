@@ -1,6 +1,5 @@
 package com.modernjava.sealed;
 
-public sealed interface SmartMediaPLayer permits Car {
-
+public interface SmartMediaPLayer  {
     void connectPhone();
 }

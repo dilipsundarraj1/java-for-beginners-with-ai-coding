@@ -1,6 +1,6 @@
 package com.modernjava.sealed.payment;
 
-public sealed abstract class PaymentProcessor permits CreditCardPaymentProcessor, GiftCardPaymentProcessor, PaypalPaymentProcessor {
+public  abstract class PaymentProcessor  {
     public abstract void processPayment(double amount, String details);
 
     public void printReceipt(double amount) {

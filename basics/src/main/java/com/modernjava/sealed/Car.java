@@ -1,17 +1,8 @@
 package com.modernjava.sealed;
 
 //public sealed class Car extends Vehicle implements SmartMediaPLayer permits FlyingCar {
-public non-sealed class Car extends Vehicle implements SmartMediaPLayer {
-    @Override
-    public String drive() {
-        return "CAR";
-    }
+public class Car extends Vehicle {
 
-    @Override
-    public void connectPhone() {
-        System.out.println("Phone Connected");
-    }
 }
 
-//public sealed class Car extends Vehicle permits FlyingCar { }
 
