@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.example</groupId>
+        <artifactId>java-for-beginners-with-ai-coding</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../..</relativePath>
+    </parent>
+
+    <groupId>com.modernjava</groupId>
+    <artifactId>movieapp-final</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Movie App Final</name>
+    <description>Final completed movie ticket booking application with all features</description>
+
+</project>
+
