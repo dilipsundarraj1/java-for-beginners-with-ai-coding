@@ -3,47 +3,46 @@ package com.modernjava.patternmatching.recordmatch;
 public class AnimalServiceDemo {
 
     public static void main(String[] args) {
-        AnimalService animalService = new AnimalService();
+        AnimalService service = new AnimalService();
 
-        // Create sample animals
-        Cat cat1 = new Cat("Whiskers", "Orange");
-        Cat catWithNullName = new Cat(null, "Black");
-        Dog dog1 = new Dog("Buddy", "Golden");
+        System.out.println("========== Testing retrieveName() ==========");
+        testRetrieveName(service);
 
-        System.out.println("=== AnimalService Demo ===\n");
+        System.out.println("\n========== Testing retrieveNameV2() ==========");
+        testRetrieveNameV2(service);
 
-        // Test retrieveName method
-        System.out.println("Testing retrieveName method:");
-        System.out.println("Cat (Whiskers): " + animalService.retrieveName(cat1));
-        System.out.println("Cat (null name): " + animalService.retrieveName(catWithNullName));
-        System.out.println("Dog (Buddy): " + animalService.retrieveName(dog1));
-        System.out.println("Null animal: " + animalService.retrieveName(null));
+        System.out.println("\n========== Testing retrieveNameGuardedPattern() ==========");
+        testRetrieveNameGuardedPattern(service);
 
-        System.out.println("\n" + "=".repeat(40) + "\n");
+        System.out.println("\n========== Testing retrieveNameGuardedPatternWithUnNamedVariables() ==========");
+        testRetrieveNameGuardedPatternWithUnNamedVariables(service);
+    }
 
-        // Test retrieveNameV2 method
-        System.out.println("Testing retrieveNameV2 method:");
-        System.out.println("Cat (Whiskers): " + animalService.retrieveNameV2(cat1));
-        System.out.println("Cat (null name): " + animalService.retrieveNameV2(catWithNullName));
-        System.out.println("Dog (Buddy): " + animalService.retrieveNameV2(dog1));
-        System.out.println("Null animal: " + animalService.retrieveNameV2(null));
+    // Test retrieveName() - Basic type pattern matching
+    private static void testRetrieveName(AnimalService service) {
+        // Test with Cat
+        Cat cat = new Cat("Whiskers", "Orange");
+        System.out.println("Cat: " + service.retrieveName(cat));
 
-        System.out.println("\n" + "=".repeat(40) + "\n");
+        // Test with Dog
+        Dog dog = new Dog("Buddy", "Brown");
+        System.out.println("Dog: " + service.retrieveName(dog));
 
-        // Test retrieveNameGuardedPattern method
-        System.out.println("Testing retrieveNameGuardedPattern method:");
-        System.out.println("Cat (Whiskers): " + animalService.retrieveNameGuardedPattern(cat1));
-        System.out.println("Cat (null name): " + animalService.retrieveNameGuardedPattern(catWithNullName));
-        System.out.println("Dog (Buddy): " + animalService.retrieveNameGuardedPattern(dog1));
-        System.out.println("Null animal: " + animalService.retrieveNameGuardedPattern(null));
+        // Test with null
+        System.out.println("Null: '" + service.retrieveName(null) + "'");
+    }
 
-        // Test retrieveNameGuardedPatternWithUnnamedVariables method
-        System.out.println("Testing retrieveNameGuardedPattern method:");
-        System.out.println("Cat (Whiskers): " + animalService.retrieveNameGuardedPatternWithUnNamedVariables(cat1));
-        System.out.println("Cat (null name): " + animalService.retrieveNameGuardedPatternWithUnNamedVariables(catWithNullName));
-        System.out.println("Dog (Buddy): " + animalService.retrieveNameGuardedPatternWithUnNamedVariables(dog1));
-        System.out.println("Null animal: " + animalService.retrieveNameGuardedPatternWithUnNamedVariables(null));
+    // Test retrieveNameV2() - Record deconstruction pattern
+    private static void testRetrieveNameV2(AnimalService service) {
 
-        System.out.println("\n=== Demo Complete ===");
+    }
+
+    // Test retrieveNameGuardedPattern() - Guarded pattern with when clause
+    private static void testRetrieveNameGuardedPattern(AnimalService service) {
+    }
+
+    // Test retrieveNameGuardedPatternWithUnNamedVariables() - Unnamed variables with underscore
+    private static void testRetrieveNameGuardedPatternWithUnNamedVariables(AnimalService service) {
     }
 }
+
