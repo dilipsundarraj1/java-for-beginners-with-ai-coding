@@ -25,7 +25,7 @@ public class UnnamedVariables {
 
         Map<String, Integer> freq = Map.of("a", 1, "b", 2, "c", 3);
 
-        freq.forEach((k, _) -> System.out.println("key: " + k ));
+        // Process all the map key-values but just print the key and  using unnamed variable for the "value" we don't care about
 
     }
 
@@ -51,7 +51,7 @@ public class UnnamedVariables {
     private static Integer getInteger(String s) {
         try {
             return Integer.parseInt(s);
-        } catch (Exception _) {
+        } catch (Exception e) { // We don't care about the exception details, we can use an unnamed variable
             System.out.println("Failed to parse: " + s);
             return null;
         }
