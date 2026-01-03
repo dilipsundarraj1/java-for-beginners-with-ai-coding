@@ -3,6 +3,7 @@ package com.modernjava._15datetime;
 import com.modernjava.domain.Movie;
 import com.modernjava.domain.MovieGenre;
 import com.modernjava.domain.ticketapp.Screen;
+import com.modernjava.domain.ticketapp.Seat;
 import com.modernjava.domain.ticketapp.ShowTimeV2;
 import com.modernjava.domain.ticketapp.Theatre;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
+import java.util.List;
 
 /**
  * Lecture: LocalTime
@@ -185,7 +187,7 @@ public class _2LocalTime {
         var showTime = LocalTime.of(19, 30); // 7:30 PM
         // Create ShowTime record
         var show = new ShowTimeV2(
-                showDate, showTime, screen, movie);
+                showDate, showTime, screen, movie, List.of(new Seat("A", 1), new Seat("A", 2)));
         // Print details
         System.out.println("\nShowTime demonstration:");
         System.out.println("Movie: " + show.movie().title());
