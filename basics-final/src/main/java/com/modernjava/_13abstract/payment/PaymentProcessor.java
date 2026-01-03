@@ -1,6 +1,7 @@
 package com.modernjava._13abstract.payment;
 
-public abstract class PaymentProcessor {
+//public abstract class PaymentProcessor {
+abstract class PaymentProcessor {
     public abstract void processPayment(double amount, String details);
 
     public void printReceipt(double amount) {
