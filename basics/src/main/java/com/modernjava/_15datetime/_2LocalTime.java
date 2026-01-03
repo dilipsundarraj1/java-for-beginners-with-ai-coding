@@ -3,13 +3,15 @@ package com.modernjava._15datetime;
 import com.modernjava.domain.Movie;
 import com.modernjava.domain.MovieGenre;
 import com.modernjava.domain.ticketapp.Screen;
-import com.modernjava.domain.ticketapp.ShowTimeV2;
+import com.modernjava.domain.ticketapp.Seat;
+import com.modernjava.domain.ticketapp.ShowTimeWithSeats;
 import com.modernjava.domain.ticketapp.Theatre;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Lecture: LocalTime
@@ -18,16 +20,16 @@ import java.util.Collections;
  */
 public class _2LocalTime {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         // Demonstrate LocalTime creation
         createLocalTimeExamples();
-
-        // Compare now with a specific time
-        compareWithNow(LocalTime.of(23, 59, 59));
 
         // Demonstrate retrieving values from LocalTime
         System.out.println("\nRetrieving values from current time:");
         printLocalTimeValues(LocalTime.now());
+
+        // Compare now with a specific time
+        compareWithNow(LocalTime.of(23, 59, 59));
 
         // Demonstrate modifying LocalTime
         System.out.println("\nModifying current time:");
@@ -38,22 +40,17 @@ public class _2LocalTime {
 
     /**
      * Demonstrates creation of LocalTime for now, a specific time, and from string.
-        */
+     */
     public static void createLocalTimeExamples() {
-        LocalTime now = LocalTime.now();
-        System.out.println("Current time: " + now);
+        // Create LocalTime for current time using now() method, store it in a variable, and print it
 
-        LocalTime noon = LocalTime.NOON;
-        System.out.println("Noon: " + noon);
+        // Create LocalTime for noon using NOON constant, store it in a variable, and print it
 
-        LocalTime midnight = LocalTime.MIDNIGHT;
-        System.out.println("Midnight: " + midnight);
+        // Create LocalTime for midnight using MIDNIGHT constant, store it in a variable, and print it
 
-        LocalTime specific = LocalTime.of(15, 30, 45);
-        System.out.println("Specific time: " + specific);
+        // Create LocalTime for a specific time using of() method, store it in a variable, and print it
 
-        LocalTime parsed = LocalTime.parse("08:20:15");
-        System.out.println("Parsed time: " + parsed);
+        // Create LocalTime by parsing a string in HH:MM:SS format, store it in a variable, and print it
     }
 
     /**
@@ -62,14 +59,21 @@ public class _2LocalTime {
      * @param time the LocalTime to extract values from
      */
     public static void printLocalTimeValues(LocalTime time) {
-        System.out.println("Hour: " + time.getHour());
-        System.out.println("Minute: " + time.getMinute());
-        System.out.println("Second: " + time.getSecond());
-        System.out.println("Nano: " + time.getNano());
-        System.out.println("Is midnight: " + time.equals(LocalTime.MIDNIGHT));
-        System.out.println("Is noon: " + time.equals(LocalTime.NOON));
-        System.out.println("toSecondOfDay: " + time.toSecondOfDay());
-        System.out.println("toNanoOfDay: " + time.toNanoOfDay());
+        // Get the hour from the LocalTime, store it in a variable, and print it
+
+        // Get the minute from the LocalTime, store it in a variable, and print it
+
+        // Get the second from the LocalTime, store it in a variable, and print it
+
+        // Get the nanosecond from the LocalTime, store it in a variable, and print it
+
+        // Check if the time is midnight, store it in a variable, and print it
+
+        // Check if the time is noon, store it in a variable, and print it
+
+        // Get the total seconds from the start of day, store it in a variable, and print it
+
+        // Get the total nanoseconds from the start of day, store it in a variable, and print it
     }
 
     /**
@@ -77,13 +81,11 @@ public class _2LocalTime {
      * @param otherTime the LocalTime to compare with now
      */
     public static void compareWithNow(LocalTime otherTime) {
-        LocalTime now = LocalTime.now();
-        boolean isBefore = now.isBefore(otherTime);
-        boolean isAfter = now.isAfter(otherTime);
-        boolean isEqual = now.equals(otherTime);
-        System.out.println("Is now before " + otherTime + "? " + isBefore);
-        System.out.println("Is now after " + otherTime + "? " + isAfter);
-        System.out.println("Is now equal to " + otherTime + "? " + isEqual);
+        // Check if now is before the other time, store it in a variable, and print it
+
+        // Check if now is after the other time, store it in a variable, and print it
+
+        // Check if now is equal to the other time, store it in a variable, and print it
     }
 
     /**
@@ -92,46 +94,53 @@ public class _2LocalTime {
      * @param time the LocalTime to modify
      */
     public static void modifyLocalTimeExamples(LocalTime time) {
-        System.out.println("Original time: " + time);
-        System.out.println("Plus 2 hours: " + time.plusHours(2));
-        System.out.println("Minus 30 minutes: " + time.minusMinutes(30));
-        System.out.println("Plus 45 seconds: " + time.plusSeconds(45));
-        System.out.println("Minus 1000000 nanos: " + time.minusNanos(1_000_000));
-        System.out.println("With hour 6: " + time.withHour(6));
-        System.out.println("With minute 0: " + time.withMinute(0));
-        System.out.println("With second 0: " + time.withSecond(0));
-        System.out.println("With nano 0: " + time.withNano(0));
-        // Using with(ChronoField)
-        System.out.println("With hour set to 23 (ChronoField): " + time.with(ChronoField.HOUR_OF_DAY, 23));
-        // Edge case: wrap around midnight
-        System.out.println("Plus 24 hours (wraps to same time): " + time.plusHours(24));
+        // Store original time in variable and print it
 
+        // Add 2 hours to the time, store in variable, and print it
+
+        // Subtract 30 minutes from the time, store in variable, and print it
+
+        // Add 45 seconds to the time, store in variable, and print it
+
+        // Subtract 1000000 nanoseconds from the time, store in variable, and print it
+
+        // Set hour to 6, store in variable, and print it
+
+        // Set minute to 0, store in variable, and print it
+
+        // Set second to 0, store in variable, and print it
+
+        // Set nanosecond to 0, store in variable, and print it
+
+        // Set hour to 23 using ChronoField, store in variable, and print it
+
+        // Add 24 hours which wraps to same time, store in variable, and print it
     }
     /**
      * Demonstrates the use of LocalTime with the ShowTime record class.
      */
     public static void demonstrateShowTimeWithLocalTime() {
-        // Create a dummy Movie
-        Movie movie = new Movie(
-                "Inception", 148, MovieGenre.SCI_FI, 8.8, 2010, "Christopher Nolan");
-        // Create a dummy Theatre (as Screen requires it)
-        Theatre theatre = new Theatre(
-                "IMAX", "Downtown", Collections.emptyList());
-        // Create a dummy Screen
-        Screen screen = new Screen(
-                "Screen 1", 200, theatre);
-        // Use LocalDate and LocalTime for show date and time
-        var showDate = LocalDate.now();
-        var showTime = LocalTime.of(19, 30); // 7:30 PM
-        // Create ShowTime record
-        var show = new ShowTimeV2(
-                showDate, showTime, screen, movie);
-        // Print details
-        System.out.println("\nShowTime demonstration:");
-        System.out.println("Movie: " + show.movie().title());
-        System.out.println("Screen: " + show.screen().name());
-        System.out.println("Date: " + show.date());
-        System.out.println("Time: " + show.time());
+        // Create a dummy Movie with title, duration, genre, rating, year, and director
+
+        // Create a dummy Theatre with name, location, and empty screens list
+
+        // Create a dummy Screen with name, capacity, and associated theatre
+
+        // Create LocalDate for today's date using now() method
+
+        // Create LocalTime for 7:30 PM (19:30) using of() method
+
+        // Create ShowTimeWithSeats record with date, time, screen, movie, and list of seats
+
+        // Print a blank line and the ShowTime demonstration header
+
+        // Get and print the movie title from the ShowTime record
+
+        // Get and print the screen name from the ShowTime record
+
+        // Get and print the show date from the ShowTime record
+
+        // Get and print the show time from the ShowTime record
     }
 }
 

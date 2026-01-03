@@ -4,7 +4,7 @@ import com.modernjava.domain.Movie;
 import com.modernjava.domain.MovieGenre;
 import com.modernjava.domain.ticketapp.Screen;
 import com.modernjava.domain.ticketapp.Seat;
-import com.modernjava.domain.ticketapp.ShowTimeV2;
+import com.modernjava.domain.ticketapp.ShowTimeWithSeats;
 import com.modernjava.domain.ticketapp.Theatre;
 
 import java.time.LocalDate;
@@ -186,7 +186,7 @@ public class _2LocalTime {
         var showDate = LocalDate.now();
         var showTime = LocalTime.of(19, 30); // 7:30 PM
         // Create ShowTime record
-        var show = new ShowTimeV2(
+        var show = new ShowTimeWithSeats(
                 showDate, showTime, screen, movie, List.of(new Seat("A", 1), new Seat("A", 2)));
         // Print details
         System.out.println("\nShowTime demonstration:");

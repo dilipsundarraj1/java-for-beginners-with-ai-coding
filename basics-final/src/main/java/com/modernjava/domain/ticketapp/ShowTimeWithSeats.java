@@ -4,10 +4,9 @@ import com.modernjava.domain.Movie;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
-public record ShowTimeV2(
+public record ShowTimeWithSeats(
     LocalDate date,
     LocalTime time,
     Screen screen,
