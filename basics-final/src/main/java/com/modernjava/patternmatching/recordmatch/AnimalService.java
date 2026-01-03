@@ -11,44 +11,37 @@ public class AnimalService {
 
     }
 
+    /*
+    Record deconstruction pattern matching
+     */
     public String retrieveNameV2(Animal animal) {
         return switch (animal) {
-//            case Cat(String name,
-//                     String color) -> name;
-            //type inference can also be used in the binding variable.
-            //case Cat(var name, var color) -> name;
-            case Cat(var name, var color) -> {
-                //If there are many conditions or checks this case statement can bloat up.
-                // guarded patterns is another option that's applicable to us.
-                System.out.println("name : "+name);
-                yield name==null ? "" : name;
-            }
-            case Dog(String name, String color) -> name;
-            // The null case is must and it handles the null pointer exception.
-            // It does not matter where this case statement is kept.
-            case null -> "";
+            case null -> ""; // This handles the null pointer exception.
+            case Cat(String name, String color) -> name; // Pattern matching with record patterns
+            case Dog(String name, String color) -> name; // Pattern matching with record patterns
         };
     }
 
-    public String retrieveNameGuardedPattern(Animal animal) {
+    /*
+    Record deconstruction pattern matching with guarded patterns
+     */
+    public String retrieveNameV3(Animal animal) {
         return switch (animal) {
-            case Cat(var name, var color) when name==null -> "";
-            case Cat(var name, var color) -> name;
-            case Dog(String name, String color) -> name;
-            // The null case is must and it handles the null pointer exception.
-            // It does not matter where this case statement is kept.
-            case null-> "";
+            case null -> ""; // This handles the null pointer exception.
+            case Cat(String name, String color) when name != null -> name; // Guarded pattern: name must not be null
+            case Dog(String name, String color) when name != null -> name; // Guarded pattern: name must not be null
+            default -> ""; // Return empty string if name is null or no match
         };
     }
 
-    public String retrieveNameGuardedPatternWithUnNamedVariables(Animal animal) {
+    public String retrieveNameV4(Animal animal) {
         return switch (animal) {
-            case Cat(var name, var _) when name==null -> "";
-            case Cat(var name, var _) -> name;
-            case Dog(String name, String _) -> name;
-            // The null case is must and it handles the null pointer exception.
-            // It does not matter where this case statement is kept.
-            case null-> "";
+            case null -> ""; // This handles the null pointer exception.
+            case Cat(String name, String _) when name != null -> name; // Guarded pattern: name must not be null
+            case Dog(String name, String _) when name != null -> name; // Guarded pattern: name must not be null
+            default -> ""; // Return empty string if name is null or no match
         };
     }
+
 }
+

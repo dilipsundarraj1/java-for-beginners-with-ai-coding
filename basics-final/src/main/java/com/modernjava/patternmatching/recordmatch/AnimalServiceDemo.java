@@ -2,7 +2,7 @@ package com.modernjava.patternmatching.recordmatch;
 
 public class AnimalServiceDemo {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         AnimalService service = new AnimalService();
 
         System.out.println("========== Testing retrieveName() ==========");
@@ -35,16 +35,12 @@ public class AnimalServiceDemo {
     // Test retrieveNameV2() - Record deconstruction pattern
     private static void testRetrieveNameV2(AnimalService service) {
         // Test with Cat
-        Cat cat = new Cat("Mittens", "White");
+        Cat cat = new Cat("Whiskers", "Orange");
         System.out.println("Cat: " + service.retrieveNameV2(cat));
 
         // Test with Dog
-        Dog dog = new Dog("Max", "Black");
+        Dog dog = new Dog("Buddy", "Brown");
         System.out.println("Dog: " + service.retrieveNameV2(dog));
-
-        // Test with Cat with null name
-        Cat catWithNullName = new Cat(null, "Gray");
-        System.out.println("Cat with null name: '" + service.retrieveNameV2(catWithNullName) + "'");
 
         // Test with null
         System.out.println("Null: '" + service.retrieveNameV2(null) + "'");
@@ -53,37 +49,45 @@ public class AnimalServiceDemo {
     // Test retrieveNameGuardedPattern() - Guarded pattern with when clause
     private static void testRetrieveNameGuardedPattern(AnimalService service) {
         // Test with Cat
-        Cat cat = new Cat("Luna", "Black");
-        System.out.println("Cat: " + service.retrieveNameGuardedPattern(cat));
+        Cat cat = new Cat("Whiskers", "Orange");
+        System.out.println("Cat: " + service.retrieveNameV3(cat));
 
         // Test with Dog
-        Dog dog = new Dog("Rex", "Golden");
-        System.out.println("Dog: " + service.retrieveNameGuardedPattern(dog));
+        Dog dog = new Dog("Buddy", "Brown");
+        System.out.println("Dog: " + service.retrieveNameV3(dog));
 
-        // Test with Cat with null name (guarded pattern will catch this)
-        Cat catWithNullName = new Cat(null, "Spotted");
-        System.out.println("Cat with null name: '" + service.retrieveNameGuardedPattern(catWithNullName) + "'");
+        // Test with null animal
+        System.out.println("Null: '" + service.retrieveNameV3(null) + "'");
 
-        // Test with null
-        System.out.println("Null: '" + service.retrieveNameGuardedPattern(null) + "'");
+        // Test with Cat with null name
+        Cat catWithNullName = new Cat(null, "Orange");
+        System.out.println("Cat with null name: '" + service.retrieveNameV3(catWithNullName) + "'");
+
+        // Test with Dog with null name
+        Dog dogWithNullName = new Dog(null, "Brown");
+        System.out.println("Dog with null name: '" + service.retrieveNameV3(dogWithNullName) + "'");
     }
 
     // Test retrieveNameGuardedPatternWithUnNamedVariables() - Unnamed variables with underscore
     private static void testRetrieveNameGuardedPatternWithUnNamedVariables(AnimalService service) {
         // Test with Cat
-        Cat cat = new Cat("Simba", "Orange");
-        System.out.println("Cat: " + service.retrieveNameGuardedPatternWithUnNamedVariables(cat));
+        Cat cat = new Cat("Whiskers", "Orange");
+        System.out.println("Cat: " + service.retrieveNameV4(cat));
 
         // Test with Dog
-        Dog dog = new Dog("Lassie", "White");
-        System.out.println("Dog: " + service.retrieveNameGuardedPatternWithUnNamedVariables(dog));
+        Dog dog = new Dog("Buddy", "Brown");
+        System.out.println("Dog: " + service.retrieveNameV4(dog));
+
+        // Test with null animal
+        System.out.println("Null: '" + service.retrieveNameV4(null) + "'");
 
         // Test with Cat with null name
-        Cat catWithNullName = new Cat(null, "Brown");
-        System.out.println("Cat with null name: '" + service.retrieveNameGuardedPatternWithUnNamedVariables(catWithNullName) + "'");
+        Cat catWithNullName = new Cat(null, "Orange");
+        System.out.println("Cat with null name: '" + service.retrieveNameV4(catWithNullName) + "'");
 
-        // Test with null
-        System.out.println("Null: '" + service.retrieveNameGuardedPatternWithUnNamedVariables(null) + "'");
+        // Test with Dog with null name
+        Dog dogWithNullName = new Dog(null, "Brown");
+        System.out.println("Dog with null name: '" + service.retrieveNameV4(dogWithNullName) + "'");
     }
 }
 
