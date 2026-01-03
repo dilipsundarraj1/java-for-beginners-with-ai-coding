@@ -3,10 +3,8 @@ package com.modernjava._14accessmodifiers;
 // Default (package-private) class and member example
 class DefaultExample {
 
-    String defaultField = "I am package-private!";
+    // create a default (package-private) field that holds a string value
 
-    void defaultMethod() {
-        System.out.println("Default/package-private method called");
-    }
+    // create a default (package-private) method that prints a message
 }
 
