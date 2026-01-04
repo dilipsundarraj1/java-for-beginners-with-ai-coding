@@ -99,6 +99,9 @@ public class _4ZonedDateTime {
         // Replace the year with 2030 using withYear() method, store result in a variable, and print it
 
         // Convert to New York zone while keeping the same instant using withZoneSameInstant() method, store result in a variable, and print it
+        //withZoneSameInstant :
+            //  In other words, it answers the question: "What time is it in a different timezone at this exact same moment?"
+            //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
 
         // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
     }
