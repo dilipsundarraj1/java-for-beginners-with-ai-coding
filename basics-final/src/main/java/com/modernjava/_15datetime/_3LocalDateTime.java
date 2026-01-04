@@ -211,5 +211,3 @@ public class _3LocalDateTime {
         System.out.println("DateTime: " + dateTime);
     }
 }
-
-// Example domain record
