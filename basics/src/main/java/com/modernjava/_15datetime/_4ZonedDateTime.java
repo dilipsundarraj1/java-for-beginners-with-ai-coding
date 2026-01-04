@@ -1,21 +1,21 @@
 package com.modernjava._15datetime;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 
 public class _4ZonedDateTime {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         createZonedDateTimeInstances();
-        System.out.println("\n-------------------\n");
-        comparingZonedDateTimeInstances();
         System.out.println("\n-------------------\n");
         retrievingValuesFromZonedDateTime();
         System.out.println("\n-------------------\n");
+
+        comparingZonedDateTimeInstances();
+        System.out.println("\n-------------------\n");
         modifyingZonedDateTimeInstances();
         System.out.println("\n-------------------\n");
+
         handlingTimeZoneConversions();
         System.out.println("\n-------------------\n");
         dealingWithDaylightSavings();
@@ -26,137 +26,111 @@ public class _4ZonedDateTime {
     private static void createZonedDateTimeInstances() {
         System.out.println("Creating ZonedDateTime Instances");
 
-        // Current date and time in system default zone
-        ZonedDateTime nowLocal = ZonedDateTime.now();
-        System.out.println("Current date and time (system default zone): " + nowLocal);
+        // Create ZonedDateTime for current date and time in system default zone using now() method, store it in a variable, and print it
 
-        // Current date and time in specific zone
-        ZonedDateTime nowNY = ZonedDateTime.now(ZoneId.of("America/New_York"));
-        System.out.println("Current date and time in New York: " + nowNY);
+        // Create ZonedDateTime for current date and time in specific zone "America/New_York" using now(ZoneId) method, store it in a variable, and print it
 
-        // From LocalDateTime with zone
-        LocalDateTime local = LocalDateTime.now();
-        ZonedDateTime fromLocal = local.atZone(ZoneId.of("Europe/London"));
-        System.out.println("From LocalDateTime in London: " + fromLocal);
+        // Create ZonedDateTime from LocalDateTime with zone "Europe/London" using atZone() method, store it in a variable, and print it
 
-        // Specific date and time with zone
-        ZonedDateTime specific = ZonedDateTime.of(
-            2025, 12, 25, 20, 30, 45, 0,
-            ZoneId.of("Asia/Tokyo")
-        );
-        System.out.println("Specific date and time in Tokyo: " + specific);
+        // Create ZonedDateTime for specific date and time with zone using of() method - Asia/Tokyo, store it in a variable, and print it
 
-        // From string
-        ZonedDateTime parsed = ZonedDateTime.parse("2025-12-25T20:30:45+09:00[Asia/Tokyo]");
-        System.out.println("Parsed date and time: " + parsed);
+        // Create ZonedDateTime by parsing a string in ISO-8601 format with zone, store it in a variable, and print it
 
-        // Available zones
-        System.out.println("\nSome available time zones:");
-        ZoneId.getAvailableZoneIds().stream()
-            .filter(zone -> zone.startsWith("America/") || zone.startsWith("Europe/") || zone.startsWith("Asia/"))
-            .limit(5)
-            .forEach(zone -> System.out.println("- " + zone));
+        // Get and display all available time zones using getAvailableZoneIds(), filter, and print them
     }
 
     private static void comparingZonedDateTimeInstances() {
         System.out.println("Comparing ZonedDateTime Instances");
 
-        ZonedDateTime tokyoTime = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-        ZonedDateTime nyTime = ZonedDateTime.now(ZoneId.of("America/New_York"));
+        // Create ZonedDateTime for current date and time in Tokyo zone using now(ZoneId) method, store it in a variable, and print it
 
-        System.out.println("Tokyo time: " + tokyoTime);
-        System.out.println("New York time: " + nyTime);
-        System.out.println("Is Tokyo before NY? " + tokyoTime.isBefore(nyTime));
-        System.out.println("Is Tokyo after NY? " + tokyoTime.isAfter(nyTime));
-        System.out.println("Are they at the same instant? " + tokyoTime.toInstant().equals(nyTime.toInstant()));
+        // Create ZonedDateTime for current date and time in New York zone using now(ZoneId) method, store it in a variable, and print it
+
+        // Compare if tokyoTime is before nyTime using isBefore() method, store result in a variable, and print it
+
+        // Compare if tokyoTime is after nyTime using isAfter() method, store result in a variable, and print it
+
+        // Compare if tokyoTime and nyTime represent the same instant using toInstant().equals() method, store result in a variable, and print it
     }
 
     private static void retrievingValuesFromZonedDateTime() {
         System.out.println("Retrieving Values from ZonedDateTime");
 
-        ZonedDateTime dateTime = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
-        System.out.println("Complete ZonedDateTime: " + dateTime);
+        // Create current date and time in specific zone using now(ZoneId) method, store it in a variable, and print it
 
-        // Zone information
-        System.out.println("Time Zone: " + dateTime.getZone());
-        System.out.println("Zone Offset: " + dateTime.getOffset());
+        // Get the time zone from the ZonedDateTime using getZone() method, store it in a variable, and print it
 
-        // Date components
-        System.out.println("Year: " + dateTime.getYear());
-        System.out.println("Month: " + dateTime.getMonth());
-        System.out.println("Day of Month: " + dateTime.getDayOfMonth());
-        System.out.println("Day of Week: " + dateTime.getDayOfWeek());
+        // Get the zone offset from the ZonedDateTime using getOffset() method, store it in a variable, and print it
 
-        // Time components
-        System.out.println("Hour: " + dateTime.getHour());
-        System.out.println("Minute: " + dateTime.getMinute());
-        System.out.println("Second: " + dateTime.getSecond());
+        // Get the year from the ZonedDateTime using getYear() method, store it in a variable, and print it
 
-        // Converting to other types
-        System.out.println("As LocalDateTime: " + dateTime.toLocalDateTime());
-        System.out.println("As Instant: " + dateTime.toInstant());
+        // Get the month from the ZonedDateTime using getMonth() method, store it in a variable, and print it
+
+        // Get the day of month from the ZonedDateTime using getDayOfMonth() method, store it in a variable, and print it
+
+        // Get the day of week from the ZonedDateTime using getDayOfWeek() method, store it in a variable, and print it
+
+        // Get the hour from the ZonedDateTime using getHour() method, store it in a variable, and print it
+
+        // Get the minute from the ZonedDateTime using getMinute() method, store it in a variable, and print it
+
+        // Get the second from the ZonedDateTime using getSecond() method, store it in a variable, and print it
+
+        // Convert ZonedDateTime to LocalDateTime using toLocalDateTime() method, store it in a variable, and print it
+
+        // Convert ZonedDateTime to Instant using toInstant() method, store it in a variable, and print it
     }
 
     private static void modifyingZonedDateTimeInstances() {
         System.out.println("Modifying ZonedDateTime Instances");
 
-        ZonedDateTime dateTime = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
-        System.out.println("Original DateTime (Paris): " + dateTime);
+        // Create current date and time in Paris zone using now(ZoneId) method, store it in a variable, and print it
 
-        // Adding and subtracting
-        System.out.println("Plus 1 year: " + dateTime.plusYears(1));
-        System.out.println("Minus 1 month: " + dateTime.minusMonths(1));
-        System.out.println("Plus 1 week: " + dateTime.plusWeeks(1));
-        System.out.println("Plus 2 days: " + dateTime.plusDays(2));
-        System.out.println("Plus 3 hours: " + dateTime.plusHours(3));
+        // Add 1 year to the original ZonedDateTime using plusYears() method, store result in a variable, and print it
 
-        // Using with methods
-        System.out.println("With different year: " + dateTime.withYear(2030));
-        System.out.println("With different zone: " + dateTime.withZoneSameInstant(ZoneId.of("America/New_York")));
-        System.out.println("With different zone (same local time): " + dateTime.withZoneSameLocal(ZoneId.of("America/New_York")));
+        // Subtract 1 month from the original ZonedDateTime using minusMonths() method, store result in a variable, and print it
+
+        // Add 1 week to the original ZonedDateTime using plusWeeks() method, store result in a variable, and print it
+
+        // Add 2 days to the original ZonedDateTime using plusDays() method, store result in a variable, and print it
+
+        // Add 3 hours to the original ZonedDateTime using plusHours() method, store result in a variable, and print it
+
+        // Replace the year with 2030 using withYear() method, store result in a variable, and print it
+
+        // Convert to New York zone while keeping the same instant using withZoneSameInstant() method, store result in a variable, and print it
+
+        // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
     }
 
     private static void handlingTimeZoneConversions() {
         System.out.println("Handling Time Zone Conversions");
 
-        // Create a time in one zone
-        ZonedDateTime sydneyTime = ZonedDateTime.now(ZoneId.of("Australia/Sydney"));
-        System.out.println("Time in Sydney: " + sydneyTime);
+        // Create a time in Sydney zone using now(ZoneId) method, store it in a variable, and print it
 
-        // Convert to other zones
-        System.out.println("Same instant in:");
-        System.out.println("- London: " + sydneyTime.withZoneSameInstant(ZoneId.of("Europe/London")));
-        System.out.println("- New York: " + sydneyTime.withZoneSameInstant(ZoneId.of("America/New_York")));
-        System.out.println("- Tokyo: " + sydneyTime.withZoneSameInstant(ZoneId.of("Asia/Tokyo")));
+        // Convert Sydney time to London zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
 
-        // Calculate time differences
-        ZonedDateTime londonTime = sydneyTime.withZoneSameInstant(ZoneId.of("Europe/London"));
-        long hoursDiff = ChronoUnit.HOURS.between(londonTime, sydneyTime);
-        System.out.println("Hours difference between Sydney and London: " + hoursDiff);
+        // Convert Sydney time to New York zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
+
+        // Convert Sydney time to Tokyo zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
+
+        // Calculate the hours difference between London and Sydney using ChronoUnit.HOURS.between() method, store result in a variable, and print it
     }
 
     private static void dealingWithDaylightSavings() {
         System.out.println("Dealing with Daylight Savings Time (DST)");
 
-        // Example with US DST transition (2nd Sunday in March)
-        ZonedDateTime beforeDst = ZonedDateTime.of(
-            2025, 3, 10, 1, 30, 0, 0,
-            ZoneId.of("America/New_York")
-        );
-        System.out.println("Before DST transition: " + beforeDst);
-        System.out.println("After adding 1 hour: " + beforeDst.plusHours(1));
+        // Create a ZonedDateTime before DST transition (2nd Sunday in March) using of() method, store it in a variable, and print it
 
-        // Example with fall back (1st Sunday in November)
-        ZonedDateTime beforeFallBack = ZonedDateTime.of(
-            2025, 11, 3, 1, 30, 0, 0,
-            ZoneId.of("America/New_York")
-        );
-        System.out.println("\nBefore fall back: " + beforeFallBack);
-        System.out.println("After adding 1 hour: " + beforeFallBack.plusHours(1));
+        // Add 1 hour to the time before DST using plusHours() method, store result in a variable, and print it
 
-        // Check if time is in DST
-        System.out.println("\nIs March time in DST? " + beforeDst.getZone().getRules().isDaylightSavings(beforeDst.toInstant()));
-        System.out.println("Is November time in DST? " + beforeFallBack.getZone().getRules().isDaylightSavings(beforeFallBack.toInstant()));
+        // Create a ZonedDateTime before fall back transition (1st Sunday in November) using of() method, store it in a variable, and print it
+
+        // Add 1 hour to the time before fall back using plusHours() method, store result in a variable, and print it
+
+        // Check if March time is in DST using getZone().getRules().isDaylightSavings() method, store result in a variable, and print it
+
+        // Check if November time is in DST using getZone().getRules().isDaylightSavings() method, store result in a variable, and print it
     }
 
 
@@ -164,22 +138,19 @@ public class _4ZonedDateTime {
         System.out.println("Simple Example: Flight Travel Times");
         System.out.println("----------------------------------");
 
-        // Flight from New York to London
-        ZonedDateTime departureNY = ZonedDateTime.of(2025, 10, 15, 18, 30, 0, 0, ZoneId.of("America/New_York"));
-        System.out.println("Departure from New York: " + departureNY);
+        // Create a departure time from New York using of() method, store it in a variable, and print it
 
-        // Flight duration: 7 hours
-        ZonedDateTime arrivalLondon = departureNY.plusHours(7).withZoneSameInstant(ZoneId.of("Europe/London"));
-        System.out.println("Arrival in London: " + arrivalLondon);
+        // Calculate arrival time in London by adding 7 hours and converting to London zone using plusHours() and withZoneSameInstant() methods, store result in a variable, and print it
 
-        // What time is it back home when you land?
-        ZonedDateTime landingTimeInNY = arrivalLondon.withZoneSameInstant(ZoneId.of("America/New_York"));
-        System.out.println("Landing time in New York timezone: " + landingTimeInNY);
+        // Convert the landing time back to New York timezone to see what time it is at home using withZoneSameInstant() method, store it in a variable, and print it
 
         System.out.println("\nTime difference:");
         System.out.println("\nTime difference (computed):");
-        System.out.println("- Departure (New York): " + departureNY.toLocalTime() + " " + departureNY.getZone());
-        System.out.println("- Arrival (London): " + arrivalLondon.toLocalTime() + " " + arrivalLondon.getZone());
-        System.out.println("- At that instant in New York: " + landingTimeInNY.toLocalTime() + " " + landingTimeInNY.getZone());
+
+        // Extract the local time from departure in New York using toLocalTime() method, store it in a variable, and print it with zone
+
+        // Extract the local time from arrival in London using toLocalTime() method, store it in a variable, and print it with zone
+
+        // Extract the local time from landing in New York using toLocalTime() method, store it in a variable, and print it with zone
     }
 }
