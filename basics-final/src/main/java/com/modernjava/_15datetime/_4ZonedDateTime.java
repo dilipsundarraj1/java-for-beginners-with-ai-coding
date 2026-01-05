@@ -13,16 +13,24 @@ public class _4ZonedDateTime {
         retrievingValuesFromZonedDateTime();
         System.out.println("\n-------------------\n");
 
-        comparingZonedDateTimeInstances();
-        System.out.println("\n-------------------\n");
         modifyingZonedDateTimeInstances();
         System.out.println("\n-------------------\n");
+
+        System.out.println("\n-------------------\n");
+        understandingInstant();
+        convertInstantToZonedDateTimes();
+        compareAndModifyInstants();
+
+        comparingZonedDateTimeInstances();
+        System.out.println("\n-------------------\n");
+
 
         handlingTimeZoneConversions();
         System.out.println("\n-------------------\n");
         dealingWithDaylightSavings();
         System.out.println("\n-------------------\n");
         flightTravelExample();
+
     }
 
     private static void createZonedDateTimeInstances() {
@@ -31,6 +39,7 @@ public class _4ZonedDateTime {
         // Create ZonedDateTime for current date and time in system default zone using now() method, store it in a variable, and print it
         ZonedDateTime nowLocal = ZonedDateTime.now();
         System.out.println("Current date and time (system default zone): " + nowLocal);
+
 
         // Create ZonedDateTime for current date and time in specific zone using now(ZoneId) method, store it in a variable, and print it
         ZonedDateTime nowNY = ZonedDateTime.now(ZoneId.of("America/New_York"));
@@ -43,8 +52,8 @@ public class _4ZonedDateTime {
 
         // Create ZonedDateTime for specific date and time with zone using of() method, store it in a variable, and print it
         ZonedDateTime specific = ZonedDateTime.of(
-            2025, 12, 25, 20, 30, 45, 0,
-            ZoneId.of("Asia/Tokyo")
+                2025, 12, 25, 20, 30, 45, 0,
+                ZoneId.of("Asia/Tokyo")
         );
         System.out.println("Specific date and time in Tokyo: " + specific);
 
@@ -55,9 +64,9 @@ public class _4ZonedDateTime {
         // Get and display some available time zones using getAvailableZoneIds(), filter, and print them
         System.out.println("\nSome available time zones:");
         ZoneId.getAvailableZoneIds().stream()
-            .filter(zone -> zone.startsWith("America/") || zone.startsWith("Europe/") || zone.startsWith("Asia/"))
-            .limit(5)
-            .forEach(zone -> System.out.println("- " + zone));
+                .filter(zone -> zone.startsWith("America/") || zone.startsWith("Europe/") || zone.startsWith("Asia/"))
+                .limit(5)
+                .forEach(zone -> System.out.println("- " + zone));
     }
 
     private static void comparingZonedDateTimeInstances() {
@@ -82,6 +91,8 @@ public class _4ZonedDateTime {
         // Compare if tokyoTime and nyTime represent the same instant using toInstant().equals() method, store result in a variable, and print it
         boolean areSameInstant = tokyoTime.toInstant().equals(nyTime.toInstant());
         System.out.println("Are they at the same instant? " + areSameInstant);
+
+
     }
 
     private static void retrievingValuesFromZonedDateTime() {
@@ -168,9 +179,9 @@ public class _4ZonedDateTime {
         System.out.println("With different year: " + withYear2030);
 
         // Convert to New York zone while keeping the same instant using withZoneSameInstant() method, store result in a variable, and print it
-            //withZoneSameInstant :
-                //  In other words, it answers the question: "What time is it in a different timezone at this exact same moment?"
-                //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
+        //withZoneSameInstant :
+        //  In other words, it answers the question: "What time is it in a different timezone at this exact same moment?"
+        //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
         ZonedDateTime withZoneNY = dateTime.withZoneSameInstant(ZoneId.of("America/New_York"));
         System.out.println("With different zone: " + withZoneNY);
 
@@ -208,8 +219,8 @@ public class _4ZonedDateTime {
 
         // Create a ZonedDateTime before DST transition (2nd Sunday in March) using of() method, store it in a variable, and print it
         ZonedDateTime beforeDst = ZonedDateTime.of(
-            2025, 3, 10, 1, 30, 0, 0,
-            ZoneId.of("America/New_York")
+                2025, 3, 10, 1, 30, 0, 0,
+                ZoneId.of("America/New_York")
         );
         System.out.println("Before DST transition: " + beforeDst);
 
@@ -219,8 +230,8 @@ public class _4ZonedDateTime {
 
         // Create a ZonedDateTime before fall back transition (1st Sunday in November) using of() method, store it in a variable, and print it
         ZonedDateTime beforeFallBack = ZonedDateTime.of(
-            2025, 11, 3, 1, 30, 0, 0,
-            ZoneId.of("America/New_York")
+                2025, 11, 3, 1, 30, 0, 0,
+                ZoneId.of("America/New_York")
         );
         System.out.println("\nBefore fall back: " + beforeFallBack);
 
@@ -265,5 +276,117 @@ public class _4ZonedDateTime {
 
         // Extract the local time from landing in New York using toLocalTime() method, store it in a variable, and print it with zone
         System.out.println("- At that instant in New York: " + landingTimeInNY.toLocalTime() + " " + landingTimeInNY.getZone());
+    }
+
+    private static void understandingInstant() {
+        System.out.println("Understanding Instant");
+        System.out.println("==========================================");
+        System.out.println("Instant represents a single point in time (UTC/GMT)");
+        System.out.println("It is timezone-agnostic and cannot be displayed in local time directly");
+        System.out.println("Instant is useful for logging, measuring durations, and comparing timestamps");
+
+        System.out.println("\n--- Creating Instant Instances ---");
+
+        // Create an Instant for the current moment using now() method, store it in a variable, and print it
+        Instant currentInstant = Instant.now();
+        System.out.println("Current instant: " + currentInstant);
+
+        // Create an Instant by parsing an ISO-8601 string using parse() method, store it in a variable, and print it
+        Instant parsed = Instant.parse("2025-12-25T20:30:45Z");
+        System.out.println("Parsed instant: " + parsed);
+
+        // Create an Instant from a specific epoch using ofEpochSecond() method with seconds since Jan 1, 1970, store it in a variable, and print it
+        Instant fromEpochSecond = Instant.ofEpochSecond(1234567890);
+        System.out.println("From epoch seconds (1234567890): " + fromEpochSecond);
+
+        // Create an Instant from a specific epoch using ofEpochMilli() method with milliseconds since Jan 1, 1970, store it in a variable, and print it
+        Instant fromEpochMilli = Instant.ofEpochMilli(1234567890123L);
+        System.out.println("From epoch milliseconds: " + fromEpochMilli);
+
+
+        System.out.println("\n--- Retrieving Values from Instant ---");
+
+        // Create a current instant using now() method, store it in a variable, and print it
+        Instant now = Instant.now();
+        System.out.println("Current instant: " + now);
+
+        // Get the number of seconds since epoch (Jan 1, 1970 UTC) using getEpochSecond() method, store it in a variable, and print it
+        long epochSeconds = now.getEpochSecond();
+        System.out.println("Seconds since epoch: " + epochSeconds);
+
+        // Get the nanosecond adjustment from the epoch second using getNano() method, store it in a variable, and print it
+        int nanoAdjustment = now.getNano();
+        System.out.println("Nanosecond adjustment: " + nanoAdjustment);
+
+        // Get the number of milliseconds since epoch using toEpochMilli() method, store it in a variable, and print it
+        long epochMillis = now.toEpochMilli();
+        System.out.println("Milliseconds since epoch: " + epochMillis);
+
+
+
+
+    }
+
+    private static void convertInstantToZonedDateTimes() {
+        System.out.println("\n--- Converting Between Instant and ZonedDateTime ---");
+
+        // Create a ZonedDateTime for a specific date and time using of() method, store it in a variable
+        ZonedDateTime dateTimeNY = ZonedDateTime.of(2025, 10, 15, 18, 30, 0, 0, ZoneId.of("America/New_York"));
+        System.out.println("Original ZonedDateTime (New York): " + dateTimeNY);
+
+        // Convert ZonedDateTime to Instant using toInstant() method, store it in a variable, and print it
+        Instant instantFromZDT = dateTimeNY.toInstant();
+        System.out.println("As instant: " + instantFromZDT);
+
+        // Convert Instant back to ZonedDateTime in London zone using atZone() method, store it in a variable, and print it
+        ZonedDateTime dateTimeLondon = instantFromZDT.atZone(ZoneId.of("Europe/London"));
+        System.out.println("Same instant in London: " + dateTimeLondon);
+
+        // Convert Instant back to ZonedDateTime in Tokyo zone using atZone() method, store it in a variable, and print it
+        ZonedDateTime dateTimeTokyo = instantFromZDT.atZone(ZoneId.of("Asia/Tokyo"));
+        System.out.println("Same instant in Tokyo: " + dateTimeTokyo);
+    }
+
+    private static void compareAndModifyInstants() {
+        System.out.println("\n--- Comparing Instant Instances ---");
+
+        // Create two Instant objects using now() method with a small delay, store them in variables
+        Instant instant1 = Instant.now();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Instant instant2 = Instant.now();
+
+        // Compare if instant1 is before instant2 using isBefore() method, store result in a variable, and print it
+        boolean isBefore = instant1.isBefore(instant2);
+        System.out.println("Is instant1 before instant2? " + isBefore);
+
+        // Compare if instant1 is after instant2 using isAfter() method, store result in a variable, and print it
+        boolean isAfter = instant1.isAfter(instant2);
+        System.out.println("Is instant1 after instant2? " + isAfter);
+
+        // Check if two instants are equal using equals() method, store result in a variable, and print it
+        boolean areEqual = instant1.equals(instant2);
+        System.out.println("Are instant1 and instant2 equal? " + areEqual);
+
+        System.out.println("\n--- Modifying Instant Instances ---");
+
+        // Create a current instant using now() method, store it in a variable, and print it
+        Instant baseInstant = Instant.now();
+        System.out.println("Original instant: " + baseInstant);
+
+        // Add 1 hour (3600 seconds) to the instant using plusSeconds() method, store result in a variable, and print it
+        Instant plusOneHour = baseInstant.plusSeconds(3600);
+        System.out.println("Plus 1 hour: " + plusOneHour);
+
+        // Subtract 1 day (86400 seconds) from the instant using minusSeconds() method, store result in a variable, and print it
+        Instant minusOneDay = baseInstant.minusSeconds(86400);
+        System.out.println("Minus 1 day: " + minusOneDay);
+
+        // Add 30 days using plusSeconds() method (30 * 86400 seconds), store result in a variable, and print it
+        Instant plusThirtyDays = baseInstant.plusSeconds(30 * 86400);
+        System.out.println("Plus 30 days: " + plusThirtyDays);
     }
 }

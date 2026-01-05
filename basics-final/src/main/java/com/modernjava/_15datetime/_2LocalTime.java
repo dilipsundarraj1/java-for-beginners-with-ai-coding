@@ -26,7 +26,7 @@ public class _2LocalTime {
 
         // Demonstrate retrieving values from LocalTime
         System.out.println("\nRetrieving values from current time:");
-        printLocalTimeValues(LocalTime.now());
+        retrieveLocalTimeValues(LocalTime.now());
 
         // Compare now with a specific time
         compareWithNow(LocalTime.of(23, 59, 59));
@@ -68,7 +68,7 @@ public class _2LocalTime {
      * Prints hour, minute, second, nano, etc.
      * @param time the LocalTime to extract values from
      */
-    public static void printLocalTimeValues(LocalTime time) {
+    public static void retrieveLocalTimeValues(LocalTime time) {
         // Get the hour from the LocalTime, store it in a variable, and print it
         int hour = time.getHour();
         System.out.println("Hour: " + hour);

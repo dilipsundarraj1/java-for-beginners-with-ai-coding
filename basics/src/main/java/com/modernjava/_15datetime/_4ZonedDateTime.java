@@ -11,10 +11,14 @@ public class _4ZonedDateTime {
         retrievingValuesFromZonedDateTime();
         System.out.println("\n-------------------\n");
 
-        comparingZonedDateTimeInstances();
-        System.out.println("\n-------------------\n");
         modifyingZonedDateTimeInstances();
         System.out.println("\n-------------------\n");
+        comparingZonedDateTimeInstances();
+        System.out.println("\n-------------------\n");
+
+        System.out.println("\n-------------------\n");
+        understandingInstant();
+        compareAndModifyInstants();
 
         handlingTimeZoneConversions();
         System.out.println("\n-------------------\n");
@@ -104,6 +108,67 @@ public class _4ZonedDateTime {
             //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
 
         // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
+    }
+
+    private static void understandingInstant() {
+        System.out.println("Understanding Instant");
+        System.out.println("==========================================");
+        System.out.println("Instant represents a single point in time (UTC/GMT)");
+        System.out.println("It is timezone-agnostic and cannot be displayed in local time directly");
+        System.out.println("Instant is useful for logging, measuring durations, and comparing timestamps");
+
+        System.out.println("\n--- Creating Instant Instances ---");
+
+        // Create an Instant for the current moment using now() method, store it in a variable, and print it
+
+        // Create an Instant by parsing an ISO-8601 string using parse() method, store it in a variable, and print it
+
+        // Create an Instant from a specific epoch using ofEpochSecond() method with seconds since Jan 1, 1970, store it in a variable, and print it
+
+        // Create an Instant from a specific epoch using ofEpochMilli() method with milliseconds since Jan 1, 1970, store it in a variable, and print it
+
+        System.out.println("\n--- Converting Between Instant and ZonedDateTime ---");
+
+        // Create a ZonedDateTime for a specific date and time using of() method for "America/New_York", store it in a variable
+
+        // Convert ZonedDateTime to Instant using toInstant() method, store it in a variable, and print it
+
+        // Convert Instant back to ZonedDateTime in London zone using atZone() method, store it in a variable, and print it
+
+        // Convert Instant back to ZonedDateTime in Tokyo zone using atZone() method, store it in a variable, and print it
+
+        System.out.println("\n--- Retrieving Values from Instant ---");
+
+        // Create a current instant using now() method, store it in a variable, and print it
+
+        // Get the number of seconds since epoch (Jan 1, 1970 UTC) using getEpochSecond() method, store it in a variable, and print it
+
+        // Get the nanosecond adjustment from the epoch second using getNano() method, store it in a variable, and print it
+
+        // Get the number of milliseconds since epoch using toEpochMilli() method, store it in a variable, and print it
+
+    }
+
+    private static void compareAndModifyInstants() {
+        System.out.println("\n--- Comparing Instant Instances ---");
+
+        // Create two Instant objects using now() method with a small delay, store them in variables
+
+        // Compare if instant1 is before instant2 using isBefore() method, store result in a variable, and print it
+
+        // Compare if instant1 is after instant2 using isAfter() method, store result in a variable, and print it
+
+        // Check if two instants are equal using equals() method, store result in a variable, and print it
+
+        System.out.println("\n--- Modifying Instant Instances ---");
+
+        // Create a current instant using now() method, store it in a variable, and print it
+
+        // Add 1 hour (3600 seconds) to the instant using plusSeconds() method, store result in a variable, and print it
+
+        // Subtract 1 day (86400 seconds) from the instant using minusSeconds() method, store result in a variable, and print it
+
+        // Add 30 days using plusSeconds() method (30 * 86400 seconds), store result in a variable, and print it
     }
 
     private static void handlingTimeZoneConversions() {
