@@ -15,21 +15,23 @@ public class _4ZonedDateTime {
 
         modifyingZonedDateTimeInstances();
         System.out.println("\n-------------------\n");
+        handlingTimeZoneConversions();
+
+        flightTravelExample();
 
         System.out.println("\n-------------------\n");
         understandingInstant();
+
         convertInstantToZonedDateTimes();
         compareAndModifyInstants();
 
-        comparingZonedDateTimeInstances();
+
         System.out.println("\n-------------------\n");
 
-
-        handlingTimeZoneConversions();
         System.out.println("\n-------------------\n");
         dealingWithDaylightSavings();
         System.out.println("\n-------------------\n");
-        flightTravelExample();
+
 
     }
 
@@ -89,7 +91,7 @@ public class _4ZonedDateTime {
         boolean isTokyoAfter = tokyoTime.isAfter(nyTime);
         System.out.println("Is Tokyo after NY? " + isTokyoAfter);
 
-        // Compare if tokyoTime and nyTime represent the same instant using toInstant().equals() method, store result in a variable, and print it
+        // Compare if tokyoTime and nyTime are same using the equals() method, store result in a variable, and print it
         boolean areSameInstant = tokyoTime.toInstant().equals(nyTime.toInstant());
         System.out.println("Are they at the same instant? " + areSameInstant);
 
@@ -176,40 +178,39 @@ public class _4ZonedDateTime {
         ZonedDateTime withYear2030 = dateTime.withYear(2030);
         System.out.println("With different year: " + withYear2030);
 
-        // Convert to New York zone while keeping the same instant using withZoneSameInstant() method, store result in a variable, and print it
-        //withZoneSameInstant :
-        //  In other words, it answers the question: "What time is it in a different timezone at this exact same moment?"
-        //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
-        ZonedDateTime withZoneNY = dateTime.withZoneSameInstant(ZoneId.of("America/New_York"));
-        System.out.println("With different zone: " + withZoneNY);
-
-        // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
-        ZonedDateTime withZoneNYLocal = dateTime.withZoneSameLocal(ZoneId.of("America/New_York"));
-        System.out.println("With different zone (same local time): " + withZoneNYLocal);
     }
 
     private static void handlingTimeZoneConversions() {
         System.out.println("Handling Time Zone Conversions");
 
         // Create a time in Sydney zone using now(ZoneId) method, store it in a variable, and print it
-        ZonedDateTime sydneyTime = ZonedDateTime.now(ZoneId.of("Australia/Sydney"));
-        System.out.println("Time in Sydney: " + sydneyTime);
+        ZonedDateTime parisTime = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
+        System.out.println("Time in Sydney: " + parisTime);
+
+        // Convert to New York zone while keeping the same instant using withZoneSameInstant() method, store result in a variable, and print it
+        //withZoneSameInstant :
+        //  In other words, it answers the question: "What time is it in a different timezone at this exact same moment?"
+        //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
+        ZonedDateTime withZoneNY = parisTime.withZoneSameInstant(ZoneId.of("America/New_York"));
+        System.out.println("With different zone: " + withZoneNY);
+
 
         // Convert Sydney time to London zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
-        ZonedDateTime londonTime = sydneyTime.withZoneSameInstant(ZoneId.of("Europe/London"));
+        ZonedDateTime londonTime = parisTime.withZoneSameInstant(ZoneId.of("Europe/London"));
         System.out.println("Same instant in London: " + londonTime);
 
-        // Convert Sydney time to New York zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
-        ZonedDateTime nyTime = sydneyTime.withZoneSameInstant(ZoneId.of("America/New_York"));
-        System.out.println("Same instant in New York: " + nyTime);
-
         // Convert Sydney time to Tokyo zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
-        ZonedDateTime tokyoTime = sydneyTime.withZoneSameInstant(ZoneId.of("Asia/Tokyo"));
+        ZonedDateTime tokyoTime = parisTime.withZoneSameInstant(ZoneId.of("Asia/Tokyo"));
         System.out.println("Same instant in Tokyo: " + tokyoTime);
 
+
         // Calculate the hours difference between London and Sydney using ChronoUnit.HOURS.between() method, store result in a variable, and print it
-        long hoursDiff = ChronoUnit.HOURS.between(londonTime, sydneyTime);
-        System.out.println("Hours difference between Sydney and London: " + hoursDiff);
+        long hoursDiff = ChronoUnit.HOURS.between(londonTime, parisTime);
+        System.out.println("Hours difference between paris and London: " + hoursDiff);
+
+        // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
+        ZonedDateTime withZoneNYLocal = parisTime.withZoneSameLocal(ZoneId.of("America/New_York"));
+        System.out.println("With different zone (same local time): " + withZoneNYLocal);
     }
 
     private static void dealingWithDaylightSavings() {
@@ -262,6 +263,12 @@ public class _4ZonedDateTime {
         // Convert the landing time back to New York timezone to see what time it is at home using withZoneSameInstant() method, store it in a variable, and print it
         ZonedDateTime landingTimeInNY = arrivalLondon.withZoneSameInstant(ZoneId.of("America/New_York"));
         System.out.println("Landing time in New York timezone: " + landingTimeInNY);
+
+        // Calculate the time difference in hours between departure and arrival using ChronoUnit.HOURS.between() method, store result in a variable, and print it
+        long hoursDifference = ChronoUnit.HOURS.between(departureNY, arrivalLondon);
+        System.out.println("Time difference (hours): " + hoursDifference);
+
+
 
         System.out.println("\nTime difference:");
         System.out.println("\nTime difference (computed):");
