@@ -46,6 +46,7 @@ public class _4ZonedDateTime {
         System.out.println("Current date and time in New York: " + nowNY);
 
         // Create ZonedDateTime from LocalDateTime with zone using atZone() method, store it in a variable, and print it
+        // This just attached the zone information to the local date-time without changing the actual date-time values.
         LocalDateTime local = LocalDateTime.now();
         ZonedDateTime fromLocal = local.atZone(ZoneId.of("Europe/London"));
         System.out.println("From LocalDateTime in London: " + fromLocal);
@@ -142,9 +143,6 @@ public class _4ZonedDateTime {
         LocalDateTime localDateTime = dateTime.toLocalDateTime();
         System.out.println("As LocalDateTime: " + localDateTime);
 
-        // Convert ZonedDateTime to Instant using toInstant() method, store it in a variable, and print it
-        Instant instant = dateTime.toInstant();
-        System.out.println("As Instant: " + instant);
     }
 
     private static void modifyingZonedDateTimeInstances() {

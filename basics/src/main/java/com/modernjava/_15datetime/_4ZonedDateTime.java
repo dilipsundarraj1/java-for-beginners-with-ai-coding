@@ -35,6 +35,7 @@ public class _4ZonedDateTime {
         // Create ZonedDateTime for current date and time in specific zone "America/New_York" using now(ZoneId) method, store it in a variable, and print it
 
         // Create ZonedDateTime from LocalDateTime with zone "Europe/London" using atZone() method, store it in a variable, and print it
+        // This just attached the zone information to the local date-time without changing the actual date-time values.
 
         // Create ZonedDateTime for specific date and time with zone using of() method - Asia/Tokyo, store it in a variable, and print it
 
@@ -82,7 +83,6 @@ public class _4ZonedDateTime {
 
         // Convert ZonedDateTime to LocalDateTime using toLocalDateTime() method, store it in a variable, and print it
 
-        // Convert ZonedDateTime to Instant using toInstant() method, store it in a variable, and print it
     }
 
     private static void modifyingZonedDateTimeInstances() {
