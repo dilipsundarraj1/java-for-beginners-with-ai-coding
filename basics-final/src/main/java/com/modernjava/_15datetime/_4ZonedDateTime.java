@@ -183,7 +183,7 @@ public class _4ZonedDateTime {
     private static void handlingTimeZoneConversions() {
         System.out.println("Handling Time Zone Conversions");
 
-        // Create a time in Sydney zone using now(ZoneId) method, store it in a variable, and print it
+        // Create a time in Paris zone using now(ZoneId) method, store it in a variable, and print it
         ZonedDateTime parisTime = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
         System.out.println("Time in Sydney: " + parisTime);
 
@@ -195,16 +195,16 @@ public class _4ZonedDateTime {
         System.out.println("With different zone: " + withZoneNY);
 
 
-        // Convert Sydney time to London zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
+        // Convert paris time to London zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
         ZonedDateTime londonTime = parisTime.withZoneSameInstant(ZoneId.of("Europe/London"));
         System.out.println("Same instant in London: " + londonTime);
 
-        // Convert Sydney time to Tokyo zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
+        // Convert paris time to Tokyo zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
         ZonedDateTime tokyoTime = parisTime.withZoneSameInstant(ZoneId.of("Asia/Tokyo"));
         System.out.println("Same instant in Tokyo: " + tokyoTime);
 
 
-        // Calculate the hours difference between London and Sydney using ChronoUnit.HOURS.between() method, store result in a variable, and print it
+        // Calculate the hours difference between London and paris using ChronoUnit.HOURS.between() method, store result in a variable, and print it
         long hoursDiff = ChronoUnit.HOURS.between(londonTime, parisTime);
         System.out.println("Hours difference between paris and London: " + hoursDiff);
 
@@ -326,9 +326,6 @@ public class _4ZonedDateTime {
         // Get the number of milliseconds since epoch using toEpochMilli() method, store it in a variable, and print it
         long epochMillis = now.toEpochMilli();
         System.out.println("Milliseconds since epoch: " + epochMillis);
-
-
-
 
     }
 

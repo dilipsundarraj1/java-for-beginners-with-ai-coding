@@ -22,8 +22,6 @@ public class _4ZonedDateTime {
         understandingInstant();
         compareAndModifyInstants();
 
-        handlingTimeZoneConversions();
-        System.out.println("\n-------------------\n");
         dealingWithDaylightSavings();
         System.out.println("\n-------------------\n");
 
@@ -104,12 +102,6 @@ public class _4ZonedDateTime {
 
         // Replace the year with 2030 using withYear() method, store result in a variable, and print it
 
-        // Convert to New York zone while keeping the same instant using withZoneSameInstant() method, store result in a variable, and print it
-        //withZoneSameInstant :
-            //  In other words, it answers the question: "What time is it in a different timezone at this exact same moment?"
-            //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
-
-        // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
     }
 
     private static void understandingInstant() {
@@ -176,7 +168,7 @@ public class _4ZonedDateTime {
     private static void handlingTimeZoneConversions() {
         System.out.println("Handling Time Zone Conversions");
 
-        // Create a time in Sydney zone using now(ZoneId) method, store it in a variable, and print it
+        // Create a time in Paris zone using now(ZoneId) method, store it in a variable, and print it
 
         // Convert to New York zone while keeping the same instant using withZoneSameInstant() method, store result in a variable, and print it
         //withZoneSameInstant :
@@ -184,12 +176,12 @@ public class _4ZonedDateTime {
         //For example, if it's 3:00 PM in Paris, withZoneSameInstant() will calculate what time it is in New York at that exact same instant (which would be earlier in the day due to the time zone difference).
 
 
-        // Convert Sydney time to London zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
+        // Convert paris time to London zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
 
-        // Convert Sydney time to Tokyo zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
+        // Convert paris time to Tokyo zone keeping the same instant using withZoneSameInstant() method, store it in a variable, and print it
 
 
-        // Calculate the hours difference between London and Sydney using ChronoUnit.HOURS.between() method, store result in a variable, and print it
+        // Calculate the hours difference between London and paris using ChronoUnit.HOURS.between() method, store result in a variable, and print it
 
         // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
     }
