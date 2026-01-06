@@ -186,6 +186,14 @@ public class _4ZonedDateTime {
         // Convert to New York zone while keeping the same local time using withZoneSameLocal() method, store result in a variable, and print it
     }
 
+    /**
+     *  Key Concept:
+     *      ZonedDateTime automatically adjusts for daylight savings time (DST) transitions. When you add or subtract time across a DST boundary, the zone rules are applied automatically.
+     * How it works in this code:
+         * Before Spring Forward (2nd Sunday in March): Create a ZonedDateTime just before clocks move forward 1 hour. When you add 1 hour using plusHours(), the time jumps forward and the offset changes automatically.
+         * Before Fall Back (1st Sunday in November): Create a ZonedDateTime before clocks move back 1 hour. Adding 1 hour crosses the transition point, and ZonedDateTime handles the offset change.
+         * Checking DST Status: Use getZone().getRules().isDaylightSavings() to check if a specific ZonedDateTime is observing daylight savings.
+     */
     private static void dealingWithDaylightSavings() {
         System.out.println("Dealing with Daylight Savings Time (DST)");
 
