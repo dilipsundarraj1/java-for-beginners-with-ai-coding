@@ -4,4 +4,3 @@ public record Seat(
     String row,
     int seatNumber
 ) {}
-

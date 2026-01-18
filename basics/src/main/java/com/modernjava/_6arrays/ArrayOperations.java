@@ -23,11 +23,9 @@ public class ArrayOperations {
     static void main(String[] args) {
         System.out.println("=== Array Operations - Lecture 3 ===\n");
 
-
+        // Demonstrate updating elements
 
         // Show how to "add" elements (create new array)
-
-        // Demonstrate updating elements
 
         // Show how to "remove" elements (create new array)
 
